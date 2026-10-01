@@ -21,7 +21,7 @@
     }
   },
   "otherPortsAttributes": {
-    "onAutoForward": "silent"
+    "onAutoForward": "ignore"
   },
   "postCreateCommand": "/usr/local/share/bioinfo-workshop/on-create.sh \"${containerWorkspaceFolder}\"",
   "postAttachCommand": "/usr/local/share/bioinfo-workshop/start-rstudio.sh",
