@@ -1,0 +1,17 @@
+SRR1039509	ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/009/SRR1039509/SRR1039509_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/009/SRR1039509/SRR1039509_2.fastq.gz	49400c5685f36f830a277a59004b119d;ab4410a432cc18c1b9f10f93634e5310	21155707
+fq/SRR1039509_1.fastq.gz: attempt 1 via https ended with curl exit 18, 670916608 bytes so far
+fq/SRR1039509_1.fastq.gz: MD5 OK (49400c5685f36f830a277a59004b119d) after 2 attempt(s), last via ftp
+fq/SRR1039509_2.fastq.gz: attempt 1 via https ended with curl exit 18, 293799745 bytes so far
+fq/SRR1039509_2.fastq.gz: attempt 2 via ftp ended with curl exit 28, 1074726721 bytes so far
+fq/SRR1039509_2.fastq.gz: attempt 3 via https ended with curl exit 18, 1074726721 bytes so far
+fq/SRR1039509_2.fastq.gz: MD5 OK (ab4410a432cc18c1b9f10f93634e5310) after 4 attempt(s), last via ftp
+total 2243124
+-rw-r--r-- 1 root root 1144872640 Oct  1 20:06 SRR1039509_1.fastq.gz
+-rw-r--r-- 1 root root 1152074727 Oct  1 20:13 SRR1039509_2.fastq.gz
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 7:52.21
+	Maximum resident set size (kbytes): 2325780
+quant/SRR1039509/aux_info/meta_info.json:  "percent_mapped": 94.70217185367522,
+subset R1 reads: 1000000
+subset R2 reads: 1000000
+subset quant (2 threads): 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:47.85
+subset quant (2 threads): 	Maximum resident set size (kbytes): 2320404

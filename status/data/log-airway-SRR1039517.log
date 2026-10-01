@@ -1,0 +1,17 @@
+SRR1039517	ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/007/SRR1039517/SRR1039517_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/007/SRR1039517/SRR1039517_2.fastq.gz	1f2796f07033ec3bfab0981bd0674bb9;008ba2b3b589d553e3e9f8890d5481c2	34298260
+fq/SRR1039517_1.fastq.gz: attempt 1 via https ended with curl exit 18, 498567745 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 2 via ftp ended with curl exit 18, 1414844416 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 3 via https ended with curl exit 28, 1414844416 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 4 via ftp ended with curl exit 28, 1414844416 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 5 via https ended with curl exit 28, 1842460094 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 6 via ftp ended with curl exit 28, 1842460094 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 7 via https ended with curl exit 18, 1960843772 bytes so far
+fq/SRR1039517_1.fastq.gz: attempt 8 via ftp ended with curl exit 28, 1960843772 bytes so far
+fq/SRR1039517_1.fastq.gz: MD5 OK (1f2796f07033ec3bfab0981bd0674bb9) after 9 attempt(s), last via https
+fq/SRR1039517_2.fastq.gz: MD5 OK (008ba2b3b589d553e3e9f8890d5481c2) after 1 attempt(s), last via https
+total 3968484
+-rw-r--r-- 1 root root 2034416969 Oct  1 20:55 SRR1039517_1.fastq.gz
+-rw-r--r-- 1 root root 2029298187 Oct  1 21:07 SRR1039517_2.fastq.gz
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:22.83
+	Maximum resident set size (kbytes): 2317180
+quant/SRR1039517/aux_info/meta_info.json:  "percent_mapped": 96.02482166733823,
