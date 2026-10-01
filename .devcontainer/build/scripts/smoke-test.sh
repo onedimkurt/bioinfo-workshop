@@ -91,6 +91,25 @@ check "sign-in leads to the IDE"         bash -c 'ck=$(sed -n "s/^[Ss]et-[Cc]ook
 echo "      (for the record) sign-in response through the proxy:"
 sed 's/^/        /' /tmp/h2s 2>/dev/null
 check "second start is a no-op"          /usr/local/share/bioinfo-workshop/start-rstudio.sh
+# R86: the codespace's variables (dummy values here) must reach an R session that
+# starts with a clean environment, as RStudio's sessions do.
+cat > /tmp/session-env-test.sh <<'EOS'
+set -u
+export GITHUB_TOKEN=smoke-not-a-token GITHUB_USER=smoke-user CODESPACES=true
+export GIT_COMMITTER_NAME="Smoke O'Test"
+/usr/local/share/bioinfo-workshop/start-rstudio.sh >/dev/null
+f="$HOME/.local/share/rstudio-server/session.env"
+[ "$(stat -c %a "$f")" = 600 ] || { echo "session.env mode is $(stat -c %a "$f"), not 600"; exit 1; }
+env -i HOME="$HOME" PATH=/usr/local/bin:/usr/bin:/bin Rscript -e '
+  stopifnot(Sys.getenv("GITHUB_USER") == "smoke-user",
+            Sys.getenv("GITHUB_TOKEN") == "smoke-not-a-token",
+            Sys.getenv("GIT_COMMITTER_NAME") == "Smoke O'"'"'Test",
+            Sys.getenv("CODESPACES") == "true")
+  cat("mode 600; the variables arrive in a clean R session\n")'
+env -i HOME="$HOME" PATH=/usr/local/bin:/usr/bin:/bin GITHUB_USER=already-set Rscript -e '
+  stopifnot(Sys.getenv("GITHUB_USER") == "already-set"); cat("an existing value is kept\n")'
+EOS
+check "codespace variables reach R"      bash /tmp/session-env-test.sh
 echo "      (for the record) RStudio's own sign-in redirect without the proxy:"
 curl -s -D - -o /dev/null -H "Host: localhost:8787" "http://127.0.0.1:8788/auth-sign-in?appUri=%2F" | grep -i "^location:" | sed 's/^/        /'
 check "sudo rule is narrow"            bash -c 'sudo -n -l | grep -q start-rstudio-password.sh && ! sudo -n true 2>/dev/null && echo only-the-script'

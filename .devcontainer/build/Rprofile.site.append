@@ -6,6 +6,23 @@ local({
   options(repos = c(CRAN = sprintf("https://p3m.dev/cran/__linux__/noble/%s", snap)))
 })
 
+## RStudio starts R sessions with a clean environment. start-rstudio.sh writes the
+## codespace's documented variables (GITHUB_TOKEN, GITHUB_USER, ...) to a private file;
+## load them here so RStudio's Terminal and Git pane can push to GitHub (R86).
+## A variable already set in this process is never overwritten.
+local({
+  f <- file.path(Sys.getenv("HOME"), ".local", "share", "rstudio-server", "session.env")
+  if (!file.exists(f)) return(invisible(NULL))
+  for (l in readLines(f, warn = FALSE)) {
+    i <- regexpr("=", l, fixed = TRUE)
+    if (i < 2L) next
+    name <- substring(l, 1L, i - 1L)
+    if (!nzchar(Sys.getenv(name))) {
+      do.call(Sys.setenv, stats::setNames(list(substring(l, i + 1L)), name))
+    }
+  }
+})
+
 ## Open the repository's RStudio project the first time RStudio starts in a new
 ## codespace, so the Files pane, the working directory and the Git tab are right.
 ## The workspace path is written by on-create.sh; nothing happens outside RStudio

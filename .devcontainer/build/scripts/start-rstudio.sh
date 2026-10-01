@@ -14,6 +14,24 @@ data="${HOME}/.local/share/rstudio-server"
 log="${data}/start.log"
 ngx=/tmp/bioinfo-workshop-nginx
 mkdir -p "${data}/run" "${ngx}"
+
+# RStudio starts its R sessions with a clean environment, so its Terminal and Git pane
+# would miss the codespace's documented variables, GITHUB_TOKEN among them, and
+# `git push` would ask for a username (seen 2026-10-01, R86). Hand them over in a
+# file only this user can read; Rprofile.site loads it into every R session. The
+# file lives in the home folder, never in the repository, and is rewritten at each
+# attach so it always holds the current values.
+umask 077
+envfile="${data}/session.env"
+: > "${envfile}.tmp"
+for v in CODESPACE_NAME CODESPACES GIT_COMMITTER_EMAIL GIT_COMMITTER_NAME \
+         GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN GITHUB_API_URL GITHUB_GRAPHQL_URL \
+         GITHUB_REPOSITORY GITHUB_SERVER_URL GITHUB_TOKEN GITHUB_USER; do
+    if [ -n "${!v:-}" ]; then printf '%s=%s\n' "${v}" "${!v}" >> "${envfile}.tmp"; fi
+done
+chmod 600 "${envfile}.tmp" && mv -f "${envfile}.tmp" "${envfile}"
+umask 022
+
 back_up()  { curl -sf -o /dev/null --max-time 2 "http://127.0.0.1:${BACK}/"; }
 front_up() { curl -sf -o /dev/null --max-time 2 "http://127.0.0.1:${FRONT}/"; }
 
