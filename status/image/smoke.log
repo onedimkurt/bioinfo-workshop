@@ -1,6 +1,6 @@
-uncompressed image size: 7.17 GB
+uncompressed image size: 7.18 GB
 == bioinfo-workshop image smoke test ==
-image built: 2026-10-01 17:52 +03
+image built: 2026-10-01 19:22 +03
 PASS  runs as rstudio                        uid=1000(rstudio) gid=1000(rstudio) groups=1000(rstudio),50(staff)
 PASS  R is 4.6.1                             R version 4.6.1 (2026-06-24) 
 PASS  Rprofile.site parses                   ok
@@ -62,10 +62,15 @@ PASS  export --from-history                  has-seqkit
 
 == RStudio ==
 PASS  on-create writes prefs                 /tmp/ws
-PASS  start-rstudio.sh starts rserver        [bioinfo-workshop] RStudio is running on port 8787 (PORTS tab, label RStudio).
-PASS  port 8787 answers                      302
-PASS  page is RStudio                        yes
+PASS  start-rstudio.sh starts RStudio        [bioinfo-workshop] RStudio is running on port 8787 (PORTS tab, label RStudio).
+PASS  RStudio itself on 127.0.0.1:8788       302
+PASS  proxy on 8787 answers                  302
+FAIL  redirects stay relative               
+Location: http://localhost:8787/unsupported_browser.htm
+PASS  sign-in leads to the IDE               IDE page, 1477 bytes
 PASS  second start is a no-op                [bioinfo-workshop] RStudio is already running on port 8787.
+      (for the record) RStudio's own sign-in redirect without the proxy:
+        Location: http://localhost:8787/
 PASS  sudo rule is narrow                    only-the-script
 
 == sizes ==
@@ -73,4 +78,4 @@ PASS  sudo rule is narrow                    only-the-script
 739M	/usr/local/lib/R/site-library
 overlay         145G   49G   97G  34% /
 
-SMOKE TEST: PASS
+SMOKE TEST: FAIL (1)
