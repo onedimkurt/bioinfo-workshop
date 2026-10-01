@@ -106,14 +106,21 @@ jobs:
           { echo '## image run'; echo; echo '```'; cat ci/STATUS; echo '```'; echo; echo '```'; cat ci/smoke.log 2>/dev/null; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -q --orphan ci-status-new
-          git rm -rq --cached . >/dev/null
-          mkdir -p status/image
-          cp ci/STATUS status/image/
-          for f in ci/*.log; do [ "$f" = ci/build.log ] || cp "$f" status/image/; done
-          git add status/image
-          git commit -qm "image run ${{ github.run_id }}: build ${{ steps.build.outcome }}, smoke ${{ steps.smoke.outcome }}"
-          git push -f origin HEAD:refs/heads/ci-status
+          mkdir -p /tmp/status-new
+          cp ci/STATUS /tmp/status-new/
+          for f in ci/*.log; do [ "$f" = ci/build.log ] || cp "$f" /tmp/status-new/; done
+          for attempt in 1 2 3; do
+            if git fetch -q origin ci-status; then
+              git checkout -q -f -B ci-status FETCH_HEAD
+            else
+              git checkout -q -f --orphan ci-status && git rm -rq --cached . >/dev/null
+            fi
+            rm -rf status/image && mkdir -p status/image && cp /tmp/status-new/* status/image/
+            git add status/image
+            git commit -qm "image run ${{ github.run_id }}: build ${{ steps.build.outcome }}, smoke ${{ steps.smoke.outcome }}" || true
+            git push -q origin HEAD:refs/heads/ci-status && break
+            sleep 5
+          done
 
       - name: Keep the full build log
         if: always()
