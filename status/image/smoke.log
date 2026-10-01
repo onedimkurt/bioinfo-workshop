@@ -58,7 +58,7 @@ samtools                   1.24             h9dcdb79_1          bioconda
 
 == live exercise timings (WORKSHOP.md §6 step 3) ==
 PASS  conda create deneme --offline          seqkit v2.14.0
-      took 3 s
+      took 2 s
 PASS  remove deneme                          removed
 PASS  conda create deneme (online)           seqkit v2.14.0
       took 2 s
@@ -76,11 +76,11 @@ PASS  sign-in cookie names rstudio           user-id=rstudio, no Domain attribut
 PASS  sign-in leads to the IDE               IDE page, 1103 bytes
       (for the record) sign-in response through the proxy:
         HTTP/1.1 302 Moved Temporarily
-        Set-Cookie: user-id=rstudio|Thu%2C%2001%20Oct%202026%2021%3A20%3A50%20GMT|lxilRbB2iLAMMRSjxowHiWUuPA5ger6MgNEEmDO94xc%3D; path=/; HttpOnly
-        Set-Cookie: user-list-id=9c16856330a7400cbbbba228392a5d83|Thu%2C%2001%20Oct%202026%2021%3A20%3A50%20GMT|RjqHXVUaqr5onmT5wGRO6s4u7IRz0RFXXYC7s70IXTk%3D; path=/; HttpOnly
-        Set-Cookie: persist-auth=0; expires=Thu, 1 Oct 2026 21:20:50 GMT; path=/; HttpOnly
-        Set-Cookie: rs-csrf-token=397ecdf7-fabc-4b4f-ab51-2e3258a7f1b9; path=/; HttpOnly
-        Set-Cookie: csrf-token=397ecdf7-fabc-4b4f-ab51-2e3258a7f1b9; path=/; HttpOnly
+        Set-Cookie: user-id=rstudio|Thu%2C%2001%20Oct%202026%2023%3A45%3A38%20GMT|Pdaj8M6zxbGXhOOiRJy4eX7DPU%2BL2Si9nn9pUErMFuU%3D; path=/; HttpOnly
+        Set-Cookie: user-list-id=9c16856330a7400cbbbba228392a5d83|Thu%2C%2001%20Oct%202026%2023%3A45%3A38%20GMT|HQ12T1s4HaBgy9kBLuBdCO2YtV6PgjG%2B9ZqqPAIcR0A%3D; path=/; HttpOnly
+        Set-Cookie: persist-auth=0; expires=Thu, 1 Oct 2026 23:45:38 GMT; path=/; HttpOnly
+        Set-Cookie: rs-csrf-token=39319f22-d607-43d5-b737-d76696a7e6b6; path=/; HttpOnly
+        Set-Cookie: csrf-token=39319f22-d607-43d5-b737-d76696a7e6b6; path=/; HttpOnly
         Location: /
 PASS  second start is a no-op                [bioinfo-workshop] RStudio is already running on port 8787.
 PASS  codespace variables reach R            an existing value is kept
@@ -91,6 +91,6 @@ PASS  sudo rule is narrow                    only-the-script
 == sizes ==
 2.9G	/opt/conda
 739M	/usr/local/lib/R/site-library
-overlay         145G   49G   97G  34% /
+overlay         145G   41G  104G  29% /
 
 SMOKE TEST: PASS
