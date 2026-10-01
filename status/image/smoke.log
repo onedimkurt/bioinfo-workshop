@@ -1,6 +1,6 @@
 uncompressed image size: 7.18 GB
 == bioinfo-workshop image smoke test ==
-image built: 2026-10-01 20:35 +03
+image built: 2026-10-01 20:55 +03
 PASS  runs as rstudio                        uid=1000(rstudio) gid=1000(rstudio) groups=1000(rstudio),50(staff)
 PASS  R is 4.6.1                             R version 4.6.1 (2026-06-24) 
 PASS  Rprofile.site parses                   ok
@@ -61,6 +61,7 @@ PASS  remove deneme                          removed
 PASS  conda create deneme (online)           seqkit v2.14.0
       took 2 s
 PASS  export --from-history                  has-seqkit
+PASS  conda env remove -n deneme             removed
 
 == RStudio ==
 PASS  on-create writes prefs                 /tmp/ws
@@ -73,11 +74,11 @@ PASS  sign-in cookie names rstudio           user-id=rstudio, no Domain attribut
 PASS  sign-in leads to the IDE               IDE page, 1103 bytes
       (for the record) sign-in response through the proxy:
         HTTP/1.1 302 Moved Temporarily
-        Set-Cookie: user-id=rstudio|Thu%2C%2001%20Oct%202026%2018%3A37%3A30%20GMT|05zzCWgq5P42O%2BfGa6oL8MQ48y3rZ8Q%2BbzNzBnhYl3o%3D; path=/; HttpOnly
-        Set-Cookie: user-list-id=9c16856330a7400cbbbba228392a5d83|Thu%2C%2001%20Oct%202026%2018%3A37%3A30%20GMT|Lw5RqcsZANTTVtB6wIRb6CoAw%2FzmmiiHQoWP4fS%2B%2F88%3D; path=/; HttpOnly
-        Set-Cookie: persist-auth=0; expires=Thu, 1 Oct 2026 18:37:30 GMT; path=/; HttpOnly
-        Set-Cookie: rs-csrf-token=ce56eb20-1b68-4772-bedd-16cc03848ed4; path=/; HttpOnly
-        Set-Cookie: csrf-token=ce56eb20-1b68-4772-bedd-16cc03848ed4; path=/; HttpOnly
+        Set-Cookie: user-id=rstudio|Thu%2C%2001%20Oct%202026%2018%3A58%3A20%20GMT|DJLXYi1tpd2evkopAx9quxtmcxay7pAnqkMHU9hGZPs%3D; path=/; HttpOnly
+        Set-Cookie: user-list-id=9c16856330a7400cbbbba228392a5d83|Thu%2C%2001%20Oct%202026%2018%3A58%3A20%20GMT|Xv8fADKF62KWM8tFTu5HOG8W2dmdkLB4Q2K6lXyIvkQ%3D; path=/; HttpOnly
+        Set-Cookie: persist-auth=0; expires=Thu, 1 Oct 2026 18:58:20 GMT; path=/; HttpOnly
+        Set-Cookie: rs-csrf-token=e420288f-1663-4c16-8adc-8163511956f5; path=/; HttpOnly
+        Set-Cookie: csrf-token=e420288f-1663-4c16-8adc-8163511956f5; path=/; HttpOnly
         Location: /
 PASS  second start is a no-op                [bioinfo-workshop] RStudio is already running on port 8787.
       (for the record) RStudio's own sign-in redirect without the proxy:
