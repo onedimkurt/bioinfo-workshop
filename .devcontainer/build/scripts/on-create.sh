@@ -8,6 +8,7 @@ ws="${1:-${CODESPACE_VSCODE_FOLDER:-$PWD}}"
 echo "[bioinfo-workshop] workspace folder: ${ws}"
 mkdir -p "${HOME}/.config/bioinfo-workshop" "${HOME}/.config/rstudio"
 printf '%s\n' "${ws}" > "${HOME}/.config/bioinfo-workshop/workspace"
+mkdir -p "${ws}/results"
 prefs="${HOME}/.config/rstudio/rstudio-prefs.json"
 if [ ! -s "${prefs}" ] || ! jq -e . "${prefs}" >/dev/null 2>&1; then
     echo '{}' > "${prefs}"

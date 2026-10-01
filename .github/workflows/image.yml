@@ -1,6 +1,8 @@
 # Builds the codespace image and publishes it to ghcr.io/onedimkurt/bioinfo-workshop
 # (WORKSHOP.md §7 Phase 1). Runs only in the organiser's repository: every trainee's
 # copy inherits this file, and the "if" below keeps their copies from building.
+# Every run writes its logs to the branch "ci-status" (status/), so the build chat can
+# read them with git; "Use this template" copies only main, never that branch.
 name: image
 
 on:
@@ -12,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 concurrency:
@@ -37,8 +39,18 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      - name: Prepare log folder
+        run: |
+          mkdir -p ci
+          echo "date=$(TZ=Europe/Istanbul date +%Y%m%d-%H%M)" >> "$GITHUB_ENV"
+
       - name: Shell scripts pass shellcheck (errors only)
-        run: shellcheck --version && shellcheck -S error -s bash .devcontainer/build/scripts/*.sh .devcontainer/build/bash.bashrc.append
+        id: lint
+        run: |
+          set -o pipefail
+          shellcheck --version | tee ci/lint.log
+          shellcheck -S error -s bash .devcontainer/build/scripts/*.sh .devcontainer/build/bash.bashrc.append \
+            check/*.sh 2>&1 | tee -a ci/lint.log
 
       - uses: docker/setup-buildx-action@v3
 
@@ -48,43 +60,65 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Tag for this build
-        id: tag
-        run: echo "date=$(TZ=Europe/Istanbul date +%Y%m%d-%H%M)" >> "$GITHUB_OUTPUT"
-
       - name: Build the image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: .devcontainer/Dockerfile
-          load: true
-          push: false
-          tags: ${{ env.IMAGE }}:candidate
-          cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
-          cache-to: type=registry,ref=${{ env.IMAGE }}:buildcache,mode=max
-
-      - name: Smoke test inside the image (as rstudio)
+        id: build
         run: |
           set -o pipefail
+          start=$(date +%s)
+          docker buildx build --progress=plain --load \
+            --cache-from "type=registry,ref=$IMAGE:buildcache" \
+            --cache-to "type=registry,ref=$IMAGE:buildcache,mode=max" \
+            -t "$IMAGE:candidate" -f .devcontainer/Dockerfile . 2>&1 | tee ci/build.log
+          echo "build seconds: $(( $(date +%s) - start ))" | tee -a ci/build.log
+
+      - name: Smoke test inside the image (as rstudio)
+        id: smoke
+        run: |
+          set -o pipefail
+          docker image inspect "$IMAGE:candidate" --format '{{.Size}}' \
+            | awk '{printf "uncompressed image size: %.2f GB\n", $1/1e9}' | tee ci/smoke.log
           docker run --rm -u rstudio "$IMAGE:candidate" \
-            /usr/local/share/bioinfo-workshop/smoke-test.sh | tee smoke.txt
+            /usr/local/share/bioinfo-workshop/smoke-test.sh 2>&1 | tee -a ci/smoke.log
 
       - name: Push latest and the dated tag
+        id: push
         run: |
+          set -o pipefail
           docker tag "$IMAGE:candidate" "$IMAGE:latest"
-          docker tag "$IMAGE:candidate" "$IMAGE:${{ steps.tag.outputs.date }}"
-          docker push "$IMAGE:${{ steps.tag.outputs.date }}"
-          docker push "$IMAGE:latest"
+          docker tag "$IMAGE:candidate" "$IMAGE:$date"
+          { docker push "$IMAGE:$date" && docker push "$IMAGE:latest"; } 2>&1 | tail -n 20 | tee ci/push.log
 
-      - name: Summary
+      - name: Write status to the ci-status branch
         if: always()
         run: |
           {
-            echo "## Image ${IMAGE}:${{ steps.tag.outputs.date }}"
-            echo
-            echo "Uncompressed size: $(docker image inspect "$IMAGE:candidate" --format '{{.Size}}' 2>/dev/null | awk '{printf "%.2f GB", $1/1e9}')"
-            echo
-            echo '```'
-            cat smoke.txt 2>/dev/null || echo "no smoke test output"
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
+            echo "run: ${{ github.run_id }}  attempt: ${{ github.run_attempt }}"
+            echo "commit: ${{ github.sha }}"
+            echo "tag: $IMAGE:$date"
+            echo "lint: ${{ steps.lint.outcome }}"
+            echo "build: ${{ steps.build.outcome }}"
+            echo "smoke: ${{ steps.smoke.outcome }}"
+            echo "push: ${{ steps.push.outcome }}"
+          } > ci/STATUS
+          grep -nE '(^|[^a-z])(ERROR|Error|error:|FAILED|failed)' ci/build.log 2>/dev/null | tail -n 80 > ci/build-errors.log || true
+          tail -n 300 ci/build.log > ci/build-tail.log 2>/dev/null || true
+          sed -n '/==== installed versions ====/,/^#[0-9]* DONE/p' ci/build.log > ci/r-versions.log 2>/dev/null || true
+          { echo '## image run'; echo; echo '```'; cat ci/STATUS; echo '```'; echo; echo '```'; cat ci/smoke.log 2>/dev/null; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q --orphan ci-status-new
+          git rm -rq --cached . >/dev/null
+          mkdir -p status/image
+          cp ci/STATUS status/image/
+          for f in ci/*.log; do [ "$f" = ci/build.log ] || cp "$f" status/image/; done
+          git add status/image
+          git commit -qm "image run ${{ github.run_id }}: build ${{ steps.build.outcome }}, smoke ${{ steps.smoke.outcome }}"
+          git push -f origin HEAD:refs/heads/ci-status
+
+      - name: Keep the full build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-logs-${{ github.run_id }}
+          path: ci/
+          retention-days: 14
