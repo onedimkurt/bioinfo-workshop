@@ -12,10 +12,15 @@ on:
         description: "Release to create or update"
         default: "data-v1"
         required: true
+      reuse_run:
+        description: "Run id whose transcriptome and airway files to reuse (empty = build everything)"
+        default: ""
+        required: false
 
 permissions:
   contents: write
   packages: read
+  actions: read
 
 concurrency:
   group: data
@@ -33,7 +38,7 @@ env:
 
 jobs:
   transcriptome:
-    if: github.repository == 'onedimkurt/bioinfo-workshop'
+    if: github.repository == 'onedimkurt/bioinfo-workshop' && inputs.reuse_run == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     container:
@@ -229,19 +234,28 @@ jobs:
           echo "CRAM: $cram" | tee -a log/variants.log
           test -n "$cram"
           case "$cram" in ftp://*) cram="https://${cram#ftp://}";; esac
-          # The CRAM needs its reference to decode. Its header points to a path on the
-          # 1000 Genomes cluster; chr20 is the same sequence in UCSC hg38, so give that
-          # (-T) and log both MD5s. Fallback: the EBI CRAM reference registry by MD5.
+          run=$(basename "$(dirname "$cram")"); file=$(basename "$cram")
+          # The same CRAM from three places: EBI over https and ftp, and the AWS open-data
+          # mirror of 1000 Genomes (EBI answered 403 once on 2026-10-01).
+          sources="$cram ftp://${cram#https://} https://1000genomes.s3.amazonaws.com/1000G_2504_high_coverage/data/$run/$file"
+          # The CRAM needs its reference to decode; chr20 of UCSC hg38 has the same MD5
+          # as the CRAM header's chr20 (b18e6c53..., checked in data run #5).
           zcat out/chr20.fa.gz > chr20.fa
           $env/samtools faidx chr20.fa
           echo "chr20 M5, UCSC hg38: $($env/samtools dict chr20.fa | grep -o 'M5:[0-9a-f]*')" | tee -a log/variants.log
-          echo "chr20 M5, CRAM header: $($env/samtools view -H "$cram" | grep -P '\tSN:chr20\t' | grep -o 'M5:[0-9a-f]*')" | tee -a log/variants.log
-          if ! $env/samtools view -T chr20.fa -b -o window.bam "$cram" "$WINDOW"; then
-            echo "decode with UCSC chr20 failed; trying the EBI registry" | tee -a log/variants.log
-            mkdir -p refcache
-            REF_PATH='https://www.ebi.ac.uk/ena/cram/md5/%s' REF_CACHE="$PWD/refcache/%2s/%2s/%s" \
-              $env/samtools view -b -o window.bam "$cram" "$WINDOW"
-          fi
+          used=""
+          for attempt in 1 2 3; do
+            for src in $sources; do
+              if $env/samtools view -H "$src" > header.sam && $env/samtools view -T chr20.fa -b -o window.bam "$src" "$WINDOW"; then
+                used="$src"; break 2
+              fi
+              echo "source failed (attempt $attempt): $src" | tee -a log/variants.log
+            done
+            sleep 60
+          done
+          test -n "$used"
+          echo "CRAM read from: $used" | tee -a log/variants.log
+          echo "chr20 M5, CRAM header: $(grep -P '\tSN:chr20\t' header.sam | grep -o 'M5:[0-9a-f]*')" | tee -a log/variants.log
           $env/samtools flagstat window.bam | tee -a log/variants.log
           $env/samtools collate -u -O window.bam tmp.collate \
             | $env/samtools fastq -F 0x900 -1 out/NA12878_window_1.fastq.gz -2 out/NA12878_window_2.fastq.gz -0 /dev/null -s /dev/null -n -
@@ -277,6 +291,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Free disk space on the runner
         run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+      - name: Files from an earlier run (transcriptome, airway)
+        if: inputs.reuse_run != ''
+        uses: actions/download-artifact@v4
+        with:
+          path: art
+          run-id: ${{ inputs.reuse_run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/download-artifact@v4
         with:
           path: art
@@ -297,9 +318,22 @@ jobs:
             echo "airway: ${{ needs.airway.result }}"
             echo "small-datasets: ${{ needs.small-datasets.result }}"
           } > status/data/STATUS
+          echo "reused from run: ${{ inputs.reuse_run }}" >> status/data/STATUS
+          missing=0
+          for f in gencode.v${GENCODE}.transcripts.fa.gz tx2gene.gencode.v${GENCODE}.tsv.gz genes.gencode.v${GENCODE}.tsv.gz salmon_index.gencode.v${GENCODE}.tar.gz \
+                   salmon_quant.SRR1039508.tar.gz salmon_quant.SRR1039509.tar.gz salmon_quant.SRR1039512.tar.gz salmon_quant.SRR1039513.tar.gz \
+                   salmon_quant.SRR1039516.tar.gz salmon_quant.SRR1039517.tar.gz salmon_quant.SRR1039520.tar.gz salmon_quant.SRR1039521.tar.gz \
+                   SRR1039508_1.sub.fastq.gz SRR1039508_2.sub.fastq.gz SRR1039509_1.sub.fastq.gz SRR1039509_2.sub.fastq.gz \
+                   airway_samples.csv capstone_pasilla_gene_counts.tsv.gz capstone_pasilla_samples.csv pbmc3k_filtered_gene_bc_matrices.tar.gz \
+                   chr20.fa.gz NA12878_window_1.fastq.gz NA12878_window_2.fastq.gz \
+                   NA12878_GIAB_v4.2.1_window.vcf.gz NA12878_GIAB_v4.2.1_window.vcf.gz.tbi NA12878_GIAB_v4.2.1_window_confident.bed; do
+            if [ -s "rel/$f" ]; then :; else echo "missing: $f" | tee -a status/data/STATUS; missing=$((missing + 1)); fi
+          done
+          echo "complete: $([ "$missing" -eq 0 ] && echo yes || echo "no ($missing missing)")" | tee -a status/data/STATUS
+          echo "complete=$([ "$missing" -eq 0 ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"
           cat status/data/STATUS status/data/MANIFEST.tsv
       - name: Publish the release assets
-        if: needs.transcriptome.result == 'success' && needs.airway.result == 'success' && needs.small-datasets.result == 'success'
+        if: steps.manifest.outputs.complete == 'yes' && needs.small-datasets.result == 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ inputs.release_tag }}
