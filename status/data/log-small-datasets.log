@@ -1,30 +1,3 @@
-airway 1.32.0 
-           SampleName    cell   dex albut        Run avgLength Experiment
-SRR1039508 GSM1275862  N61311 untrt untrt SRR1039508       126  SRX384345
-SRR1039509 GSM1275863  N61311   trt untrt SRR1039509       126  SRX384346
-SRR1039512 GSM1275866 N052611 untrt untrt SRR1039512       126  SRX384349
-SRR1039513 GSM1275867 N052611   trt untrt SRR1039513        87  SRX384350
-SRR1039516 GSM1275870 N080611 untrt untrt SRR1039516       120  SRX384353
-SRR1039517 GSM1275871 N080611   trt untrt SRR1039517       126  SRX384354
-SRR1039520 GSM1275874 N061011 untrt untrt SRR1039520       101  SRX384357
-SRR1039521 GSM1275875 N061011   trt untrt SRR1039521        98  SRX384358
-              Sample    BioSample        run
-SRR1039508 SRS508568 SAMN02422669 SRR1039508
-SRR1039509 SRS508567 SAMN02422675 SRR1039509
-SRR1039512 SRS508571 SAMN02422678 SRR1039512
-SRR1039513 SRS508572 SAMN02422670 SRR1039513
-SRR1039516 SRS508575 SAMN02422682 SRR1039516
-SRR1039517 SRS508576 SAMN02422673 SRR1039517
-SRR1039520 SRS508579 SAMN02422683 SRR1039520
-SRR1039521 SRS508580 SAMN02422677 SRR1039521
-[1] TRUE
-[1] TRUE
-pasilla 1.40.0 
-filtered_gene_bc_matrices/
-filtered_gene_bc_matrices/hg19/
-filtered_gene_bc_matrices/hg19/matrix.mtx
-filtered_gene_bc_matrices/hg19/genes.tsv
-filtered_gene_bc_matrices/hg19/barcodes.tsv
 
 ✔ Updated metadata database: 4.75 MB in 9 files.
 
@@ -59,47 +32,47 @@ filtered_gene_bc_matrices/hg19/barcodes.tsv
   
 ℹ Getting 20 pkgs with unknown sizes
 ✔ Got biomaRt 2.68.0 (source) (905.63 kB)
-✔ Got BiocFileCache 3.2.0 (source) (743.15 kB)
-✔ Got progress 1.2.3 (x86_64-pc-linux-gnu-ubuntu-24.04) (91.79 kB)
 ✔ Got annotate 1.90.0 (source) (1.87 MB)
+✔ Got BiocFileCache 3.2.0 (source) (743.15 kB)
+✔ Got DEXSeq 1.58.0 (source) (1.72 MB)
+✔ Got progress 1.2.3 (x86_64-pc-linux-gnu-ubuntu-24.04) (91.79 kB)
 ✔ Got hwriter 1.3.2.1 (x86_64-pc-linux-gnu-ubuntu-24.04) (109.56 kB)
 ✔ Got prettyunits 1.2.0 (x86_64-pc-linux-gnu-ubuntu-24.04) (157.97 kB)
-✔ Got statmod 1.5.2 (x86_64-pc-linux-gnu-ubuntu-24.04) (322.79 kB)
-✔ Got DEXSeq 1.58.0 (source) (1.72 MB)
-✔ Got httr2 1.3.0 (x86_64-pc-linux-gnu-ubuntu-24.04) (988.18 kB)
-✔ Got AnnotationDbi 1.74.0 (source) (4.15 MB)
 ✔ Got geneplotter 1.90.0 (source) (1.72 MB)
+✔ Got statmod 1.5.2 (x86_64-pc-linux-gnu-ubuntu-24.04) (322.79 kB)
+✔ Got httr2 1.3.0 (x86_64-pc-linux-gnu-ubuntu-24.04) (988.18 kB)
 ✔ Got KEGGREST 1.52.2 (source) (239.06 kB)
-✔ Got RSQLite 3.53.3 (x86_64-pc-linux-gnu-ubuntu-24.04) (1.40 MB)
-✔ Got XML 3.99-0.24 (x86_64-pc-linux-gnu-ubuntu-24.04) (1.80 MB)
 ✔ Got Rsamtools 2.28.0 (source) (1.91 MB)
-✔ Got pasilla 1.40.0 (source) (3.30 MB)
+✔ Got RSQLite 3.53.3 (x86_64-pc-linux-gnu-ubuntu-24.04) (1.40 MB)
+✔ Got AnnotationDbi 1.74.0 (source) (4.15 MB)
 ✔ Got genefilter 1.94.0 (source) (1.12 MB)
 ✔ Got Rhtslib 3.8.0 (source) (5.15 MB)
+✔ Got pasilla 1.40.0 (source) (3.30 MB)
+✔ Got XML 3.99-0.24 (x86_64-pc-linux-gnu-ubuntu-24.04) (1.80 MB)
 ✔ Got Biostrings 2.80.2 (source) (12.81 MB)
 ✔ Got airway 1.32.0 (source) (24.76 MB)
 ℹ Installing system requirements
 ℹ Executing `sh -c apt-get -y update`
 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
-Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
-Get:5 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-Get:7 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-Get:8 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-Get:9 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1542 kB]
-Get:10 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [56.2 kB]
-Get:11 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2127 kB]
-Get:12 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2162 kB]
-Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1685 kB]
-Get:14 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
-Get:15 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
-Get:16 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
-Get:17 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
-Get:18 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1318 kB]
-Get:19 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1943 kB]
-Fetched 33.2 MB in 58s (570 kB/s)
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1318 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1542 kB]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
+Get:9 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1943 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2162 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [56.2 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1688 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2127 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+Fetched 33.2 MB in 4s (9164 kB/s)
 Reading package lists...
 ℹ Executing `sh -c apt-get -y install libxml2-dev libbz2-dev libcurl4-openssl-dev liblzma-dev make libssl-dev libpng-dev libicu-dev`
 Reading package lists...
@@ -119,7 +92,7 @@ libssl3t64 openssl
 Suggested packages:
   libssl-doc
 The following packages will be upgraded:
-  libssl-dev libssl3t64 openssl
+libssl-dev libssl3t64 openssl
 3 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
 Need to get 5358 kB of archives.
 After this operation, 3072 B of additional disk space will be used.
@@ -127,10 +100,9 @@ Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl-dev amd64
 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl3t64 amd64 3.0.13-0ubuntu3.16 [1945 kB]
 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.16 [1004 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-Fetched 5358 kB in 3s (2046 kB/s)
+Fetched 5358 kB in 2s (2645 kB/s)
 (Reading database ...
-(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%
-(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%
+(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%
 (Reading database ... 70%
 (Reading database ... 75%
 (Reading database ... 80%
@@ -144,12 +116,10 @@ Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.16_amd64.deb ...
 Unpacking libssl3t64:amd64 (3.0.13-0ubuntu3.16) over (3.0.13-0ubuntu3.15) ...
 Setting up libssl3t64:amd64 (3.0.13-0ubuntu3.16) ...
 (Reading database ...
-(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%
-(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%
+(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%
 (Reading database ... 70%
 (Reading database ... 75%
-(Reading database ... 80%
-(Reading database ... 85%
+(Reading database ... 80%(Reading database ... 85%
 (Reading database ... 90%
 (Reading database ... 95%
 (Reading database ... 100%(Reading database ... 30321 files and directories currently installed.)
@@ -161,50 +131,21 @@ Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 ℹ Building airway 1.32.0
 ℹ Building Biostrings 2.80.2
 ℹ Building Rhtslib 3.8.0
-✔ Installed httr2 1.3.0  (70ms)
-✔ Installed hwriter 1.3.2.1  (43ms)
-✔ Installed prettyunits 1.2.0  (34ms)
-✔ Installed progress 1.2.3  (37ms)
-✔ Installed RSQLite 3.53.3  (69ms)
+✔ Installed httr2 1.3.0  (81ms)
+✔ Installed hwriter 1.3.2.1  (20ms)
+✔ Installed prettyunits 1.2.0  (53ms)
+✔ Installed progress 1.2.3  (23ms)
+✔ Installed RSQLite 3.53.3  (51ms)
 ℹ Building BiocFileCache 3.2.0
-✔ Built BiocFileCache 3.2.0 (6.5s)
-✔ Installed statmod 1.5.2  (35ms)
-✔ Installed XML 3.99-0.24  (77ms)
-✔ Installed BiocFileCache 3.2.0  (63ms)
-✔ Built airway 1.32.0 (10.9s)
-✔ Installed airway 1.32.0 (Bioconductor) (167ms)
-✔ Built Biostrings 2.80.2 (22.8s)
-✔ Installed Biostrings 2.80.2  (137ms)
+✔ Built BiocFileCache 3.2.0 (4.8s)
+✔ Installed statmod 1.5.2  (24ms)
+✔ Installed XML 3.99-0.24  (47ms)
+✔ Installed BiocFileCache 3.2.0  (42ms)
+✔ Built airway 1.32.0 (8s)
+✔ Installed airway 1.32.0 (Bioconductor) (165ms)
+✔ Built Biostrings 2.80.2 (17.1s)
+✔ Installed Biostrings 2.80.2  (143ms)
 ℹ Building KEGGREST 1.52.2
-✔ Built KEGGREST 1.52.2 (4.8s)
-✔ Installed KEGGREST 1.52.2  (34ms)
+✔ Built KEGGREST 1.52.2 (3.7s)
+✔ Installed KEGGREST 1.52.2  (27ms)
 ℹ Building AnnotationDbi 1.74.0
-✔ Built AnnotationDbi 1.74.0 (12.3s)
-✔ Installed AnnotationDbi 1.74.0  (80ms)
-ℹ Building annotate 1.90.0
-ℹ Building biomaRt 2.68.0
-✔ Built biomaRt 2.68.0 (9.2s)
-✔ Installed biomaRt 2.68.0  (86ms)
-✔ Built annotate 1.90.0 (12.3s)
-✔ Installed annotate 1.90.0  (245ms)
-ℹ Building genefilter 1.94.0
-ℹ Building geneplotter 1.90.0
-✔ Built geneplotter 1.90.0 (9.4s)
-✔ Installed geneplotter 1.90.0  (34ms)
-✔ Built genefilter 1.94.0 (13.2s)
-✔ Installed genefilter 1.94.0  (1s)
-✔ Built Rhtslib 3.8.0 (1m 14.4s)
-✔ Installed Rhtslib 3.8.0  (156ms)
-ℹ Building Rsamtools 2.28.0
-✔ Built Rsamtools 2.28.0 (29.7s)
-✔ Installed Rsamtools 2.28.0  (96ms)
-ℹ Building DEXSeq 1.58.0
-✔ Built DEXSeq 1.58.0 (18.5s)
-✔ Installed DEXSeq 1.58.0  (42ms)
-ℹ Building pasilla 1.40.0
-✔ Built pasilla 1.40.0 (19.8s)
-✔ Installed pasilla 1.40.0 (Bioconductor) (127ms)
-✔ 2 pkgs + 95 deps: kept 74, added 20, dld 20 (65.27 MB) [3m 37.8s]
-chr20 bases: 64444167
-not found: https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/additional_698_related/1000G_698_related_high_coverage.sequence.index
-CRAM: ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239334/NA12878.final.cram

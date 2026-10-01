@@ -1,7 +1,1 @@
-SHA256SUMS	572
-gencode.v50.transcripts.fa.gz	183554921
-genes.gencode.v50.tsv.gz	713109
-salmon_index.gencode.v50.tar.gz	520916303
-salmon_quant.SRR1039512.tar.gz	8677599
-salmon_quant.SRR1039517.tar.gz	8749540
-tx2gene.gencode.v50.tsv.gz	3352402
+SHA256SUMS	68

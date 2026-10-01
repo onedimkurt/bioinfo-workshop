@@ -1,6 +1,0 @@
-SRR1039517	ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/007/SRR1039517/SRR1039517_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/007/SRR1039517/SRR1039517_2.fastq.gz	1f2796f07033ec3bfab0981bd0674bb9;008ba2b3b589d553e3e9f8890d5481c2	34298260
-fq/SRR1039517_1.fastq.gz: OK
-fq/SRR1039517_2.fastq.gz: OK
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 11:04.80
-	Maximum resident set size (kbytes): 2330600
-quant/SRR1039517/aux_info/meta_info.json:  "percent_mapped": 96.02482166733823,
