@@ -51,6 +51,7 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 
 5. **RStudio'yu açınız.**
    Bir iki dakika içinde tarayıcınızda RStudio ile yeni bir sekme açılır.
+   Bu sırada VS Code sekmesini önde, açık tutunuz; RStudio'yu o sekme başlatır.
    Açılmazsa VS Code penceresinin altındaki "PORTS" sekmesine tıklayınız.
    "RStudio" satırındaki küre simgesine tıklayınız.
    <!-- VERIFY: pilot, sekme kendiliğinden açılıyor mu, açılmıyorsa PORTS yolu -->
