@@ -38,7 +38,7 @@ origin="$(git -C "${ws}" remote get-url origin 2>/dev/null)"
 if [ -n "${origin}" ]; then
     ok "Depo GitHub'a bağlı: ${origin}"
 else
-    bad "Bu klasör GitHub'daki bir depoya bağlı değil" "Codespace'i github.com üzerindeki kendi bioinfo-workshop deponuzdan açınız."
+    bad "Bu codespace bir GitHub deposuna bağlı değil" "Bu codespace'i siliniz ve codespace'i kendi bioinfo-workshop deponuzdan açınız (Code > Codespaces)."
 fi
 
 if [ -n "$(git config user.name 2>/dev/null)" ] && [ -n "$(git config user.email 2>/dev/null)" ]; then

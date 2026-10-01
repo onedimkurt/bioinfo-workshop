@@ -345,6 +345,16 @@ jobs:
           fi
           gh release upload "$TAG" rel/* --clobber
           echo "published: $TAG" | tee -a status/data/STATUS
+      - name: The trainees' download lists work against the release
+        if: steps.manifest.outputs.complete == 'yes' && needs.small-datasets.result == 'success'
+        run: |
+          set -uo pipefail
+          cp rel/SHA256SUMS data/SHA256SUMS
+          for d in 1 2 3; do
+            if bash setup/day$d.sh > status/data/setup-day$d.log 2>&1; then r=PASS; else r=FAIL; fi
+            echo "setup/day$d.sh: $r ($(grep -c ': OK$' status/data/setup-day$d.log) files OK)" | tee -a status/data/STATUS
+          done
+          du -sh data | tee -a status/data/STATUS
       - name: Write status to the ci-status branch
         if: always()
         run: |

@@ -67,6 +67,8 @@ start=$(date +%s)
 check "conda create deneme (online)"   bash -ic 'conda create -y -q -n deneme seqkit >/dev/null && conda activate deneme && seqkit version'
 echo "      took $(( $(date +%s) - start )) s"
 check "export --from-history"          bash -ic 'conda env export -n deneme --from-history | grep -q seqkit && echo has-seqkit'
+# The command the trainees are taught (day1-envs.sh fix text): conda env remove -n deneme
+check "conda env remove -n deneme"     bash -ic 'yes | conda env remove -n deneme >/dev/null 2>&1; ! conda env list | grep -q "^deneme " && echo removed'
 bash -ic 'conda remove -y -q -n deneme --all' >/dev/null 2>&1
 
 # --- RStudio -----------------------------------------------------------------
