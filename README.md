@@ -45,6 +45,8 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
    Açılan kutuda "Codespaces" sekmesini, sonra "Create codespace on main" düğmesini seçiniz.
    İlk açılış birkaç dakika sürer.
    Önce koyu renkli bir düzenleyici (VS Code) açılır. Onu kullanmayacaksınız.
+   VS Code "Do you trust the authors of the files in this folder?" diye sorarsa
+   "Trust Folder & Continue" düğmesine tıklayınız. RStudio bu onaydan sonra başlar.
 
 5. **RStudio'yu açınız.**
    Bir iki dakika içinde tarayıcınızda RStudio ile yeni bir sekme açılır.

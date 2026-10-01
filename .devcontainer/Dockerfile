@@ -59,7 +59,14 @@ COPY .devcontainer/build/bash.bashrc.append /tmp/bash.bashrc.append
 COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
 COPY .devcontainer/build/scripts/ /usr/local/share/bioinfo-workshop/
 COPY .devcontainer/build/sudoers-rstudio-password /etc/sudoers.d/bioinfo-workshop
+COPY .devcontainer/build/etc/nginx.conf /etc/bioinfo-workshop/nginx.conf
 RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends nginx; \
+    rm -rf /var/lib/apt/lists/*; \
+    mkdir -p /tmp/bioinfo-workshop-nginx; \
+    nginx -t -c /etc/bioinfo-workshop/nginx.conf -e /tmp/bioinfo-workshop-nginx/error.log; \
+    rm -rf /tmp/bioinfo-workshop-nginx; \
     cat /tmp/bash.bashrc.append >> /etc/bash.bashrc; \
     cat /tmp/Rprofile.site.append >> /usr/local/lib/R/etc/Rprofile.site; \
     rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append; \

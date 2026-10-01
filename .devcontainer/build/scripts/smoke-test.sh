@@ -71,10 +71,15 @@ bash -ic 'conda remove -y -q -n deneme --all' >/dev/null 2>&1
 echo
 echo "== RStudio =="
 check "on-create writes prefs"         bash -c 'mkdir -p /tmp/ws && /usr/local/share/bioinfo-workshop/on-create.sh /tmp/ws >/dev/null && jq -r .initial_working_directory ~/.config/rstudio/rstudio-prefs.json | grep -qx /tmp/ws && echo /tmp/ws'
-check "start-rstudio.sh starts rserver" /usr/local/share/bioinfo-workshop/start-rstudio.sh
-check "port 8787 answers"              bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ | grep -E "^(200|302)$"'
-check "page is RStudio"                bash -c 'curl -sL http://127.0.0.1:8787/ | grep -qi rstudio && echo yes'
-check "second start is a no-op"        /usr/local/share/bioinfo-workshop/start-rstudio.sh
+check "start-rstudio.sh starts RStudio"  /usr/local/share/bioinfo-workshop/start-rstudio.sh
+check "RStudio itself on 127.0.0.1:8788"   bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8788/ | grep -E "^(200|302)$"'
+check "proxy on 8787 answers"            bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ | grep -E "^(200|302)$"'
+# Codespaces forwards with "Host: localhost:8787"; every redirect must stay relative.
+check "redirects stay relative"          bash -c 'rm -f /tmp/jar /tmp/hdr; curl -s -L --max-redirs 10 -c /tmp/jar -b /tmp/jar -H "Host: localhost:8787" -D /tmp/hdr -o /tmp/page.html http://127.0.0.1:8787/; grep -i "^location:" /tmp/hdr | tr -d "\r" | tee /tmp/locs; ! grep -qi "://" /tmp/locs && echo "relative: $(tr "\n" " " < /tmp/locs)"'
+check "sign-in leads to the IDE"         bash -c 'grep -qi "rstudio" /tmp/page.html && ! grep -qi "sign in to rstudio" /tmp/page.html && echo "IDE page, $(wc -c < /tmp/page.html) bytes"'
+check "second start is a no-op"          /usr/local/share/bioinfo-workshop/start-rstudio.sh
+echo "      (for the record) RStudio's own sign-in redirect without the proxy:"
+curl -s -D - -o /dev/null -H "Host: localhost:8787" "http://127.0.0.1:8788/auth-sign-in?appUri=%2F" | grep -i "^location:" | sed 's/^/        /'
 check "sudo rule is narrow"            bash -c 'sudo -n -l | grep -q start-rstudio-password.sh && ! sudo -n true 2>/dev/null && echo only-the-script'
 
 echo
