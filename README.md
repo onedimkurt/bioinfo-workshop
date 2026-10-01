@@ -24,7 +24,6 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
    "Codespaces" satırında "Stop usage: Yes" ve "$0 budget" yazmalıdır.
    Bu ayar, hiçbir zaman ücret çıkmaması demektir.
    Bu satır yoksa veya "No" yazıyorsa, devam etmeden önce destek adresine yazınız.
-   <!-- VERIFY: pilot, yeni ve kartsız bir hesapta aynı satır görünüyor mu (RISKS R73) -->
 
 2. **Boşta kalma süresini ayarlayınız.**
    github.com/settings/codespaces sayfasını açınız.
