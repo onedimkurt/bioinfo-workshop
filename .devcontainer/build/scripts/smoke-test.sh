@@ -75,8 +75,12 @@ check "start-rstudio.sh starts RStudio"  /usr/local/share/bioinfo-workshop/start
 check "RStudio itself on 127.0.0.1:8788"   bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8788/ | grep -E "^(200|302)$"'
 check "proxy on 8787 answers"            bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ | grep -E "^(200|302)$"'
 # Codespaces forwards with "Host: localhost:8787"; every redirect must stay relative.
-check "redirects stay relative"          bash -c 'rm -f /tmp/jar /tmp/hdr; curl -s -L --max-redirs 10 -c /tmp/jar -b /tmp/jar -H "Host: localhost:8787" -D /tmp/hdr -o /tmp/page.html http://127.0.0.1:8787/; grep -i "^location:" /tmp/hdr | tr -d "\r" | tee /tmp/locs; ! grep -qi "://" /tmp/locs && echo "relative: $(tr "\n" " " < /tmp/locs)"'
-check "sign-in leads to the IDE"         bash -c 'grep -qi "rstudio" /tmp/page.html && ! grep -qi "sign in to rstudio" /tmp/page.html && echo "IDE page, $(wc -c < /tmp/page.html) bytes"'
+# RStudio sends curl to unsupported_browser.htm, so the browser flow uses a Chrome user agent.
+UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+export UA
+check "redirects stay relative (curl)"   bash -c 'curl -s -D - -o /dev/null -H "Host: localhost:8787" http://127.0.0.1:8787/ | grep -i "^location:" | tr -d "\r" | tee /tmp/locs0; ! grep -qi "://" /tmp/locs0 && echo "relative"'
+check "redirects stay relative (Chrome)" bash -c 'rm -f /tmp/jar /tmp/hdr; curl -s -L --max-redirs 10 -A "$UA" -c /tmp/jar -b /tmp/jar -H "Host: localhost:8787" -D /tmp/hdr -o /tmp/page.html -w "%{http_code} %{url_effective}\n" http://127.0.0.1:8787/ > /tmp/final; grep -i "^location:" /tmp/hdr | tr -d "\r" | tee /tmp/locs; ! grep -qi "://" /tmp/locs && echo "relative: $(tr "\n" " " < /tmp/locs)"'
+check "sign-in leads to the IDE"         bash -c 'cat /tmp/final; read -r code url < /tmp/final; [ "$code" = 200 ] && [ "${url#http://127.0.0.1:8787}" = "/" ] && grep -qi "rstudio" /tmp/page.html && ! grep -qi "sign in to rstudio" /tmp/page.html && echo "IDE page at /, $(wc -c < /tmp/page.html) bytes"'
 check "second start is a no-op"          /usr/local/share/bioinfo-workshop/start-rstudio.sh
 echo "      (for the record) RStudio's own sign-in redirect without the proxy:"
 curl -s -D - -o /dev/null -H "Host: localhost:8787" "http://127.0.0.1:8788/auth-sign-in?appUri=%2F" | grep -i "^location:" | sed 's/^/        /'
