@@ -51,7 +51,8 @@ e2e_main() {
         d8() { conda activate deneme && conda deactivate && ! command -v seqkit && echo "seqkit gone after deactivate"; }
         d9() { conda list -n variants-ready | grep -E '^bcftools '; }
         d10() { conda install -y -n deneme -c bioconda seqtk; }
-        d11() { conda env export -n deneme --from-history > envs/deneme.yml && cat envs/deneme.yml && grep -q seqkit envs/deneme.yml && grep -q seqtk envs/deneme.yml && ! grep -q 'prefix:' envs/deneme.yml; }
+        d11() { conda env export -n deneme --from-history > envs/deneme.yml && cat envs/deneme.yml && grep -q seqkit envs/deneme.yml && grep -q seqtk envs/deneme.yml && ! grep -qE '=[0-9].*=' envs/deneme.yml; }
+        d11b() { conda env create -q -n deneme-kopya -f envs/deneme.yml >/dev/null && conda activate deneme-kopya && command -v seqkit seqtk && conda deactivate && conda remove -y -q -n deneme-kopya --all >/dev/null && echo "the exported file rebuilds the environment"; }
         d12() { conda env list | grep -qE '^deneme ' || { echo "deneme did not exist before the removal"; return 1; }; yes | conda env remove -n deneme >/dev/null 2>&1; conda env list >/dev/null && ! conda env list | grep -qE '^deneme ' && echo "deneme removed"; }
         d13() { printf 'name: rnaseq\nchannels:\n  - conda-forge\n  - bioconda\ndependencies:\n  - salmon=2.8.0\n  - fastp=1.3.7\n  - fastqc=0.12.1\n  - multiqc=1.35\n' > envs/rnaseq.yml && conda env create -f envs/rnaseq.yml; }
         d14() { conda activate rnaseq && salmon --version 2>&1 | grep -x 'salmon 2.8.0' && fastp --version 2>&1 | grep -q '1.3.7' && multiqc --version | grep -q '1.35'; }
@@ -69,7 +70,8 @@ e2e_main() {
         st D1.8  "conda deactivate -> seqkit no longer found" d8
         st D1.9  "conda list -n variants-ready shows bcftools" d9
         st D1.10 "conda install -n deneme -c bioconda seqtk" d10
-        st D1.11 "conda env export --from-history > envs/deneme.yml (seqkit, seqtk, no prefix)" d11
+        st D1.11 "conda env export --from-history > envs/deneme.yml (seqkit, seqtk, no build strings)" d11
+        st D1.11b "the exported envs/deneme.yml rebuilds the environment under a new name" d11b
         st D1.12 "conda env remove -n deneme" d12
         st D1.13 "write envs/rnaseq.yml from envs/README.md; conda env create -f" d13
         st D1.14 "conda activate rnaseq: salmon 2.8.0, fastp 1.3.7, multiqc 1.35" d14
