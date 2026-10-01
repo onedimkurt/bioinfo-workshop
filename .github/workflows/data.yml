@@ -60,8 +60,8 @@ jobs:
           zcat gencode.gtf.gz | awk -F'\t' '$3=="gene"{print $1"\t"$9}' \
             | sed -E 's/^([^\t]+)\t.*gene_id "([^"]+)".*gene_type "([^"]+)".*gene_name "([^"]+)".*/\2\t\4\t\3\t\1/' \
             | awk 'BEGIN{print "gene_id\tgene_name\tgene_type\tchromosome"}{print}' | gzip -n > out/genes.gencode.v${GENCODE}.tsv.gz
-          zcat out/tx2gene.gencode.v${GENCODE}.tsv.gz | head -3
-          zcat out/genes.gencode.v${GENCODE}.tsv.gz | head -3
+          zcat out/tx2gene.gencode.v${GENCODE}.tsv.gz | sed -n '1,3p'
+          zcat out/genes.gencode.v${GENCODE}.tsv.gz | sed -n '1,3p'
           echo "transcripts: $(zcat out/tx2gene.gencode.v${GENCODE}.tsv.gz | tail -n +2 | wc -l)" | tee log/transcriptome.log
           echo "genes: $(zcat out/genes.gencode.v${GENCODE}.tsv.gz | tail -n +2 | wc -l)" | tee -a log/transcriptome.log
       - name: Salmon index (timed, as a trainee would build it)
@@ -203,7 +203,7 @@ jobs:
           for idx in "$hc/1000G_2504_high_coverage.sequence.index" "$hc/additional_698_related/1000G_698_related_high_coverage.sequence.index"; do
             curl -fsSL --retry 5 "$idx" >> seqindex.tsv || echo "not found: $idx" | tee -a log/variants.log
           done
-          cram=$(grep -v '^#' seqindex.tsv | awk -F'\t' '$0 ~ /NA12878/ && $1 ~ /\.cram$/ {print $1; exit}')
+          cram=$(grep -v '^#' seqindex.tsv | awk -F'\t' '$0 ~ /NA12878/ && $1 ~ /\.cram$/ {print $1}' | sed -n 1p)
           echo "CRAM: $cram" | tee -a log/variants.log
           test -n "$cram"
           case "$cram" in ftp://*) cram="https://${cram#ftp://}";; esac
@@ -250,6 +250,7 @@ jobs:
         id: manifest
         run: |
           set -euo pipefail
+          shopt -s nullglob
           mkdir -p rel status/data art
           find art -path 'art/log-*' -prune -o -type f -print | while read -r f; do cp "$f" rel/; done
           (cd rel && sha256sum * | sort -k2 > SHA256SUMS)
