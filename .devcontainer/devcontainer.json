@@ -7,11 +7,17 @@
   },
   "remoteUser": "rstudio",
   "userEnvProbe": "none",
-  "forwardPorts": [8787],
+  "forwardPorts": [
+    8787
+  ],
   "portsAttributes": {
     "8787": {
       "label": "RStudio",
       "onAutoForward": "openBrowser"
+    },
+    "8788": {
+      "label": "RStudio (internal)",
+      "onAutoForward": "ignore"
     }
   },
   "otherPortsAttributes": {
@@ -21,7 +27,9 @@
   "postAttachCommand": "/usr/local/share/bioinfo-workshop/start-rstudio.sh",
   "customizations": {
     "codespaces": {
-      "openFiles": ["README.md"]
+      "openFiles": [
+        "README.md"
+      ]
     },
     "vscode": {
       "settings": {
