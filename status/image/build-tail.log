@@ -1,145 +1,150 @@
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 88.08MB / 722.79MB 2.3s
-#19 sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924 1.50kB / 1.50kB 0.2s done
-#19 sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f 2.83kB / 2.83kB 0.2s done
-#19 sha256:e9753dea9660230e668dd4a39bd246b8a6f802aed2d73fac93617701e52c78ca 1.85kB / 1.85kB 0.2s done
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 171.97MB / 429.25MB 3.6s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 0B / 314.03MB 0.2s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 165.68MB / 955.04MB 3.9s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 16.78MB / 314.03MB 0.5s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 124.78MB / 722.79MB 3.2s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 197.13MB / 429.25MB 4.2s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 36.70MB / 314.03MB 0.9s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 220.20MB / 429.25MB 4.7s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 218.10MB / 955.04MB 5.0s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 54.53MB / 314.03MB 1.4s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 249.56MB / 429.25MB 5.1s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 164.63MB / 722.79MB 4.2s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 71.30MB / 314.03MB 1.7s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 92.27MB / 314.03MB 2.0s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 272.63MB / 429.25MB 5.6s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 272.63MB / 955.04MB 6.2s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 113.25MB / 314.03MB 2.6s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 295.70MB / 429.25MB 6.2s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 207.62MB / 722.79MB 5.4s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 130.02MB / 314.03MB 3.0s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 319.82MB / 429.25MB 6.6s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 152.04MB / 314.03MB 3.5s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 325.06MB / 955.04MB 7.4s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 346.03MB / 429.25MB 7.2s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 168.82MB / 314.03MB 3.8s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 251.66MB / 722.79MB 6.5s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 188.74MB / 314.03MB 4.1s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 368.05MB / 429.25MB 8.0s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 209.72MB / 314.03MB 4.5s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 288.36MB / 722.79MB 7.2s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 376.44MB / 955.04MB 8.4s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 227.54MB / 314.03MB 5.0s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 393.22MB / 429.25MB 8.4s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 325.06MB / 722.79MB 7.8s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 247.46MB / 314.03MB 5.4s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 419.43MB / 429.25MB 9.0s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 427.82MB / 955.04MB 9.3s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 268.44MB / 314.03MB 5.9s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 367.00MB / 722.79MB 8.9s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 288.36MB / 314.03MB 6.3s
-#19 sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 429.25MB / 429.25MB 10.2s done
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 482.34MB / 955.04MB 10.5s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 403.70MB / 722.79MB 9.6s
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 304.09MB / 314.03MB 7.1s
-#19 sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58 29.76MB / 29.76MB 0.2s done
-#19 extracting sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58
-#19 sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 314.03MB / 314.03MB 7.7s done
-#19 extracting sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58 0.8s done
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 447.74MB / 722.79MB 10.5s
-#19 extracting sha256:e9753dea9660230e668dd4a39bd246b8a6f802aed2d73fac93617701e52c78ca done
-#19 extracting sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 534.77MB / 955.04MB 11.7s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 492.83MB / 722.79MB 11.4s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 583.01MB / 955.04MB 12.6s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 534.77MB / 722.79MB 12.2s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 634.39MB / 955.04MB 13.8s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 576.72MB / 722.79MB 13.2s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 686.82MB / 955.04MB 14.9s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 618.66MB / 722.79MB 14.1s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 655.36MB / 722.79MB 14.9s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 736.10MB / 955.04MB 16.1s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 694.16MB / 722.79MB 15.6s
-#19 extracting sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 5.1s done
-#19 extracting sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f done
-#19 extracting sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924 done
-#19 extracting sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc
-#19 extracting sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc 0.5s done
-#19 extracting sha256:a66fb2518cba7e3b5ccad3c387e95622af22ed12bfbdccd3c433171c38b19b20 done
-#19 extracting sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080 done
-#19 extracting sha256:82014097befd491c3c71bf5cad542f8349342f1f82b766a915909c9ade0af9e4 done
-#19 extracting sha256:99b1d9f456bf3ca743834cd54db58f77b976ee0b98aa0413a83f9f7fdcda81a0 done
-#19 extracting sha256:3fab3360c3498a66aa66ac21af0718c85258e4f29cc152e6b9ff26d7aa16ec3c done
-#19 extracting sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30 done
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 785.38MB / 955.04MB 17.1s
-#19 sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 722.79MB / 722.79MB 17.2s done
-#19 extracting sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 838.86MB / 955.04MB 18.8s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 887.10MB / 955.04MB 19.8s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 943.72MB / 955.04MB 20.9s
-#19 sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 955.04MB / 955.04MB 22.6s done
-#19 extracting sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 10.5s done
-#19 DONE 29.0s
+#17 37.34   xorg-libxfixes     conda-forge/linux-64::xorg-libxfixes-6.0.2-h7cc23a3_1 
+#17 37.34   xorg-libxi         conda-forge/linux-64::xorg-libxi-1.8.3-h7cc23a3_1 
+#17 37.34   xorg-libxrandr     conda-forge/linux-64::xorg-libxrandr-1.5.5-h7cc23a3_1 
+#17 37.34   xorg-libxrender    conda-forge/linux-64::xorg-libxrender-0.9.12-hb03c661_1 
+#17 37.34   xorg-libxt         conda-forge/linux-64::xorg-libxt-1.3.1-h7cc23a3_1 
+#17 37.34   xorg-libxtst       conda-forge/linux-64::xorg-libxtst-1.2.5-h7cc23a3_4 
+#17 37.34   yaml               conda-forge/linux-64::yaml-0.2.5-hebe6cf0_3 
+#17 37.34   zipp               conda-forge/noarch::zipp-4.1.0-pyhcf101f3_0 
+#17 37.34   zlib-ng            conda-forge/linux-64::zlib-ng-2.3.3-hce19668_1 
+#17 37.34   zstd               conda-forge/linux-64::zstd-1.5.7-hb78ec9c_7 
+#17 37.34 
+#17 37.34 
+#17 37.34 
+#17 37.34 Downloading and Extracting Packages: ...working... done
+#17 37.93 Preparing transaction: ...working... done
+#17 38.61 Verifying transaction: ...working... done
+#17 42.05 Executing transaction: ...working... done
+#17 50.32 WARNING conda.conda_pypi.main:notify_externally_managed_future(156): 
+#17 50.32   Did you know? You can install many PyPI packages with conda
+#17 50.32   using the conda-pypi beta. Get started:
+#17 50.32     https://docs.conda.io/projects/conda/en/stable/new-features.html
+#17 50.32 
+#17 50.32 #
+#17 50.32 # To activate this environment, use
+#17 50.32 #
+#17 50.32 #     $ conda activate variants-ready
+#17 50.32 #
+#17 50.32 # To deactivate an active environment, use
+#17 50.32 #
+#17 50.32 #     $ conda deactivate
+#17 50.32 
+#17 50.69 + /opt/conda/bin/conda env create -f /opt/bioinfo-workshop/envs/cache-warm.yml
+#17 51.26 Channels:
+#17 51.26  - conda-forge
+#17 51.26  - bioconda
+#17 51.26 Platform: linux-64
+#17 51.26 Collecting package metadata (repodata.json): ...working... done
+#17 51.65 Solving environment: ...working... done
+#17 51.84 
+#17 51.84 ## Package Plan ##
+#17 51.84 
+#17 51.84   environment location: /opt/conda/envs/cache-warm
+#17 51.84 
+#17 51.84   added / updated specs:
+#17 51.84     - seqkit=2.14.0
+#17 51.84     - seqtk=1.5
+#17 51.84 
+#17 51.84 
+#17 51.84 The following packages will be downloaded:
+#17 51.84 
+#17 51.84     package                    |            build
+#17 51.84     ---------------------------|-----------------
+#17 51.84     seqkit-2.14.0              |       hb192632_0         6.8 MB  bioconda
+#17 51.84     seqtk-1.5                  |       h577a1d6_1         138 KB  bioconda
+#17 51.84     ------------------------------------------------------------
+#17 51.84                                            Total:         7.0 MB
+#17 51.84 
+#17 51.84 The following NEW packages will be INSTALLED:
+#17 51.84 
+#17 51.84   _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-20_gnu 
+#17 51.84   libgcc             conda-forge/linux-64::libgcc-16.2.0-ha9f2e26_7 
+#17 51.84   libgomp            conda-forge/linux-64::libgomp-16.2.0-he0feb66_7 
+#17 51.84   libzlib            conda-forge/linux-64::libzlib-1.3.2-h25fd6f3_3 
+#17 51.84   seqkit             bioconda/linux-64::seqkit-2.14.0-hb192632_0 
+#17 51.84   seqtk              bioconda/linux-64::seqtk-1.5-h577a1d6_1 
+#17 51.84 
+#17 51.84 
+#17 51.84 
+#17 51.84 Downloading and Extracting Packages: ...working... done
+#17 52.03 Preparing transaction: ...working... done
+#17 52.04 Verifying transaction: ...working... done
+#17 52.15 Executing transaction: ...working... done
+#17 52.72 #
+#17 52.72 # To activate this environment, use
+#17 52.72 #
+#17 52.72 #     $ conda activate cache-warm
+#17 52.72 #
+#17 52.72 # To deactivate an active environment, use
+#17 52.72 #
+#17 52.72 #     $ conda deactivate
+#17 52.72 
+#17 52.87 + /opt/conda/bin/conda remove -y -n cache-warm --all
+#17 53.26 
+#17 53.26 Remove all packages in environment /opt/conda/envs/cache-warm:
+#17 53.26 
+#17 53.26 
+#17 53.26 ## Package Plan ##
+#17 53.26 
+#17 53.26   environment location: /opt/conda/envs/cache-warm
+#17 53.26 
+#17 53.26 
+#17 53.26 The following packages will be REMOVED:
+#17 53.26 
+#17 53.26   _openmp_mutex-4.5-20_gnu
+#17 53.26   libgcc-16.2.0-ha9f2e26_7
+#17 53.26   libgomp-16.2.0-he0feb66_7
+#17 53.26   libzlib-1.3.2-h25fd6f3_3
+#17 53.26   seqkit-2.14.0-hb192632_0
+#17 53.26   seqtk-1.5-h577a1d6_1
+#17 53.26 
+#17 53.26 
+#17 53.26 
+#17 53.26 Downloading and Extracting Packages: ...working... done
+#17 53.26 Preparing transaction: ...working... done
+#17 53.26 Verifying transaction: ...working... done
+#17 53.36 Executing transaction: ...working... done
+#17 53.49 + /opt/conda/bin/conda clean -y --tarballs
+#17 53.98 Will remove 232 (484.4 MB) tarball(s).
+#17 54.10 + /opt/conda/bin/conda list -n rnaseq-ready --explicit
+#17 55.12 + /opt/conda/bin/conda list -n variants-ready --explicit
+#17 56.20 + chown -R rstudio:rstudio /opt/conda
+#17 57.37 + ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+#17 DONE 61.6s
+
+#18 [ 8/12] COPY .devcontainer/build/bash.bashrc.append /tmp/bash.bashrc.append
+#18 DONE 0.9s
 
 #19 [ 9/12] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
-#19 extracting sha256:e7f208b2f2c1b0cfbf43054820accdb5319a9ccaf268c66875be52e7f008f018 done
-#19 extracting sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3
-#19 extracting sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3 0.5s done
-#19 DONE 29.5s
-
-#19 [ 9/12] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
-#19 extracting sha256:e22ec8080376483f218b10548dd12b543c28dd96f0b080790434506f7bda4bde done
-#19 extracting sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7 0.0s done
-#19 extracting sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181 done
-#19 extracting sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8 0.1s done
-#19 extracting sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5
-#19 extracting sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 done
-#19 extracting sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d
-#19 extracting sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 9.0s done
-#19 DONE 38.6s
-
-#19 [ 9/12] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
-#19 extracting sha256:75085e7d0dcab51770582af098e5b82fde354feab51ac3b9d9baf9e5f553b763 done
-#19 extracting sha256:7f85e21a01d64e96319267b5cf88938dfba029f4f93bf2b67e57cd9fa4dea0e4 done
-#19 extracting sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1
-#19 extracting sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 44.4s done
-#19 DONE 83.0s
-
-#19 [ 9/12] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
-#19 extracting sha256:6eeaac94d935e35d81d87790ee0b2433c21abff6184c3b7025a2be8e2753e0f9 done
-#19 extracting sha256:249a91886574476441f6dbe6116b20fd5b643bba6a98a75dec73ed82b4737d9c done
-#19 DONE 83.0s
+#19 DONE 0.0s
 
 #20 [10/12] COPY .devcontainer/build/scripts/ /usr/local/share/bioinfo-workshop/
-#20 DONE 1.5s
+#20 DONE 0.0s
 
 #21 [11/12] COPY .devcontainer/build/sudoers-rstudio-password /etc/sudoers.d/bioinfo-workshop
-#21 DONE 0.0s
+#21 DONE 0.2s
 
 #22 [12/12] RUN set -eux;     cat /tmp/bash.bashrc.append >> /etc/bash.bashrc;     cat /tmp/Rprofile.site.append >> /usr/local/lib/R/etc/Rprofile.site;     rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append;     chmod 0755 /usr/local/share/bioinfo-workshop/*.sh;     chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh;     chmod 0440 /etc/sudoers.d/bioinfo-workshop;     visudo -cf /etc/sudoers.d/bioinfo-workshop;     mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server;     jq '. + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"}'         /home/rstudio/.config/rstudio/rstudio-prefs.json > /tmp/prefs.json;     mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json;     chown -R rstudio:rstudio /home/rstudio;     date '+%Y-%m-%d %H:%M %Z' > /usr/local/share/bioinfo-workshop/IMAGE_BUILT
-#22 0.049 + cat /tmp/bash.bashrc.append
-#22 0.052 + cat /tmp/Rprofile.site.append
-#22 0.054 + rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append
-#22 0.055 + chmod 0755 /usr/local/share/bioinfo-workshop/on-create.sh /usr/local/share/bioinfo-workshop/smoke-test.sh /usr/local/share/bioinfo-workshop/start-rstudio-password.sh /usr/local/share/bioinfo-workshop/start-rstudio.sh
-#22 0.058 + chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh
-#22 0.060 + chmod 0440 /etc/sudoers.d/bioinfo-workshop
-#22 0.062 + visudo -cf /etc/sudoers.d/bioinfo-workshop
-#22 0.063 /etc/sudoers.d/bioinfo-workshop: parsed OK
-#22 0.064 + mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server
-#22 0.066 + jq . + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"} /home/rstudio/.config/rstudio/rstudio-prefs.json
-#22 0.068 + mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
-#22 0.071 + chown -R rstudio:rstudio /home/rstudio
-#22 0.074 + date +%Y-%m-%d %H:%M %Z
-#22 DONE 0.1s
+#22 0.053 + cat /tmp/bash.bashrc.append
+#22 0.056 + cat /tmp/Rprofile.site.append
+#22 0.057 + rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append
+#22 0.058 + chmod 0755 /usr/local/share/bioinfo-workshop/on-create.sh /usr/local/share/bioinfo-workshop/smoke-test.sh /usr/local/share/bioinfo-workshop/start-rstudio-password.sh /usr/local/share/bioinfo-workshop/start-rstudio.sh
+#22 0.154 + chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh
+#22 0.155 + chmod 0440 /etc/sudoers.d/bioinfo-workshop
+#22 0.156 + visudo -cf /etc/sudoers.d/bioinfo-workshop
+#22 0.158 /etc/sudoers.d/bioinfo-workshop: parsed OK
+#22 0.158 + mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server
+#22 0.160 + jq . + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"} /home/rstudio/.config/rstudio/rstudio-prefs.json
+#22 0.162 + mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
+#22 0.164 + chown -R rstudio:rstudio /home/rstudio
+#22 0.166 + date +%Y-%m-%d %H:%M %Z
+#22 DONE 0.2s
 
 #23 exporting to docker image format
-#23 exporting layers 0.0s done
-#23 exporting manifest sha256:bb40eade01dc7511b163e43ee5443c8c420442df888c4baab148824c7fc5175d done
-#23 exporting config sha256:d09444f2368417da172f7d35357a20bfb7f6ee82a3bccb9367f77de388929fbd done
+#23 exporting layers
+#23 exporting layers 66.4s done
+#23 exporting manifest sha256:8f90f4f0d530f62e4a76d8c770ad74e07408473c32620655a360c2c7ef82c044 0.0s done
+#23 exporting config sha256:4979bd870753a4a66f8e26448d1aa5b5cf811ae7a34bbe573fab1a1df0dbeeb8 done
 #23 sending tarball
 #23 ...
 
@@ -147,8 +152,8 @@
 #24 loading layer 6078cde548a5 327.68kB / 29.76MB
 #24 loading layer f073e067a303 1.85kB / 1.85kB
 #24 loading layer 0db614edecf0 557.06kB / 314.03MB
-#24 loading layer 0db614edecf0 99.16MB / 314.03MB 2.1s
-#24 loading layer 0db614edecf0 273.51MB / 314.03MB 4.1s
+#24 loading layer 0db614edecf0 128.12MB / 314.03MB 2.1s
+#24 loading layer 0db614edecf0 301.92MB / 314.03MB 4.2s
 #24 loading layer 23356d06b668 2.83kB / 2.83kB
 #24 loading layer edb7f3b63dab 1.50kB / 1.50kB
 #24 loading layer 1c0d55c88e93 294.91kB / 28.50MB
@@ -159,12 +164,11 @@
 #24 loading layer 11fe8a99e526 3.24kB / 3.24kB
 #24 loading layer cff601aac33a 343B / 343B
 #24 loading layer 8f8b31dac48d 557.06kB / 722.79MB
-#24 loading layer 8f8b31dac48d 101.38MB / 722.79MB 2.0s
-#24 loading layer 8f8b31dac48d 236.19MB / 722.79MB 4.0s
-#24 loading layer 8f8b31dac48d 413.89MB / 722.79MB 6.1s
-#24 loading layer 8f8b31dac48d 577.67MB / 722.79MB 8.2s
-#24 loading layer 8f8b31dac48d 675.15MB / 722.79MB 10.2s
-#24 loading layer 8f8b31dac48d 719.72MB / 722.79MB 12.3s
+#24 loading layer 8f8b31dac48d 117.54MB / 722.79MB 2.0s
+#24 loading layer 8f8b31dac48d 305.82MB / 722.79MB 4.1s
+#24 loading layer 8f8b31dac48d 499.12MB / 722.79MB 6.1s
+#24 loading layer 8f8b31dac48d 653.98MB / 722.79MB 8.2s
+#24 loading layer 8f8b31dac48d 718.05MB / 722.79MB 10.5s
 #24 loading layer 33b004eb23b5 1.28kB / 1.28kB
 #24 loading layer 6af7235ecdee 360.45kB / 35.18MB
 #24 loading layer 17c392eb037f 1.07kB / 1.07kB
@@ -173,71 +177,69 @@
 #24 loading layer 1afdc29abf6e 65.54kB / 3.99MB
 #24 loading layer bd0191a8f609 1.12kB / 1.12kB
 #24 loading layer 22ebf5643b68 557.06kB / 429.25MB
-#24 loading layer 22ebf5643b68 130.35MB / 429.25MB 2.1s
-#24 loading layer 22ebf5643b68 179.93MB / 429.25MB 6.3s
-#24 loading layer 22ebf5643b68 257.36MB / 429.25MB 8.3s
-#24 loading layer 22ebf5643b68 369.89MB / 429.25MB 10.4s
-#24 loading layer 377bee4f00e0 665B / 665B
-#24 loading layer c2863aaa9e2d 308B / 308B
-#24 loading layer 9f3fec93829f 557.06kB / 955.04MB
-#24 loading layer 9f3fec93829f 129.24MB / 955.04MB 2.1s
-#24 loading layer 9f3fec93829f 308.05MB / 955.04MB 4.1s
-#24 loading layer 9f3fec93829f 376.57MB / 955.04MB 6.5s
-#24 loading layer 9f3fec93829f 393.28MB / 955.04MB 13.5s
-#24 loading layer 9f3fec93829f 481.85MB / 955.04MB 15.6s
-#24 loading layer 9f3fec93829f 542.02MB / 955.04MB 17.7s
-#24 loading layer 9f3fec93829f 602.73MB / 955.04MB 21.8s
-#24 loading layer 9f3fec93829f 716.93MB / 955.04MB 27.1s
-#24 loading layer 9f3fec93829f 730.86MB / 955.04MB 32.6s
-#24 loading layer 9f3fec93829f 811.63MB / 955.04MB 37.2s
-#24 loading layer 9f3fec93829f 863.99MB / 955.04MB 45.5s
-#24 loading layer 9f3fec93829f 925.27MB / 955.04MB 48.3s
-#24 loading layer 7f3e75780a04 316B / 316B
-#24 loading layer 1afdc29abf6e 3.99MB / 3.99MB 69.1s done
-#24 loading layer bbbe18f8e396 840B / 840B
-#24 loading layer 9b49e2d5fdbc 3.64kB / 3.64kB
-#24 loading layer 87daf444b9d1 386B / 386B
-#24 loading layer a131f822efcd 2.94kB / 2.94kB
-#24 loading layer 6078cde548a5 29.76MB / 29.76MB 96.3s done
-#24 loading layer f073e067a303 1.85kB / 1.85kB 95.3s done
-#24 loading layer 0db614edecf0 314.03MB / 314.03MB 92.4s done
-#24 loading layer 23356d06b668 2.83kB / 2.83kB 85.0s done
-#24 loading layer edb7f3b63dab 1.50kB / 1.50kB 84.9s done
-#24 loading layer 1c0d55c88e93 28.50MB / 28.50MB 84.9s done
-#24 loading layer 562a97e7d9c5 1.92kB / 1.92kB 84.4s done
-#24 loading layer 1e4b9d2dcb69 749B / 749B 84.4s done
-#24 loading layer 9838c9e6ca78 716B / 716B 84.4s done
-#24 loading layer 53b4ea0c36fa 521B / 521B 84.4s done
-#24 loading layer 11fe8a99e526 3.24kB / 3.24kB 84.4s done
-#24 loading layer cff601aac33a 343B / 343B 84.4s done
-#24 loading layer 8f8b31dac48d 722.79MB / 722.79MB 84.3s done
-#24 loading layer 33b004eb23b5 1.28kB / 1.28kB 69.9s done
-#24 loading layer 6af7235ecdee 35.18MB / 35.18MB 69.8s done
-#24 loading layer 17c392eb037f 1.07kB / 1.07kB 69.1s done
-#24 loading layer 199660ee55b6 567.74kB / 567.74kB 69.1s done
-#24 loading layer 8eb1f65fc542 18.40kB / 18.40kB 69.1s done
-#24 loading layer bd0191a8f609 1.12kB / 1.12kB 69.0s done
-#24 loading layer 22ebf5643b68 429.25MB / 429.25MB 68.9s done
-#24 loading layer 377bee4f00e0 665B / 665B 53.9s done
-#24 loading layer c2863aaa9e2d 308B / 308B 53.9s done
-#24 loading layer 9f3fec93829f 955.04MB / 955.04MB 53.8s done
-#24 loading layer 7f3e75780a04 316B / 316B 0.1s done
-#24 loading layer bbbe18f8e396 840B / 840B 0.1s done
-#24 loading layer 9b49e2d5fdbc 3.64kB / 3.64kB 0.1s done
-#24 loading layer 87daf444b9d1 386B / 386B 0.1s done
-#24 loading layer a131f822efcd 2.94kB / 2.94kB 0.1s done
-#24 DONE 96.3s
+#24 loading layer 22ebf5643b68 72.42MB / 429.25MB 2.0s
+#24 loading layer 22ebf5643b68 133.14MB / 429.25MB 4.2s
+#24 loading layer 22ebf5643b68 237.31MB / 429.25MB 8.3s
+#24 loading layer 22ebf5643b68 371.56MB / 429.25MB 10.3s
+#24 loading layer 8106a119ec58 669B / 669B
+#24 loading layer 66765434d100 308B / 308B
+#24 loading layer b5fd62f59750 557.06kB / 955.04MB
+#24 loading layer b5fd62f59750 152.08MB / 955.04MB 2.0s
+#24 loading layer b5fd62f59750 371.00MB / 955.04MB 4.1s
+#24 loading layer b5fd62f59750 475.17MB / 955.04MB 11.0s
+#24 loading layer b5fd62f59750 562.07MB / 955.04MB 13.1s
+#24 loading layer b5fd62f59750 630.59MB / 955.04MB 15.1s
+#24 loading layer b5fd62f59750 716.93MB / 955.04MB 17.3s
+#24 loading layer b5fd62f59750 773.19MB / 955.04MB 23.8s
+#24 loading layer b5fd62f59750 841.15MB / 955.04MB 28.1s
+#24 loading layer b5fd62f59750 906.89MB / 955.04MB 34.3s
+#24 loading layer 18331e4d6b92 314B / 314B
+#24 loading layer 1a217f1e994d 839B / 839B
+#24 loading layer c41cdfbe5ad7 3.64kB / 3.64kB
+#24 loading layer 4765c365c677 385B / 385B
+#24 loading layer 70a4ff158d57 2.94kB / 2.94kB
+#24 loading layer 1afdc29abf6e 3.99MB / 3.99MB 62.2s done
+#24 loading layer 6078cde548a5 29.76MB / 29.76MB 102.3s done
+#24 loading layer f073e067a303 1.85kB / 1.85kB 101.0s done
+#24 loading layer 0db614edecf0 314.03MB / 314.03MB 94.0s done
+#24 loading layer 23356d06b668 2.83kB / 2.83kB 84.1s done
+#24 loading layer edb7f3b63dab 1.50kB / 1.50kB 84.0s done
+#24 loading layer 1c0d55c88e93 28.50MB / 28.50MB 84.0s done
+#24 loading layer 562a97e7d9c5 1.92kB / 1.92kB 82.9s done
+#24 loading layer 1e4b9d2dcb69 749B / 749B 82.9s done
+#24 loading layer 9838c9e6ca78 716B / 716B 82.9s done
+#24 loading layer 53b4ea0c36fa 521B / 521B 82.8s done
+#24 loading layer 11fe8a99e526 3.24kB / 3.24kB 82.8s done
+#24 loading layer cff601aac33a 343B / 343B 82.8s done
+#24 loading layer 8f8b31dac48d 722.79MB / 722.79MB 82.8s done
+#24 loading layer 33b004eb23b5 1.28kB / 1.28kB 63.6s done
+#24 loading layer 6af7235ecdee 35.18MB / 35.18MB 63.6s done
+#24 loading layer 17c392eb037f 1.07kB / 1.07kB 62.3s done
+#24 loading layer 199660ee55b6 567.74kB / 567.74kB 62.3s done
+#24 loading layer 8eb1f65fc542 18.40kB / 18.40kB 62.2s done
+#24 loading layer bd0191a8f609 1.12kB / 1.12kB 61.9s done
+#24 loading layer 22ebf5643b68 429.25MB / 429.25MB 61.9s done
+#24 loading layer 8106a119ec58 669B / 669B 43.2s done
+#24 loading layer 66765434d100 308B / 308B 43.2s done
+#24 loading layer b5fd62f59750 955.04MB / 955.04MB 43.2s done
+#24 loading layer 18331e4d6b92 314B / 314B 0.6s done
+#24 loading layer 1a217f1e994d 839B / 839B 0.6s done
+#24 loading layer c41cdfbe5ad7 3.64kB / 3.64kB 0.5s done
+#24 loading layer 4765c365c677 385B / 385B 0.3s done
+#24 loading layer 70a4ff158d57 2.94kB / 2.94kB 0.1s done
+#24 DONE 102.3s
 
 #23 exporting to docker image format
-#23 sending tarball 107.9s done
-#23 DONE 107.9s
+#23 sending tarball 117.1s done
+#23 DONE 183.5s
 
 #25 exporting cache to registry
-#25 preparing build cache for export 0.1s done
+#25 preparing build cache for export
+#25 preparing build cache for export 0.6s done
 #25 sending cache export
 #25 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181
-#25 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f
 #25 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d
+#25 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f
 #25 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30
 #25 ...
 
@@ -245,56 +247,54 @@
 #26 DONE 0.0s
 
 #25 exporting cache to registry
-#25 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30 0.4s done
+#25 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 0.6s done
 #25 writing layer sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924
-#25 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181 0.4s done
-#25 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f 0.4s done
-#25 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 0.4s done
-#25 writing layer sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924 0.1s done
-#25 writing layer sha256:249a91886574476441f6dbe6116b20fd5b643bba6a98a75dec73ed82b4737d9c 0.1s done
+#25 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181 0.6s done
+#25 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f 0.6s done
+#25 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30 0.6s done
+#25 writing layer sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924 0.0s done
+#25 writing layer sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a
+#25 writing layer sha256:1efa104b71fc99dce084e0039489aaaf3409737d4e037007e80d9ee04b8a2c4a
+#25 writing layer sha256:3615ef862a66eed0285209fe0efed6f173697ddc1e0dd9985864635bbee9ed6f
 #25 writing layer sha256:3fab3360c3498a66aa66ac21af0718c85258e4f29cc152e6b9ff26d7aa16ec3c 0.1s done
-#25 writing layer sha256:659e147444dadc6cfb6f94041b3f286640a50f88fea662b81a42c64d722eb96c
-#25 writing layer sha256:6eeaac94d935e35d81d87790ee0b2433c21abff6184c3b7025a2be8e2753e0f9
-#25 writing layer sha256:75085e7d0dcab51770582af098e5b82fde354feab51ac3b9d9baf9e5f553b763
-#25 writing layer sha256:7f85e21a01d64e96319267b5cf88938dfba029f4f93bf2b67e57cd9fa4dea0e4
-#25 writing layer sha256:6eeaac94d935e35d81d87790ee0b2433c21abff6184c3b7025a2be8e2753e0f9 0.1s done
-#25 writing layer sha256:75085e7d0dcab51770582af098e5b82fde354feab51ac3b9d9baf9e5f553b763 0.1s done
-#25 writing layer sha256:7f85e21a01d64e96319267b5cf88938dfba029f4f93bf2b67e57cd9fa4dea0e4 0.1s done
-#25 writing layer sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 0.1s done
-#25 writing layer sha256:82014097befd491c3c71bf5cad542f8349342f1f82b766a915909c9ade0af9e4
-#25 writing layer sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080
-#25 writing layer sha256:99b1d9f456bf3ca743834cd54db58f77b976ee0b98aa0413a83f9f7fdcda81a0
+#25 writing layer sha256:574ea98f21caaa1af4a99b9805645171c531f1fbc9b5a1fe4131c9ef2b269007
+#25 writing layer sha256:1efa104b71fc99dce084e0039489aaaf3409737d4e037007e80d9ee04b8a2c4a 1.1s done
+#25 writing layer sha256:574ea98f21caaa1af4a99b9805645171c531f1fbc9b5a1fe4131c9ef2b269007 1.2s done
+#25 writing layer sha256:675e2a21df094b184f4cd7ccdbb954a94e72b29c0ffaa318537b07cec1e6b17e
+#25 writing layer sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa
+#25 writing layer sha256:3615ef862a66eed0285209fe0efed6f173697ddc1e0dd9985864635bbee9ed6f 1.3s done
+#25 writing layer sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 0.0s done
 #25 writing layer sha256:82014097befd491c3c71bf5cad542f8349342f1f82b766a915909c9ade0af9e4 0.1s done
-#25 writing layer sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080 0.1s done
+#25 writing layer sha256:88bc7c4751de5a92b858d8de95895010f793d769ea08a90f2ec5330ae7f58175
+#25 writing layer sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080
+#25 writing layer sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080 0.0s done
+#25 writing layer sha256:9161e5f8568098f55324f5352063a84547b67810d0db5a0cb5f7b201fbe6eaa9
+#25 writing layer sha256:675e2a21df094b184f4cd7ccdbb954a94e72b29c0ffaa318537b07cec1e6b17e 1.1s done
 #25 writing layer sha256:99b1d9f456bf3ca743834cd54db58f77b976ee0b98aa0413a83f9f7fdcda81a0 0.1s done
-#25 writing layer sha256:a66fb2518cba7e3b5ccad3c387e95622af22ed12bfbdccd3c433171c38b19b20 0.1s done
-#25 writing layer sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 0.1s done
-#25 writing layer sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7
-#25 writing layer sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc
+#25 writing layer sha256:a66fb2518cba7e3b5ccad3c387e95622af22ed12bfbdccd3c433171c38b19b20 0.0s done
+#25 writing layer sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926
+#25 writing layer sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 0.0s done
+#25 writing layer sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7 0.0s done
+#25 writing layer sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc 0.0s done
 #25 writing layer sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3
-#25 writing layer sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7 0.1s done
-#25 writing layer sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc 0.1s done
+#25 writing layer sha256:88bc7c4751de5a92b858d8de95895010f793d769ea08a90f2ec5330ae7f58175 1.2s done
 #25 writing layer sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3 0.1s done
-#25 writing layer sha256:cce234d2f0b5b593a07a72ad1ae10d46831be1044cf812dc09bcb6ab0b94efc1 0.1s done
-#25 writing layer sha256:d1264a5bd6deef046be066f1330ffb8ebd2d25db3ad92a50f5f4da36a24401b0
-#25 writing layer sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5
-#25 writing layer sha256:e22ec8080376483f218b10548dd12b543c28dd96f0b080790434506f7bda4bde
-#25 writing layer sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 0.1s done
+#25 writing layer sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 0.0s done
 #25 writing layer sha256:e22ec8080376483f218b10548dd12b543c28dd96f0b080790434506f7bda4bde 0.1s done
-#25 writing layer sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58 0.1s done
+#25 writing layer sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58
 #25 writing layer sha256:e7f208b2f2c1b0cfbf43054820accdb5319a9ccaf268c66875be52e7f008f018
-#25 writing layer sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8
+#25 writing layer sha256:9161e5f8568098f55324f5352063a84547b67810d0db5a0cb5f7b201fbe6eaa9 1.2s done
+#25 writing layer sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58 0.0s done
 #25 writing layer sha256:e7f208b2f2c1b0cfbf43054820accdb5319a9ccaf268c66875be52e7f008f018 0.1s done
 #25 writing layer sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8 0.1s done
-#25 writing layer sha256:e9753dea9660230e668dd4a39bd246b8a6f802aed2d73fac93617701e52c78ca 0.1s done
-#25 writing layer sha256:f5397bd39c1874bf4270912a08c9b9ba480c7e81f2f3f1177e36622236d8a4ed
-#25 writing layer sha256:659e147444dadc6cfb6f94041b3f286640a50f88fea662b81a42c64d722eb96c 1.4s done
-#25 writing layer sha256:d1264a5bd6deef046be066f1330ffb8ebd2d25db3ad92a50f5f4da36a24401b0 1.2s done
-#25 writing layer sha256:f5397bd39c1874bf4270912a08c9b9ba480c7e81f2f3f1177e36622236d8a4ed 1.3s done
-#25 writing config sha256:70a70d594c36d2777f01309ac4044e9112e7f86cb63bfcd4bee0f4c6d6251fac
-#25 writing config sha256:70a70d594c36d2777f01309ac4044e9112e7f86cb63bfcd4bee0f4c6d6251fac 1.3s done
-#25 writing cache image manifest sha256:b4152749df83552b643d80898db95cea44c70fc1583e7688f6fd73d490e61e04
-#25 sending cache export 4.5s done
-#25 writing cache image manifest sha256:b4152749df83552b643d80898db95cea44c70fc1583e7688f6fd73d490e61e04 0.7s done
-#25 DONE 4.6s
-build seconds: 200
+#25 writing layer sha256:e9753dea9660230e668dd4a39bd246b8a6f802aed2d73fac93617701e52c78ca 0.0s done
+#25 writing layer sha256:f852dc4ad07daff7c85993cc0aca4c2d0e0b98dcae2428d6c40ae85fb8bf7839
+#25 writing layer sha256:f852dc4ad07daff7c85993cc0aca4c2d0e0b98dcae2428d6c40ae85fb8bf7839 1.5s done
+#25 writing layer sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a 10.6s done
+#25 writing config sha256:114d36c63e86f428f30bd783ed059a4f8ccc495e35dfa6acf7d19bb201e6169e
+#25 writing config sha256:114d36c63e86f428f30bd783ed059a4f8ccc495e35dfa6acf7d19bb201e6169e 1.1s done
+#25 writing cache image manifest sha256:8bc2869834ed967e1c352d397446a6a4a5c8ffe5e642e2a6b2f9c1f7dc72b77e
+#25 sending cache export 12.9s done
+#25 writing cache image manifest sha256:8bc2869834ed967e1c352d397446a6a4a5c8ffe5e642e2a6b2f9c1f7dc72b77e 0.5s done
+#25 DONE 13.5s
+build seconds: 340

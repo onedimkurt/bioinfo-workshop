@@ -1,6 +1,6 @@
-run: 36875414589  attempt: 1
-commit: 5727458fe282afb902abec781e584e6a452913f9
-tag: ghcr.io/onedimkurt/bioinfo-workshop:20261001-1734
+run: 36877237599  attempt: 1
+commit: 8dec528bcb982ce9d39be1a0969cfecffb9ed33b
+tag: ghcr.io/onedimkurt/bioinfo-workshop:20261001-1749
 lint: success
 build: success
 smoke: success
