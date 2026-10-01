@@ -79,8 +79,13 @@ check "proxy on 8787 answers"            bash -c 'curl -s -o /dev/null -w "%{htt
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
 export UA
 check "redirects stay relative (curl)"   bash -c 'curl -s -D - -o /dev/null -H "Host: localhost:8787" http://127.0.0.1:8787/ | grep -i "^location:" | tr -d "\r" | tee /tmp/locs0; ! grep -qi "://" /tmp/locs0 && echo "relative"'
-check "redirects stay relative (Chrome)" bash -c 'rm -f /tmp/jar /tmp/hdr; curl -s -L --max-redirs 10 -A "$UA" -c /tmp/jar -b /tmp/jar -H "Host: localhost:8787" -D /tmp/hdr -o /tmp/page.html -w "%{http_code} %{url_effective}\n" http://127.0.0.1:8787/ > /tmp/final; grep -i "^location:" /tmp/hdr | tr -d "\r" | tee /tmp/locs; ! grep -qi "://" /tmp/locs && echo "relative: $(tr "\n" " " < /tmp/locs)"'
-check "sign-in leads to the IDE"         bash -c 'cat /tmp/final; read -r code url < /tmp/final; [ "$code" = 200 ] && [ "${url#http://127.0.0.1:8787}" = "/" ] && grep -qi "rstudio" /tmp/page.html && ! grep -qi "sign in to rstudio" /tmp/page.html && echo "IDE page at /, $(wc -c < /tmp/page.html) bytes"'
+check "redirects stay relative (Chrome)" bash -c 'rm -f /tmp/jar /tmp/hdr; curl -s -L --max-redirs 6 -A "$UA" -c /tmp/jar -b /tmp/jar -H "Host: localhost:8787" -D /tmp/hdr -o /dev/null http://127.0.0.1:8787/; grep -i "^location:" /tmp/hdr | tr -d "\r" | sort | uniq -c | tee /tmp/locs; ! grep -qi "://" /tmp/locs && echo "relative: $(tr -s " " < /tmp/locs | tr "\n" ";")"'
+# A browser keeps a cookie only if it has no Domain attribute pointing elsewhere (the
+# browser's host is ...-8787.app.github.dev, RStudio sees localhost:8787).
+check "sign-in sets a host-only cookie"  bash -c 'curl -s -D /tmp/h2 -o /dev/null -A "$UA" -H "Host: localhost:8787" "http://127.0.0.1:8787/auth-sign-in?appUri=%2F"; tr -d "\r" < /tmp/h2 | grep -i -e "^HTTP" -e "^location:" -e "^set-cookie:" | tee /tmp/h2s; grep -qi "^set-cookie:" /tmp/h2s && ! grep -i "^set-cookie:" /tmp/h2s | grep -qi "domain=" && echo "cookie(s) without Domain"'
+check "sign-in leads to the IDE"         bash -c 'ck=$(sed -n "s/^[Ss]et-[Cc]ookie: *\([^;]*\).*/\1/p" /tmp/h2s | paste -sd ";" -); code=$(curl -s -o /tmp/page.html -w "%{http_code}" -A "$UA" -H "Host: localhost:8787" -H "Cookie: ${ck}" http://127.0.0.1:8787/); echo "GET / with the sign-in cookie: ${code}"; [ "${code}" = 200 ] && grep -qi "rstudio" /tmp/page.html && ! grep -qi "sign in to rstudio" /tmp/page.html && echo "IDE page, $(wc -c < /tmp/page.html) bytes"'
+echo "      (for the record) sign-in response through the proxy:"
+sed 's/^/        /' /tmp/h2s 2>/dev/null
 check "second start is a no-op"          /usr/local/share/bioinfo-workshop/start-rstudio.sh
 echo "      (for the record) RStudio's own sign-in redirect without the proxy:"
 curl -s -D - -o /dev/null -H "Host: localhost:8787" "http://127.0.0.1:8788/auth-sign-in?appUri=%2F" | grep -i "^location:" | sed 's/^/        /'
