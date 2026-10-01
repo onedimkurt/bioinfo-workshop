@@ -64,7 +64,7 @@ else
 fi
 
 # 7. Gönderme izni
-if [ -n "${origin}" ] && timeout 40 git -C "${ws}" push --dry-run origin HEAD >/dev/null 2>&1; then
+if [ -n "${origin}" ] && GIT_TERMINAL_PROMPT=0 timeout 40 git -C "${ws}" push --dry-run origin HEAD >/dev/null 2>&1; then
     ok "GitHub'a gönderme (push) izni var"
 elif [ -z "${origin}" ]; then
     skip "GitHub'a gönderme (push) izni" "Depo bağlantısı olmadığı için sınanmadı (madde 5)."
