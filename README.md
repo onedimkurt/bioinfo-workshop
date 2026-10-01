@@ -70,7 +70,8 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 7. **Codespace'i durdurunuz, sonra siliniz.**
    github.com/codespaces sayfasını açınız.
    Codespace satırının sağındaki üç noktaya tıklayınız ve "Stop codespace" seçiniz.
-   Satırda "Stopped" yazınca yine üç noktaya tıklayınız ve "Delete" seçiniz.
+   Satırdaki "Active" yazısı kaybolur; yerine "Last used" ile başlayan bir yazı gelir.
+   Sonra yine üç noktaya tıklayınız ve "Delete" seçiniz.
    Deponuz silinmez. Atölyenin ilk sabahı aynı depodan yeni bir codespace oluşturacaksınız.
 
 ## Atölye günlerinde
@@ -86,7 +87,9 @@ Durdurmanın iki yolu vardır:
 - github.com/codespaces sayfasında üç noktaya tıklayınız ve "Stop codespace" seçiniz.
 - VS Code penceresinin sol alt köşesindeki "Codespaces" yazısına tıklayınız ve "Stop Current Codespace" seçiniz.
 
-Sonra github.com/codespaces sayfasına bakınız. Satırda "Stopped" yazdığını görünüz.
+Sonra github.com/codespaces sayfasına bakınız.
+Satırda artık "Active" yazmamalıdır; "Last used" ile başlayan bir yazı görmelisiniz.
+Durma işlemi birkaç dakika sürebilir.
 Unutulan bir codespace 120 dakika sonra kendiliğinden durur, ama o süre kotanızdan düşer.
 
 **Bir şey bozulursa.**
