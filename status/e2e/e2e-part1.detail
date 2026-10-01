@@ -117,6 +117,9 @@
   [D1.11]   - seqkit
   [D1.11]   - seqtk
   [D1.11] prefix: /opt/conda/envs/deneme
+  [D1.11b] /opt/conda/envs/deneme-kopya/bin/seqkit
+  [D1.11b] /opt/conda/envs/deneme-kopya/bin/seqtk
+  [D1.11b] the exported file rebuilds the environment
   [D1.12] deneme removed
   [D1.13]   typing-inspection  conda-forge/noarch::typing-inspection-0.4.4-pyhcf101f3_0 
   [D1.13]   typing_extensions  conda-forge/noarch::typing_extensions-4.16.0-pyhcf101f3_0 
