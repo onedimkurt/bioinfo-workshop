@@ -96,6 +96,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: false
+      # ENA cut transfers short when all eight runs downloaded at once (data run #3).
+      max-parallel: 3
       matrix:
         run: [SRR1039508, SRR1039509, SRR1039512, SRR1039513, SRR1039516, SRR1039517, SRR1039520, SRR1039521]
     steps:
@@ -105,20 +107,38 @@ jobs:
           path: ref
       - name: Download ${{ matrix.run }} from ENA and check MD5
         run: |
-          set -euxo pipefail
+          set -euo pipefail
           mkdir -p fq out log
-          info=$(curl -fsSL --retry 5 "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=${{ matrix.run }}&result=read_run&fields=fastq_ftp,fastq_md5,read_count&format=tsv" | tail -n 1)
+          # fetch HOST/PATH FILE MD5: resumes a cut transfer, alternates https and ftp,
+          # and stops only when the MD5 that ENA publishes matches.
+          fetch() {
+            local url="$1" f="$2" m="$3" a proto rc
+            for a in 1 2 3 4 5 6 7 8 9 10; do
+              if [ $((a % 2)) -eq 1 ]; then proto=https; else proto=ftp; fi
+              rc=0
+              curl -fSL -sS --connect-timeout 30 --speed-limit 100000 --speed-time 60 \
+                -C - -o "$f" "${proto}://${url}" || rc=$?
+              if [ -s "$f" ] && echo "$m  $f" | md5sum -c --status -; then
+                echo "$f: MD5 OK ($m) after $a attempt(s), last via $proto"
+                return 0
+              fi
+              echo "$f: attempt $a via $proto ended with curl exit $rc, $(stat -c %s "$f" 2>/dev/null || echo 0) bytes so far"
+              # a complete file with the wrong MD5 cannot be resumed: start it again
+              if [ "$rc" -eq 0 ]; then rm -f "$f"; fi
+              sleep $((a * 15))
+            done
+            return 1
+          }
+          info=$(curl -fsSL --retry 8 --retry-all-errors --retry-delay 10 "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=${{ matrix.run }}&result=read_run&fields=fastq_ftp,fastq_md5,read_count&format=tsv" | tail -n 1)
           echo "$info" | tee log/${{ matrix.run }}.log
           urls=$(echo "$info" | cut -f2); md5s=$(echo "$info" | cut -f3)
           i=1
           for u in $(echo "$urls" | tr ';' ' '); do
             m=$(echo "$md5s" | cut -d';' -f$i)
-            f=fq/$(basename "$u")
-            curl -fsSL --retry 5 -o "$f" "https://$u"
-            echo "$m  $f" | md5sum -c - | tee -a log/${{ matrix.run }}.log
+            fetch "$u" "fq/$(basename "$u")" "$m" | tee -a log/${{ matrix.run }}.log
             i=$((i+1))
           done
-          ls -l fq
+          ls -l fq | tee -a log/${{ matrix.run }}.log
       - name: Salmon quant at full depth
         run: |
           set -euxo pipefail
@@ -199,15 +219,24 @@ jobs:
           curl -fsSL --retry 5 -o out/chr20.fa.gz https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chr20.fa.gz
           echo "chr20 bases: $(zcat out/chr20.fa.gz | grep -v '>' | tr -d '\n' | wc -c)" | tee log/variants.log
           hc=https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage
-          : > seqindex.tsv
-          for idx in "$hc/1000G_2504_high_coverage.sequence.index" "$hc/additional_698_related/1000G_698_related_high_coverage.sequence.index"; do
-            curl -fsSL --retry 5 "$idx" >> seqindex.tsv || echo "not found: $idx" | tee -a log/variants.log
-          done
+          curl -fsSL --retry 8 --retry-all-errors --retry-delay 10 -o seqindex.tsv "$hc/1000G_2504_high_coverage.sequence.index"
           cram=$(grep -v '^#' seqindex.tsv | awk -F'\t' '$0 ~ /NA12878/ && $1 ~ /\.cram$/ {print $1}' | sed -n 1p)
           echo "CRAM: $cram" | tee -a log/variants.log
           test -n "$cram"
           case "$cram" in ftp://*) cram="https://${cram#ftp://}";; esac
-          $env/samtools view -b -o window.bam "$cram" "$WINDOW"
+          # The CRAM needs its reference to decode. Its header points to a path on the
+          # 1000 Genomes cluster; chr20 is the same sequence in UCSC hg38, so give that
+          # (-T) and log both MD5s. Fallback: the EBI CRAM reference registry by MD5.
+          zcat out/chr20.fa.gz > chr20.fa
+          $env/samtools faidx chr20.fa
+          echo "chr20 M5, UCSC hg38: $($env/samtools dict chr20.fa | grep -o 'M5:[0-9a-f]*')" | tee -a log/variants.log
+          echo "chr20 M5, CRAM header: $($env/samtools view -H "$cram" | grep -P '\tSN:chr20\t' | grep -o 'M5:[0-9a-f]*')" | tee -a log/variants.log
+          if ! $env/samtools view -T chr20.fa -b -o window.bam "$cram" "$WINDOW"; then
+            echo "decode with UCSC chr20 failed; trying the EBI registry" | tee -a log/variants.log
+            mkdir -p refcache
+            REF_PATH='https://www.ebi.ac.uk/ena/cram/md5/%s' REF_CACHE="$PWD/refcache/%2s/%2s/%s" \
+              $env/samtools view -b -o window.bam "$cram" "$WINDOW"
+          fi
           $env/samtools flagstat window.bam | tee -a log/variants.log
           $env/samtools collate -u -O window.bam tmp.collate \
             | $env/samtools fastq -F 0x900 -1 out/NA12878_window_1.fastq.gz -2 out/NA12878_window_2.fastq.gz -0 /dev/null -s /dev/null -n -
