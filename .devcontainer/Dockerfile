@@ -56,6 +56,7 @@ RUN set -eux; \
 # 4. Workshop configuration: shell hook, R profile, RStudio start scripts, smoke test.
 #    Small and often changed, so it comes last.
 COPY .devcontainer/build/bash.bashrc.append /tmp/bash.bashrc.append
+COPY .devcontainer/build/home-bashrc.append /tmp/home-bashrc.append
 COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
 COPY .devcontainer/build/scripts/ /usr/local/share/bioinfo-workshop/
 COPY .devcontainer/build/sudoers-rstudio-password /etc/sudoers.d/bioinfo-workshop
@@ -68,8 +69,10 @@ RUN set -eux; \
     nginx -t -c /etc/bioinfo-workshop/nginx.conf -e /tmp/bioinfo-workshop-nginx/error.log; \
     rm -rf /tmp/bioinfo-workshop-nginx; \
     cat /tmp/bash.bashrc.append >> /etc/bash.bashrc; \
+    [ -f /home/rstudio/.bashrc ] || cp /etc/skel/.bashrc /home/rstudio/.bashrc; \
+    cat /tmp/home-bashrc.append >> /home/rstudio/.bashrc; \
     cat /tmp/Rprofile.site.append >> /usr/local/lib/R/etc/Rprofile.site; \
-    rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append; \
+    rm -f /tmp/bash.bashrc.append /tmp/home-bashrc.append /tmp/Rprofile.site.append; \
     chmod 0755 /usr/local/share/bioinfo-workshop/*.sh; \
     chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh; \
     chmod 0440 /etc/sudoers.d/bioinfo-workshop; \

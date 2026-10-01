@@ -48,7 +48,7 @@ fi
 origin="$(git -C "${ws}" remote get-url origin 2>/dev/null)"
 owner="$(printf '%s' "${origin}" | sed -E 's#^https://github.com/([^/]+)/.*#\1#; s#^git@github.com:([^/]+)/.*#\1#')"
 if [ -z "${origin}" ]; then
-    bad "Bu klasör bir git deposuna bağlı değil" "Codespace'i github.com üzerindeki kendi bioinfo-workshop deponuzdan açınız (Code > Codespaces)."
+    bad "Bu codespace bir GitHub deposuna bağlı değil" "Codespace büyük olasılıkla \"Use this template > Open in a codespace\" ile açıldı. Bu codespace'i siliniz. Önce kendi deponuzu oluşturunuz (README, 3. adım), sonra codespace'i o depodan açınız (Code > Codespaces, 4. adım)."
 elif [ "${owner}" = "onedimkurt" ] && [ "${GITHUB_USER:-onedimkurt}" != "onedimkurt" ]; then
     bad "Bu codespace atölye şablonundan açılmış, kendi deponuzdan değil" "Önce şablonda Use this template > Create a new repository ile kendi deponuzu oluşturunuz; codespace'i o depodan açınız."
 else

@@ -1,0 +1,6 @@
+
+# --- bioinfo-workshop: every terminal starts in conda's base environment ---
+# Last in this file, so that the prompt shows "(base)".
+if [ -z "${CONDA_DEFAULT_ENV:-}" ] && type conda >/dev/null 2>&1; then
+    conda activate base
+fi

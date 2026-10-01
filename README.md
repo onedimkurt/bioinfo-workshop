@@ -35,6 +35,7 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 3. **Kendi deponuzu oluşturunuz.**
    github.com/onedimkurt/bioinfo-workshop sayfasını açınız.
    "Use this template" düğmesine, sonra "Create a new repository" seçeneğine tıklayınız.
+   "Open in a codespace" seçeneğini seçmeyiniz; o yol, bir depoya bağlı olmayan bir codespace açar.
    Owner olarak kendi kullanıcı adınızı seçiniz.
    Repository name kutusuna `bioinfo-workshop` yazınız.
    "Public" seçili kalsın; 3. günkü sertifika sayfası bunu gerektirir.

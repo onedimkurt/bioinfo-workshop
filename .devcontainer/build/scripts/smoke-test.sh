@@ -32,7 +32,9 @@ check "quarto present"                 quarto --version
 
 # --- conda -------------------------------------------------------------------
 check "conda in interactive bash"      bash -ic 'conda --version'
-check "base active in new terminal"    bash -ic '[ "${CONDA_DEFAULT_ENV:-}" = base ] && echo "$CONDA_DEFAULT_ENV"'
+check "base active, prompt (base)"     bash -ic '[ "${CONDA_DEFAULT_ENV:-}" = base ] && case "$PS1" in "(base) "*) echo "base; prompt starts with (base)";; *) echo "prompt: $PS1"; false;; esac'
+check "same in a login shell (RStudio)" bash -lic '[ "${CONDA_DEFAULT_ENV:-}" = base ] && case "$PS1" in "(base) "*) echo "base; prompt starts with (base)";; *) echo "prompt: $PS1"; false;; esac'
+check "activate shows the new name"     bash -ic 'conda activate rnaseq-ready && case "$PS1" in "(rnaseq-ready) "*) echo "prompt starts with (rnaseq-ready)";; *) echo "prompt: $PS1"; false;; esac'
 check "conda in login bash"            bash -lc 'type conda >/dev/null && echo function'
 check "two fallback environments"      bash -ic 'n=$(conda env list | grep -cE "^(rnaseq-ready|variants-ready) "); [ "$n" -eq 2 ] && conda env list | grep -v "^#" | tr -s " " | tr "\n" ";"'
 check "names rnaseq/variants are free" bash -ic '! conda env list | grep -qE "^(rnaseq|variants) "'

@@ -1,8 +1,7 @@
-
-# --- bioinfo-workshop: conda in every interactive bash (RStudio Terminal included) ---
+# --- bioinfo-workshop: the conda command in every interactive bash ---
+# Activation of "base" happens at the end of the user's ~/.bashrc (home-bashrc.append),
+# after Ubuntu's ~/.bashrc has set the prompt; here it would be overwritten and the
+# prompt would not show "(base)" (seen in a codespace, 2026-10-01).
 if [ -f /opt/conda/etc/profile.d/conda.sh ]; then
     . /opt/conda/etc/profile.d/conda.sh
-    if [ -z "${CONDA_DEFAULT_ENV:-}" ]; then
-        conda activate base
-    fi
 fi
