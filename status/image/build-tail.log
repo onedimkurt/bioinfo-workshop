@@ -1,29 +1,25 @@
-#19 extracting sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7 0.0s done
-#19 extracting sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181 done
-#19 extracting sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8
-#19 extracting sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8 0.7s done
-#19 DONE 25.6s
+#19 extracting sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 done
+#19 DONE 25.4s
 
 #19 [ 9/13] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
-#19 extracting sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 done
 #19 extracting sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d
-#19 extracting sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 9.1s done
+#19 extracting sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 9.4s done
 #19 DONE 34.7s
 
 #19 [ 9/13] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
 #19 extracting sha256:9161e5f8568098f55324f5352063a84547b67810d0db5a0cb5f7b201fbe6eaa9 done
 #19 extracting sha256:675e2a21df094b184f4cd7ccdbb954a94e72b29c0ffaa318537b07cec1e6b17e done
 #19 extracting sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a
-#19 extracting sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a 44.6s done
-#19 DONE 79.3s
+#19 extracting sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a 44.8s done
+#19 DONE 79.5s
 
 #19 [ 9/13] COPY .devcontainer/build/Rprofile.site.append /tmp/Rprofile.site.append
 #19 extracting sha256:3615ef862a66eed0285209fe0efed6f173697ddc1e0dd9985864635bbee9ed6f done
 #19 extracting sha256:574ea98f21caaa1af4a99b9805645171c531f1fbc9b5a1fe4131c9ef2b269007 done
-#19 DONE 79.3s
+#19 DONE 79.5s
 
 #20 [10/13] COPY .devcontainer/build/scripts/ /usr/local/share/bioinfo-workshop/
-#20 DONE 2.7s
+#20 DONE 2.9s
 
 #21 [11/13] COPY .devcontainer/build/sudoers-rstudio-password /etc/sudoers.d/bioinfo-workshop
 #21 DONE 0.0s
@@ -32,122 +28,122 @@
 #22 DONE 0.0s
 
 #23 [13/13] RUN set -eux;     apt-get update;     apt-get install -y --no-install-recommends nginx;     rm -rf /var/lib/apt/lists/*;     mkdir -p /tmp/bioinfo-workshop-nginx;     nginx -t -c /etc/bioinfo-workshop/nginx.conf -e /tmp/bioinfo-workshop-nginx/error.log;     rm -rf /tmp/bioinfo-workshop-nginx;     cat /tmp/bash.bashrc.append >> /etc/bash.bashrc;     cat /tmp/Rprofile.site.append >> /usr/local/lib/R/etc/Rprofile.site;     rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append;     chmod 0755 /usr/local/share/bioinfo-workshop/*.sh;     chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh;     chmod 0440 /etc/sudoers.d/bioinfo-workshop;     visudo -cf /etc/sudoers.d/bioinfo-workshop;     mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server;     jq '. + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"}'         /home/rstudio/.config/rstudio/rstudio-prefs.json > /tmp/prefs.json;     mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json;     chown -R rstudio:rstudio /home/rstudio;     date '+%Y-%m-%d %H:%M %Z' > /usr/local/share/bioinfo-workshop/IMAGE_BUILT
-#23 0.068 + apt-get update
-#23 0.241 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
-#23 0.434 Get:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-#23 0.725 Get:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
-#23 0.772 Get:4 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-#23 1.114 Get:5 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-#23 1.114 Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-#23 1.117 Get:7 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-#23 1.117 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2162 kB]
-#23 1.126 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [56.2 kB]
-#23 1.127 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1685 kB]
-#23 1.134 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2127 kB]
-#23 1.621 Get:12 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
-#23 1.622 Get:13 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
-#23 1.623 Get:14 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
-#23 14.04 Get:15 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-#23 14.15 Get:16 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1542 kB]
-#23 14.25 Get:17 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
-#23 14.25 Get:18 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1943 kB]
-#23 14.28 Get:19 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1318 kB]
-#23 14.42 Fetched 33.2 MB in 14s (2316 kB/s)
-#23 14.42 Reading package lists...
-#23 15.15 + apt-get install -y --no-install-recommends nginx
-#23 15.16 Reading package lists...
-#23 15.87 Building dependency tree...
-#23 16.03 Reading state information...
-#23 16.16 The following additional packages will be installed:
-#23 16.16   iproute2 libbpf1 libcap2-bin libmnl0 libxtables12 nginx-common
-#23 16.16 Suggested packages:
-#23 16.16   iproute2-doc fcgiwrap nginx-doc ssl-cert
-#23 16.16 Recommended packages:
-#23 16.16   libatm1t64 libpam-cap
-#23 16.19 The following NEW packages will be installed:
-#23 16.19   iproute2 libbpf1 libcap2-bin libmnl0 libxtables12 nginx nginx-common
-#23 16.37 0 upgraded, 7 newly installed, 0 to remove and 23 not upgraded.
-#23 16.37 Need to get 1937 kB of archives.
-#23 16.37 After this operation, 5425 kB of additional disk space will be used.
-#23 16.37 Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 libbpf1 amd64 1:1.3.0-2build2 [166 kB]
-#23 16.77 Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libmnl0 amd64 1.0.5-2build1 [12.3 kB]
-#23 16.77 Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libxtables12 amd64 1.8.10-3ubuntu2 [35.7 kB]
-#23 16.78 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2-bin amd64 1:2.66-5ubuntu2.4 [34.1 kB]
-#23 16.79 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 iproute2 amd64 6.1.0-1ubuntu6.4 [1120 kB]
-#23 17.17 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx-common all 1.24.0-2ubuntu7.18 [45.1 kB]
-#23 17.18 Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx amd64 1.24.0-2ubuntu7.18 [525 kB]
-#23 17.36 debconf: delaying package configuration, since apt-utils is not installed
-#23 17.39 Fetched 1937 kB in 1s (1840 kB/s)
-#23 17.40 Selecting previously unselected package libbpf1:amd64.
-#23 17.40 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 30321 files and directories currently installed.)
-#23 17.43 Preparing to unpack .../0-libbpf1_1%3a1.3.0-2build2_amd64.deb ...
-#23 17.43 Unpacking libbpf1:amd64 (1:1.3.0-2build2) ...
-#23 17.45 Selecting previously unselected package libmnl0:amd64.
-#23 17.45 Preparing to unpack .../1-libmnl0_1.0.5-2build1_amd64.deb ...
-#23 17.45 Unpacking libmnl0:amd64 (1.0.5-2build1) ...
-#23 17.47 Selecting previously unselected package libxtables12:amd64.
-#23 17.47 Preparing to unpack .../2-libxtables12_1.8.10-3ubuntu2_amd64.deb ...
-#23 17.47 Unpacking libxtables12:amd64 (1.8.10-3ubuntu2) ...
-#23 17.49 Selecting previously unselected package libcap2-bin.
-#23 17.49 Preparing to unpack .../3-libcap2-bin_1%3a2.66-5ubuntu2.4_amd64.deb ...
-#23 17.49 Unpacking libcap2-bin (1:2.66-5ubuntu2.4) ...
-#23 17.51 Selecting previously unselected package iproute2.
-#23 17.51 Preparing to unpack .../4-iproute2_6.1.0-1ubuntu6.4_amd64.deb ...
-#23 17.51 Unpacking iproute2 (6.1.0-1ubuntu6.4) ...
-#23 17.55 Selecting previously unselected package nginx-common.
-#23 17.56 Preparing to unpack .../5-nginx-common_1.24.0-2ubuntu7.18_all.deb ...
-#23 17.56 Unpacking nginx-common (1.24.0-2ubuntu7.18) ...
-#23 17.59 Selecting previously unselected package nginx.
-#23 17.59 Preparing to unpack .../6-nginx_1.24.0-2ubuntu7.18_amd64.deb ...
-#23 17.59 Unpacking nginx (1.24.0-2ubuntu7.18) ...
-#23 17.62 Setting up nginx-common (1.24.0-2ubuntu7.18) ...
-#23 17.69 debconf: unable to initialize frontend: Dialog
-#23 17.69 debconf: (TERM is not set, so the dialog frontend is not usable.)
-#23 17.69 debconf: falling back to frontend: Readline
-#23 17.70 debconf: unable to initialize frontend: Readline
-#23 17.70 debconf: (This frontend requires a controlling tty.)
-#23 17.70 debconf: falling back to frontend: Teletype
-#23 17.84 Setting up libcap2-bin (1:2.66-5ubuntu2.4) ...
-#23 17.84 Setting up libmnl0:amd64 (1.0.5-2build1) ...
-#23 17.85 Setting up libxtables12:amd64 (1.8.10-3ubuntu2) ...
-#23 17.85 Setting up libbpf1:amd64 (1:1.3.0-2build2) ...
-#23 17.85 Setting up iproute2 (6.1.0-1ubuntu6.4) ...
-#23 17.92 debconf: unable to initialize frontend: Dialog
-#23 17.92 debconf: (TERM is not set, so the dialog frontend is not usable.)
-#23 17.92 debconf: falling back to frontend: Readline
-#23 17.93 debconf: unable to initialize frontend: Readline
-#23 17.93 debconf: (This frontend requires a controlling tty.)
-#23 17.93 debconf: falling back to frontend: Teletype
-#23 17.95 Setting up nginx (1.24.0-2ubuntu7.18) ...
-#23 17.98 invoke-rc.d: could not determine current runlevel
-#23 17.98 invoke-rc.d: policy-rc.d denied execution of start.
-#23 17.98 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
-#23 18.02 + rm -rf /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/auxfiles /var/lib/apt/lists/lock /var/lib/apt/lists/partial /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_InRelease /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages.lz4
-#23 18.03 + mkdir -p /tmp/bioinfo-workshop-nginx
-#23 18.03 + nginx -t -c /etc/bioinfo-workshop/nginx.conf -e /tmp/bioinfo-workshop-nginx/error.log
-#23 18.04 nginx: the configuration file /etc/bioinfo-workshop/nginx.conf syntax is ok
-#23 18.04 nginx: configuration file /etc/bioinfo-workshop/nginx.conf test is successful
-#23 18.04 + rm -rf /tmp/bioinfo-workshop-nginx
-#23 18.04 + cat /tmp/bash.bashrc.append
-#23 18.04 + cat /tmp/Rprofile.site.append
-#23 18.04 + rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append
-#23 18.05 + chmod 0755 /usr/local/share/bioinfo-workshop/on-create.sh /usr/local/share/bioinfo-workshop/smoke-test.sh /usr/local/share/bioinfo-workshop/start-rstudio-password.sh /usr/local/share/bioinfo-workshop/start-rstudio.sh
-#23 18.05 + chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh
-#23 18.05 + chmod 0440 /etc/sudoers.d/bioinfo-workshop
-#23 18.06 + visudo -cf /etc/sudoers.d/bioinfo-workshop
-#23 18.06 /etc/sudoers.d/bioinfo-workshop: parsed OK
-#23 18.06 + mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server
-#23 18.06 + jq . + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"} /home/rstudio/.config/rstudio/rstudio-prefs.json
-#23 18.06 + mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
-#23 18.07 + chown -R rstudio:rstudio /home/rstudio
-#23 18.07 + date +%Y-%m-%d %H:%M %Z
-#23 DONE 18.1s
+#23 0.046 + apt-get update
+#23 0.226 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+#23 0.352 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+#23 0.610 Get:3 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
+#23 0.714 Get:4 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1943 kB]
+#23 0.909 Get:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+#23 1.046 Get:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+#23 1.183 Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+#23 1.194 Get:8 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1318 kB]
+#23 1.320 Get:9 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1542 kB]
+#23 2.197 Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+#23 2.210 Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+#23 2.212 Get:12 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+#23 2.213 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2127 kB]
+#23 2.263 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1688 kB]
+#23 2.275 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [56.2 kB]
+#23 2.276 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2162 kB]
+#23 2.296 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+#23 2.297 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+#23 2.298 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+#23 3.082 Fetched 33.2 MB in 3s (11.0 MB/s)
+#23 3.082 Reading package lists...
+#23 3.838 + apt-get install -y --no-install-recommends nginx
+#23 3.845 Reading package lists...
+#23 4.594 Building dependency tree...
+#23 4.768 Reading state information...
+#23 4.912 The following additional packages will be installed:
+#23 4.913   iproute2 libbpf1 libcap2-bin libmnl0 libxtables12 nginx-common
+#23 4.913 Suggested packages:
+#23 4.913   iproute2-doc fcgiwrap nginx-doc ssl-cert
+#23 4.913 Recommended packages:
+#23 4.913   libatm1t64 libpam-cap
+#23 4.949 The following NEW packages will be installed:
+#23 4.949   iproute2 libbpf1 libcap2-bin libmnl0 libxtables12 nginx nginx-common
+#23 5.121 0 upgraded, 7 newly installed, 0 to remove and 23 not upgraded.
+#23 5.121 Need to get 1937 kB of archives.
+#23 5.121 After this operation, 5425 kB of additional disk space will be used.
+#23 5.121 Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 libbpf1 amd64 1:1.3.0-2build2 [166 kB]
+#23 5.484 Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libmnl0 amd64 1.0.5-2build1 [12.3 kB]
+#23 5.487 Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libxtables12 amd64 1.8.10-3ubuntu2 [35.7 kB]
+#23 5.499 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2-bin amd64 1:2.66-5ubuntu2.4 [34.1 kB]
+#23 5.511 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 iproute2 amd64 6.1.0-1ubuntu6.4 [1120 kB]
+#23 5.860 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx-common all 1.24.0-2ubuntu7.18 [45.1 kB]
+#23 5.864 Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx amd64 1.24.0-2ubuntu7.18 [525 kB]
+#23 6.049 debconf: delaying package configuration, since apt-utils is not installed
+#23 6.077 Fetched 1937 kB in 1s (1978 kB/s)
+#23 6.093 Selecting previously unselected package libbpf1:amd64.
+#23 6.093 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 30321 files and directories currently installed.)
+#23 6.118 Preparing to unpack .../0-libbpf1_1%3a1.3.0-2build2_amd64.deb ...
+#23 6.120 Unpacking libbpf1:amd64 (1:1.3.0-2build2) ...
+#23 6.139 Selecting previously unselected package libmnl0:amd64.
+#23 6.142 Preparing to unpack .../1-libmnl0_1.0.5-2build1_amd64.deb ...
+#23 6.143 Unpacking libmnl0:amd64 (1.0.5-2build1) ...
+#23 6.159 Selecting previously unselected package libxtables12:amd64.
+#23 6.162 Preparing to unpack .../2-libxtables12_1.8.10-3ubuntu2_amd64.deb ...
+#23 6.163 Unpacking libxtables12:amd64 (1.8.10-3ubuntu2) ...
+#23 6.181 Selecting previously unselected package libcap2-bin.
+#23 6.184 Preparing to unpack .../3-libcap2-bin_1%3a2.66-5ubuntu2.4_amd64.deb ...
+#23 6.185 Unpacking libcap2-bin (1:2.66-5ubuntu2.4) ...
+#23 6.204 Selecting previously unselected package iproute2.
+#23 6.207 Preparing to unpack .../4-iproute2_6.1.0-1ubuntu6.4_amd64.deb ...
+#23 6.208 Unpacking iproute2 (6.1.0-1ubuntu6.4) ...
+#23 6.249 Selecting previously unselected package nginx-common.
+#23 6.252 Preparing to unpack .../5-nginx-common_1.24.0-2ubuntu7.18_all.deb ...
+#23 6.257 Unpacking nginx-common (1.24.0-2ubuntu7.18) ...
+#23 6.282 Selecting previously unselected package nginx.
+#23 6.286 Preparing to unpack .../6-nginx_1.24.0-2ubuntu7.18_amd64.deb ...
+#23 6.289 Unpacking nginx (1.24.0-2ubuntu7.18) ...
+#23 6.318 Setting up nginx-common (1.24.0-2ubuntu7.18) ...
+#23 6.392 debconf: unable to initialize frontend: Dialog
+#23 6.392 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#23 6.392 debconf: falling back to frontend: Readline
+#23 6.399 debconf: unable to initialize frontend: Readline
+#23 6.399 debconf: (This frontend requires a controlling tty.)
+#23 6.399 debconf: falling back to frontend: Teletype
+#23 6.544 Setting up libcap2-bin (1:2.66-5ubuntu2.4) ...
+#23 6.547 Setting up libmnl0:amd64 (1.0.5-2build1) ...
+#23 6.549 Setting up libxtables12:amd64 (1.8.10-3ubuntu2) ...
+#23 6.551 Setting up libbpf1:amd64 (1:1.3.0-2build2) ...
+#23 6.553 Setting up iproute2 (6.1.0-1ubuntu6.4) ...
+#23 6.624 debconf: unable to initialize frontend: Dialog
+#23 6.624 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#23 6.624 debconf: falling back to frontend: Readline
+#23 6.631 debconf: unable to initialize frontend: Readline
+#23 6.631 debconf: (This frontend requires a controlling tty.)
+#23 6.631 debconf: falling back to frontend: Teletype
+#23 6.651 Setting up nginx (1.24.0-2ubuntu7.18) ...
+#23 6.680 invoke-rc.d: could not determine current runlevel
+#23 6.684 invoke-rc.d: policy-rc.d denied execution of start.
+#23 6.685 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+#23 6.727 + rm -rf /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-backports_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_InRelease /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages.lz4 /var/lib/apt/lists/auxfiles /var/lib/apt/lists/lock /var/lib/apt/lists/partial /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_InRelease /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_multiverse_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages.lz4 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages.lz4
+#23 6.736 + mkdir -p /tmp/bioinfo-workshop-nginx
+#23 6.737 + nginx -t -c /etc/bioinfo-workshop/nginx.conf -e /tmp/bioinfo-workshop-nginx/error.log
+#23 6.741 nginx: the configuration file /etc/bioinfo-workshop/nginx.conf syntax is ok
+#23 6.742 nginx: configuration file /etc/bioinfo-workshop/nginx.conf test is successful
+#23 6.743 + rm -rf /tmp/bioinfo-workshop-nginx
+#23 6.745 + cat /tmp/bash.bashrc.append
+#23 6.748 + cat /tmp/Rprofile.site.append
+#23 6.749 + rm -f /tmp/bash.bashrc.append /tmp/Rprofile.site.append
+#23 6.750 + chmod 0755 /usr/local/share/bioinfo-workshop/on-create.sh /usr/local/share/bioinfo-workshop/smoke-test.sh /usr/local/share/bioinfo-workshop/start-rstudio-password.sh /usr/local/share/bioinfo-workshop/start-rstudio.sh
+#23 6.753 + chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh
+#23 6.755 + chmod 0440 /etc/sudoers.d/bioinfo-workshop
+#23 6.756 + visudo -cf /etc/sudoers.d/bioinfo-workshop
+#23 6.758 /etc/sudoers.d/bioinfo-workshop: parsed OK
+#23 6.758 + mkdir -p /home/rstudio/.config/rstudio /home/rstudio/.local/share/rstudio-server
+#23 6.761 + jq . + {"save_workspace": "never", "load_workspace": false, "always_save_history": false, "posix_terminal_shell": "bash"} /home/rstudio/.config/rstudio/rstudio-prefs.json
+#23 6.763 + mv /tmp/prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
+#23 6.765 + chown -R rstudio:rstudio /home/rstudio
+#23 6.768 + date +%Y-%m-%d %H:%M %Z
+#23 DONE 6.8s
 
 #24 exporting to docker image format
 #24 exporting layers
 #24 exporting layers 0.3s done
-#24 exporting manifest sha256:86533817e16c0376bd60ea769e99214fd765e77dc88ae24c7dedac7bbc499db3 done
-#24 exporting config sha256:cbc20ab7917f435d53564c5f1b120d6ba77ba5df583f1f432d643967f92e846b done
+#24 exporting manifest sha256:f98365a8357f2c3ba7721e26ecb93fa0ef0e91d550403f6bfd66d36108699e67 done
+#24 exporting config sha256:66ce0c907c03a7ba8715bca41d9f69834d6c5eb993c4312a8aa7e177bf7341c6 done
 #24 sending tarball
 #24 ...
 
@@ -156,7 +152,7 @@
 #25 loading layer f073e067a303 1.85kB / 1.85kB
 #25 loading layer 0db614edecf0 557.06kB / 314.03MB
 #25 loading layer 0db614edecf0 98.04MB / 314.03MB 2.1s
-#25 loading layer 0db614edecf0 270.73MB / 314.03MB 4.1s
+#25 loading layer 0db614edecf0 269.06MB / 314.03MB 4.1s
 #25 loading layer 23356d06b668 2.83kB / 2.83kB
 #25 loading layer edb7f3b63dab 1.50kB / 1.50kB
 #25 loading layer 1c0d55c88e93 294.91kB / 28.50MB
@@ -167,11 +163,12 @@
 #25 loading layer 11fe8a99e526 3.24kB / 3.24kB
 #25 loading layer cff601aac33a 343B / 343B
 #25 loading layer 8f8b31dac48d 557.06kB / 722.79MB
-#25 loading layer 8f8b31dac48d 100.83MB / 722.79MB 2.0s
-#25 loading layer 8f8b31dac48d 234.52MB / 722.79MB 4.0s
-#25 loading layer 8f8b31dac48d 409.44MB / 722.79MB 6.1s
-#25 loading layer 8f8b31dac48d 569.87MB / 722.79MB 8.1s
-#25 loading layer 8f8b31dac48d 666.80MB / 722.79MB 10.1s
+#25 loading layer 8f8b31dac48d 100.83MB / 722.79MB 2.1s
+#25 loading layer 8f8b31dac48d 234.52MB / 722.79MB 4.1s
+#25 loading layer 8f8b31dac48d 409.44MB / 722.79MB 6.2s
+#25 loading layer 8f8b31dac48d 570.98MB / 722.79MB 8.2s
+#25 loading layer 8f8b31dac48d 666.80MB / 722.79MB 10.2s
+#25 loading layer 8f8b31dac48d 717.49MB / 722.79MB 12.4s
 #25 loading layer 33b004eb23b5 1.28kB / 1.28kB
 #25 loading layer 6af7235ecdee 360.45kB / 35.18MB
 #25 loading layer 17c392eb037f 1.07kB / 1.07kB
@@ -181,65 +178,66 @@
 #25 loading layer bd0191a8f609 1.12kB / 1.12kB
 #25 loading layer 22ebf5643b68 557.06kB / 429.25MB
 #25 loading layer 22ebf5643b68 130.35MB / 429.25MB 2.1s
-#25 loading layer 22ebf5643b68 179.93MB / 429.25MB 6.2s
-#25 loading layer 22ebf5643b68 257.36MB / 429.25MB 8.3s
-#25 loading layer 22ebf5643b68 369.89MB / 429.25MB 10.3s
+#25 loading layer 22ebf5643b68 179.93MB / 429.25MB 6.4s
+#25 loading layer 22ebf5643b68 256.80MB / 429.25MB 8.4s
+#25 loading layer 22ebf5643b68 369.89MB / 429.25MB 10.5s
+#25 loading layer 22ebf5643b68 429.25MB / 429.25MB 12.5s
 #25 loading layer 8106a119ec58 669B / 669B
 #25 loading layer 66765434d100 308B / 308B
 #25 loading layer b5fd62f59750 557.06kB / 955.04MB
 #25 loading layer b5fd62f59750 129.24MB / 955.04MB 2.1s
-#25 loading layer b5fd62f59750 308.61MB / 955.04MB 4.1s
-#25 loading layer b5fd62f59750 376.57MB / 955.04MB 6.5s
-#25 loading layer b5fd62f59750 393.28MB / 955.04MB 13.4s
-#25 loading layer b5fd62f59750 483.52MB / 955.04MB 15.5s
-#25 loading layer b5fd62f59750 546.47MB / 955.04MB 17.5s
-#25 loading layer b5fd62f59750 611.65MB / 955.04MB 21.9s
-#25 loading layer b5fd62f59750 716.93MB / 955.04MB 25.9s
-#25 loading layer b5fd62f59750 731.97MB / 955.04MB 31.6s
-#25 loading layer b5fd62f59750 811.63MB / 955.04MB 36.1s
-#25 loading layer b5fd62f59750 863.99MB / 955.04MB 44.3s
-#25 loading layer b5fd62f59750 925.27MB / 955.04MB 47.0s
+#25 loading layer b5fd62f59750 304.15MB / 955.04MB 4.1s
+#25 loading layer b5fd62f59750 376.57MB / 955.04MB 6.6s
+#25 loading layer b5fd62f59750 379.36MB / 955.04MB 11.7s
+#25 loading layer b5fd62f59750 476.28MB / 955.04MB 15.8s
+#25 loading layer b5fd62f59750 542.02MB / 955.04MB 17.8s
+#25 loading layer b5fd62f59750 611.09MB / 955.04MB 22.3s
+#25 loading layer b5fd62f59750 716.93MB / 955.04MB 27.2s
+#25 loading layer b5fd62f59750 730.86MB / 955.04MB 32.8s
+#25 loading layer b5fd62f59750 811.63MB / 955.04MB 37.6s
+#25 loading layer b5fd62f59750 863.44MB / 955.04MB 41.8s
+#25 loading layer b5fd62f59750 925.27MB / 955.04MB 48.9s
 #25 loading layer 18331e4d6b92 314B / 314B
 #25 loading layer 1a217f1e994d 839B / 839B
-#25 loading layer 319110e6010f 4.37kB / 4.37kB
-#25 loading layer cb481e18f561 384B / 384B
-#25 loading layer e617f27aaaed 882B / 882B
-#25 loading layer 721341ab5193 32.77kB / 2.85MB
-#25 loading layer 0db614edecf0 314.03MB / 314.03MB 91.9s done
-#25 loading layer 6078cde548a5 29.76MB / 29.76MB 96.2s done
-#25 loading layer f073e067a303 1.85kB / 1.85kB 95.2s done
-#25 loading layer 23356d06b668 2.83kB / 2.83kB 84.5s done
-#25 loading layer edb7f3b63dab 1.50kB / 1.50kB 84.5s done
-#25 loading layer 1c0d55c88e93 28.50MB / 28.50MB 84.5s done
-#25 loading layer 562a97e7d9c5 1.92kB / 1.92kB 84.0s done
-#25 loading layer 1e4b9d2dcb69 749B / 749B 84.0s done
-#25 loading layer 9838c9e6ca78 716B / 716B 84.0s done
-#25 loading layer 53b4ea0c36fa 521B / 521B 84.0s done
-#25 loading layer 11fe8a99e526 3.24kB / 3.24kB 84.0s done
-#25 loading layer cff601aac33a 343B / 343B 83.9s done
-#25 loading layer 8f8b31dac48d 722.79MB / 722.79MB 83.9s done
-#25 loading layer 33b004eb23b5 1.28kB / 1.28kB 68.7s done
-#25 loading layer 6af7235ecdee 35.18MB / 35.18MB 68.6s done
-#25 loading layer 17c392eb037f 1.07kB / 1.07kB 67.9s done
-#25 loading layer 199660ee55b6 567.74kB / 567.74kB 67.9s done
-#25 loading layer 8eb1f65fc542 18.40kB / 18.40kB 67.9s done
-#25 loading layer 1afdc29abf6e 3.99MB / 3.99MB 67.9s done
-#25 loading layer bd0191a8f609 1.12kB / 1.12kB 67.7s done
-#25 loading layer 22ebf5643b68 429.25MB / 429.25MB 67.7s done
-#25 loading layer 8106a119ec58 669B / 669B 52.8s done
-#25 loading layer 66765434d100 308B / 308B 52.7s done
-#25 loading layer b5fd62f59750 955.04MB / 955.04MB 52.7s done
+#25 loading layer a77e1a935c00 4.63kB / 4.63kB
+#25 loading layer b3d05bb44773 384B / 384B
+#25 loading layer 6dc0b208171a 882B / 882B
+#25 loading layer 6789f47b42f5 32.77kB / 2.85MB
+#25 loading layer bd0191a8f609 1.12kB / 1.12kB 70.0s done
+#25 loading layer 6078cde548a5 29.76MB / 29.76MB 98.3s done
+#25 loading layer f073e067a303 1.85kB / 1.85kB 97.4s done
+#25 loading layer 0db614edecf0 314.03MB / 314.03MB 94.0s done
+#25 loading layer 23356d06b668 2.83kB / 2.83kB 86.4s done
+#25 loading layer edb7f3b63dab 1.50kB / 1.50kB 86.4s done
+#25 loading layer 1c0d55c88e93 28.50MB / 28.50MB 86.4s done
+#25 loading layer 562a97e7d9c5 1.92kB / 1.92kB 85.9s done
+#25 loading layer 1e4b9d2dcb69 749B / 749B 85.9s done
+#25 loading layer 9838c9e6ca78 716B / 716B 85.9s done
+#25 loading layer 53b4ea0c36fa 521B / 521B 85.9s done
+#25 loading layer 11fe8a99e526 3.24kB / 3.24kB 85.9s done
+#25 loading layer cff601aac33a 343B / 343B 85.9s done
+#25 loading layer 8f8b31dac48d 722.79MB / 722.79MB 85.8s done
+#25 loading layer 33b004eb23b5 1.28kB / 1.28kB 70.9s done
+#25 loading layer 6af7235ecdee 35.18MB / 35.18MB 70.9s done
+#25 loading layer 17c392eb037f 1.07kB / 1.07kB 70.2s done
+#25 loading layer 199660ee55b6 567.74kB / 567.74kB 70.2s done
+#25 loading layer 8eb1f65fc542 18.40kB / 18.40kB 70.2s done
+#25 loading layer 1afdc29abf6e 3.99MB / 3.99MB 70.2s done
+#25 loading layer 22ebf5643b68 429.25MB / 429.25MB 70.0s done
+#25 loading layer 8106a119ec58 669B / 669B 54.8s done
+#25 loading layer 66765434d100 308B / 308B 54.7s done
+#25 loading layer b5fd62f59750 955.04MB / 955.04MB 54.7s done
 #25 loading layer 18331e4d6b92 314B / 314B 0.3s done
-#25 loading layer 1a217f1e994d 839B / 839B 0.3s done
-#25 loading layer 319110e6010f 4.37kB / 4.37kB 0.2s done
-#25 loading layer cb481e18f561 384B / 384B 0.2s done
-#25 loading layer e617f27aaaed 882B / 882B 0.2s done
-#25 loading layer 721341ab5193 2.85MB / 2.85MB 0.2s done
-#25 DONE 96.2s
+#25 loading layer 1a217f1e994d 839B / 839B 0.2s done
+#25 loading layer a77e1a935c00 4.63kB / 4.63kB 0.2s done
+#25 loading layer b3d05bb44773 384B / 384B 0.2s done
+#25 loading layer 6dc0b208171a 882B / 882B 0.2s done
+#25 loading layer 6789f47b42f5 2.85MB / 2.85MB 0.2s done
+#25 DONE 98.3s
 
 #24 exporting to docker image format
-#24 sending tarball 108.0s done
-#24 DONE 108.4s
+#24 sending tarball 110.2s done
+#24 DONE 110.5s
 
 #26 exporting cache to registry
 #26 preparing build cache for export 0.1s done
@@ -250,51 +248,53 @@
 #27 DONE 0.0s
 
 #26 exporting cache to registry
-#26 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d
-#26 writing layer sha256:09cb79d98ddbedd68f4f2a67e334166ff7be630aaca27faf50ebefab6cf9e35d
-#26 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30 0.2s done
-#26 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f
-#26 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181
-#26 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 0.2s done
+#26 writing layer sha256:0d80b30f37b5e25809f166e9bc57f51387f8b84dcda8fb6cdccbd73827a299f9
 #26 writing layer sha256:09e15cb68460f1c739237e412c44d534933d04db0ff12d98685eb489ced50f8f 0.2s done
+#26 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30
+#26 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d
+#26 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181
+#26 writing layer sha256:0962130b8e0b500faaf7cf36d41cde9b95b979a7e0ef2b5ece4a583b73a26a30 0.2s done
+#26 writing layer sha256:0c6f4f08851ba9036b49db9b3c91f3287345ac6c41b3ff66911e2b9e352bec3d 0.2s done
 #26 writing layer sha256:0fc265360d2ca7a08c2f26fcaad3d4b5327a78a3baee72d9eebcc02322fc3181 0.0s done
 #26 writing layer sha256:140891d8072114ce82d4e51ba61044dc33457c2761881e03a1dfe31788aba924 0.0s done
 #26 writing layer sha256:1e11aa8200ea108547687c63753f047532757f6ab60ab936e95750169d1b292a 0.0s done
-#26 writing layer sha256:35fc911c2c0f5342784adf6b5a389b5187db140db34a37333b3fe5e175ec8b1b
+#26 writing layer sha256:339f33d7e2886befac725ba8669238626f07e566ebb402d1b5740dbec709407c
 #26 writing layer sha256:3615ef862a66eed0285209fe0efed6f173697ddc1e0dd9985864635bbee9ed6f 0.0s done
 #26 writing layer sha256:3fab3360c3498a66aa66ac21af0718c85258e4f29cc152e6b9ff26d7aa16ec3c 0.0s done
-#26 writing layer sha256:54fd89337214f389848462b4597b53da1a912f5d63f2c439d76b89f859844cff
 #26 writing layer sha256:574ea98f21caaa1af4a99b9805645171c531f1fbc9b5a1fe4131c9ef2b269007 0.0s done
-#26 writing layer sha256:675e2a21df094b184f4cd7ccdbb954a94e72b29c0ffaa318537b07cec1e6b17e
 #26 writing layer sha256:675e2a21df094b184f4cd7ccdbb954a94e72b29c0ffaa318537b07cec1e6b17e 0.0s done
+#26 writing layer sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa
+#26 writing layer sha256:82014097befd491c3c71bf5cad542f8349342f1f82b766a915909c9ade0af9e4
 #26 writing layer sha256:80b4ed086f2eede371cec4cc8e36c05e6d9373530cb2cdff0b9cfb8096ca35fa 0.0s done
 #26 writing layer sha256:82014097befd491c3c71bf5cad542f8349342f1f82b766a915909c9ade0af9e4 0.0s done
 #26 writing layer sha256:8e4e23e44b8355224681e1a29c07b9216333f6cf5a25b261d8324be333018080 0.0s done
+#26 writing layer sha256:8f5f921ddd71f8aca00d99511fe9a225af4ceccb4d10bacdce9934c73c5fcccf
 #26 writing layer sha256:9161e5f8568098f55324f5352063a84547b67810d0db5a0cb5f7b201fbe6eaa9 0.0s done
+#26 writing layer sha256:937d55762e777539a84d09256e63f45206e3df12a5604e5b584766f91195bcb3
+#26 writing layer sha256:0d80b30f37b5e25809f166e9bc57f51387f8b84dcda8fb6cdccbd73827a299f9 1.3s done
 #26 writing layer sha256:99b1d9f456bf3ca743834cd54db58f77b976ee0b98aa0413a83f9f7fdcda81a0
+#26 writing layer sha256:339f33d7e2886befac725ba8669238626f07e566ebb402d1b5740dbec709407c 1.1s done
+#26 writing layer sha256:8f5f921ddd71f8aca00d99511fe9a225af4ceccb4d10bacdce9934c73c5fcccf 1.1s done
 #26 writing layer sha256:99b1d9f456bf3ca743834cd54db58f77b976ee0b98aa0413a83f9f7fdcda81a0 0.0s done
-#26 writing layer sha256:a5fc6e644b480f6767c2015e4c9c730308c3c40b1a4c0cb1c887c6d3e76905bb
-#26 writing layer sha256:09cb79d98ddbedd68f4f2a67e334166ff7be630aaca27faf50ebefab6cf9e35d 1.2s done
-#26 writing layer sha256:a66fb2518cba7e3b5ccad3c387e95622af22ed12bfbdccd3c433171c38b19b20
 #26 writing layer sha256:a66fb2518cba7e3b5ccad3c387e95622af22ed12bfbdccd3c433171c38b19b20 0.0s done
 #26 writing layer sha256:a968559ca79ee6fb1f2775941b0ee6a45383c637c2e1b68a0508964393a55926 0.0s done
 #26 writing layer sha256:b5a8e34f9071ea9bb54ac4d9e5bb11d0832c92e32f8dff3bc8e9427f48911fe7 0.0s done
 #26 writing layer sha256:bb9467164965ae483f4c4c282a30d4473916b9eacf2dc971f22ee94ff7e40bdc 0.0s done
-#26 writing layer sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3
-#26 writing layer sha256:35fc911c2c0f5342784adf6b5a389b5187db140db34a37333b3fe5e175ec8b1b 1.1s done
-#26 writing layer sha256:54fd89337214f389848462b4597b53da1a912f5d63f2c439d76b89f859844cff 1.1s done
-#26 writing layer sha256:a5fc6e644b480f6767c2015e4c9c730308c3c40b1a4c0cb1c887c6d3e76905bb 1.0s done
 #26 writing layer sha256:ca4cb04d88f527bbf229c5bfbbdf3f448bb4596e56d7cda505dcf9ec95e775b3 0.0s done
 #26 writing layer sha256:d7deba43a7dc41d74c4bfaf22d838982f8a993b1b64b465745dc9a1b4735bde5 0.0s done
+#26 writing layer sha256:e22ec8080376483f218b10548dd12b543c28dd96f0b080790434506f7bda4bde
+#26 writing layer sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58
+#26 writing layer sha256:e7f208b2f2c1b0cfbf43054820accdb5319a9ccaf268c66875be52e7f008f018
 #26 writing layer sha256:e22ec8080376483f218b10548dd12b543c28dd96f0b080790434506f7bda4bde 0.0s done
 #26 writing layer sha256:e51aee9c82ec5dd5ba2add49c45c6d85d460512757e2615b69bcdf9469c7cb58 0.0s done
 #26 writing layer sha256:e7f208b2f2c1b0cfbf43054820accdb5319a9ccaf268c66875be52e7f008f018 0.0s done
 #26 writing layer sha256:e91ce738cfe64cf0ec14e322e3e1ee3b8d446b8b02ad04818df1272543aa8fe8 0.0s done
 #26 writing layer sha256:e9753dea9660230e668dd4a39bd246b8a6f802aed2d73fac93617701e52c78ca 0.0s done
-#26 writing config sha256:10108856760ab1f738923de3de74142139a914248323b72746086aa4effeb1eb
-#26 writing config sha256:10108856760ab1f738923de3de74142139a914248323b72746086aa4effeb1eb 1.0s done
-#26 writing cache image manifest sha256:27bfc3919bfd4a009e128bde1e686225d2f3a0d9d3c206e2d1597e3b84b9a30d
-#26 sending cache export 2.9s done
-#26 writing cache image manifest sha256:27bfc3919bfd4a009e128bde1e686225d2f3a0d9d3c206e2d1597e3b84b9a30d 0.4s done
-#26 DONE 3.0s
-build seconds: 213
+#26 writing layer sha256:937d55762e777539a84d09256e63f45206e3df12a5604e5b584766f91195bcb3 1.6s done
+#26 writing config sha256:331111db0103b6b0cdba111fa8db49b60de984496b7f1c9f3b4db325f11be774
+#26 writing config sha256:331111db0103b6b0cdba111fa8db49b60de984496b7f1c9f3b4db325f11be774 1.0s done
+#26 writing cache image manifest sha256:b2355db3f135a42b14cb7e9201387981e8bd13e26474466e8b1ac23e25dcd86a
+#26 sending cache export 3.4s done
+#26 writing cache image manifest sha256:b2355db3f135a42b14cb7e9201387981e8bd13e26474466e8b1ac23e25dcd86a 0.5s done
+#26 DONE 3.5s
+build seconds: 204
