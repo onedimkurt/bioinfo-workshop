@@ -80,6 +80,12 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 İlk gün codespace'i 4. adımdaki gibi deponuzdan oluşturunuz.
 Sonraki sabahlar github.com/codespaces sayfasında codespace'inizin adına tıklayınız.
 
+**Sabahları RStudio bir uyarı gösterebilir.**
+"The previous R session was abnormally terminated" yazan bir pencere çıkarsa OK düğmesine tıklayınız.
+Bu uyarı, codespace akşam durdurulduğu için çıkar; bir sorun değildir.
+Kaydettiğiniz dosyalar ve conda ortamlarınız yerindedir; R belleğindeki nesneler silinmiştir.
+Terminal dünkü ortamla açılabilir; etkin ortamın adı satırın başında yazar.
+
 **Gün sonunda, her gün 17:30'da: durdurunuz.**
 RStudio sekmesini veya VS Code sekmesini kapatmak codespace'i durdurmaz.
 Durdurmanın iki yolu vardır:
