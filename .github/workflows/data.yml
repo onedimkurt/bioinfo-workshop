@@ -21,6 +21,10 @@ concurrency:
   group: data
   cancel-in-progress: false
 
+defaults:
+  run:
+    shell: bash
+
 env:
   GENCODE: "50"
   WINDOW: "chr20:10000000-12000000"
@@ -246,7 +250,7 @@ jobs:
         id: manifest
         run: |
           set -euo pipefail
-          mkdir -p rel status/data
+          mkdir -p rel status/data art
           find art -path 'art/log-*' -prune -o -type f -print | while read -r f; do cp "$f" rel/; done
           (cd rel && sha256sum * | sort -k2 > SHA256SUMS)
           (cd rel && ls -l --time-style=+ | awk 'NR>1 {printf "%s\t%d\n", $NF, $5}') > status/data/MANIFEST.tsv
@@ -277,12 +281,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp -r status /tmp/status-new
+          mkdir -p status/data && touch status/data/STATUS
+          rm -rf /tmp/status-new && cp -r status /tmp/status-new
           for attempt in 1 2 3; do
             if git fetch -q origin ci-status; then
               git checkout -q -f -B ci-status FETCH_HEAD
             else
-              git checkout -q -f --orphan ci-status && git rm -rq --cached . >/dev/null
+              git checkout -q -f --orphan ci-status && { git rm -rq --cached . >/dev/null 2>&1 || true; }
             fi
             rm -rf status/data && mkdir -p status && cp -r /tmp/status-new/data status/data
             git add status/data
