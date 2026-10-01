@@ -1,0 +1,37 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 19.4M  100 19.4M    0     0  43.6M      0 --:--:-- --:--:-- --:--:-- 43.6M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 17.2M  100 17.2M    0     0  41.7M      0 --:--:-- --:--:-- --:--:-- 41.7M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 18.0M  100 18.0M    0     0  37.5M      0 --:--:-- --:--:-- --:--:-- 37.5M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 7443k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 7443k  100 7443k    0     0  23.8M      0 --:--:-- --:--:-- --:--:--  123M
+NA12878_window_1.fastq.gz: OK
+NA12878_window_2.fastq.gz: OK
+SRR1039508_1.sub.fastq.gz: OK
+SRR1039508_2.sub.fastq.gz: OK
+SRR1039509_1.sub.fastq.gz: OK
+SRR1039509_2.sub.fastq.gz: OK
+airway_samples.csv: OK
+chr20.fa.gz: OK
+gencode.v50.transcripts.fa.gz: OK
+genes.gencode.v50.tsv.gz: OK
+pbmc3k_filtered_gene_bc_matrices.tar.gz: OK
+salmon_quant.SRR1039512.tar.gz: OK
+salmon_quant.SRR1039513.tar.gz: OK
+salmon_quant.SRR1039516.tar.gz: OK
+salmon_quant.SRR1039517.tar.gz: OK
+salmon_quant.SRR1039520.tar.gz: OK
+salmon_quant.SRR1039521.tar.gz: OK
+tx2gene.gencode.v50.tsv.gz: OK
+barcodes.tsv
+genes.tsv
+matrix.mtx

@@ -1,4 +1,11 @@
-run: 36894818503
-transcriptome: success
-airway: success
-small-datasets: failure
+run: 36903422879
+transcriptome: skipped
+airway: skipped
+small-datasets: success
+reused from run: 36894818503
+complete: yes
+published: data-v1
+setup/day1.sh: PASS (14 files OK)
+setup/day2.sh: PASS (18 files OK)
+setup/day3.sh: PASS (20 files OK)
+614M	data
