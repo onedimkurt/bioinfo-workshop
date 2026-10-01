@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# smoke-test.sh -- run by .github/workflows/image.yml inside the freshly built image,
+# as user rstudio, before anything is pushed. Every FAIL stops the push.
+# It also prints the facts the next steps need: tool versions (to pin envs/README.md),
+# disk sizes, conda timings, RStudio start.
+set -uo pipefail
+fails=0
+
+check() {
+    local name="$1"; shift
+    local out
+    if out="$("$@" 2>&1)"; then
+        printf 'PASS  %-38s %s\n' "${name}" "$(printf '%s' "${out}" | tail -n 1)"
+    else
+        printf 'FAIL  %-38s\n%s\n' "${name}" "$(printf '%s' "${out}" | tail -n 25)"
+        fails=$((fails + 1))
+    fi
+}
+
+echo "== bioinfo-workshop image smoke test =="
+echo "image built: $(cat /usr/local/share/bioinfo-workshop/IMAGE_BUILT)"
+
+# --- user, R, packages -------------------------------------------------------
+check "runs as rstudio"                bash -c '[ "$(id -un)" = rstudio ] && id'
+check "R is 4.6.1"                     Rscript -e 'stopifnot(getRversion() == "4.6.1"); cat(R.version.string, "\n")'
+check "Rprofile.site parses"           Rscript -e 'invisible(parse("/usr/local/lib/R/etc/Rprofile.site")); cat("ok\n")'
+check "CRAN option is the snapshot"    Rscript -e 'r <- getOption("repos")[["CRAN"]]; stopifnot(grepl("2026-09-18", r)); cat(r, "\n")'
+check "R packages load"                Rscript -e 'for (p in c("tidyverse", "Seurat", "patchwork", "pheatmap", "ggrepel", "DESeq2", "tximport", "apeglm", "glmGamPoi", "renv", "rstudioapi", "rmarkdown")) suppressPackageStartupMessages(library(p, character.only = TRUE)); cat("all loaded\n")'
+check "rstudio can install R packages" bash -c '[ -w /usr/local/lib/R/site-library ] && echo writable'
+check "locale tr_TR.UTF-8 exists"      bash -c 'locale -a | grep -i "^tr_TR.utf8$"'
+check "quarto present"                 quarto --version
+
+# --- conda -------------------------------------------------------------------
+check "conda in interactive bash"      bash -ic 'conda --version'
+check "base active in new terminal"    bash -ic '[ "${CONDA_DEFAULT_ENV:-}" = base ] && echo "$CONDA_DEFAULT_ENV"'
+check "conda in login bash"            bash -lc 'type conda >/dev/null && echo function'
+check "two fallback environments"      bash -ic 'n=$(conda env list | grep -cE "^(rnaseq-ready|variants-ready) "); [ "$n" -eq 2 ] && conda env list | grep -v "^#" | tr -s " " | tr "\n" ";"'
+check "names rnaseq/variants are free" bash -ic '! conda env list | grep -qE "^(rnaseq|variants) "'
+check "channels conda-forge, bioconda" bash -ic 'conda config --show channels | tr "\n" " " | grep -q "conda-forge.*bioconda" && echo ok'
+check "/opt/conda writable by rstudio" bash -c '[ -w /opt/conda/envs ] && [ -w /opt/conda/pkgs ] && echo writable'
+for spec in "rnaseq-ready salmon" "rnaseq-ready fastp" "rnaseq-ready fastqc" "rnaseq-ready multiqc" \
+            "variants-ready bwa" "variants-ready samtools" "variants-ready bcftools" "variants-ready bgzip" \
+            "variants-ready tabix" "variants-ready fastp" "variants-ready fastqc" "variants-ready multiqc"; do
+    set -- ${spec}
+    check "tool $2 in $1" bash -ic "conda activate $1 && command -v $2"
+done
+check "R Console does not see conda tools" Rscript -e 'stopifnot(!nzchar(Sys.which("salmon"))); cat("salmon not on R PATH, as taught\n")'
+
+echo
+echo "== solved versions (for envs/README.md and the pinned build files) =="
+for e in rnaseq-ready variants-ready; do
+    echo "-- ${e}"
+    bash -ic "conda list -n ${e} '^(salmon|fastp|fastqc|multiqc|bwa|samtools|bcftools|htslib|openjdk|python)$'" 2>/dev/null | grep -v '^#'
+done
+echo "-- package cache: seqkit, seqtk"
+ls -d /opt/conda/pkgs/seqkit-* /opt/conda/pkgs/seqtk-* 2>/dev/null
+
+echo
+echo "== live exercise timings (WORKSHOP.md §6 step 3) =="
+start=$(date +%s)
+check "conda create deneme --offline"  bash -ic 'conda create -y -q -n deneme --offline seqkit >/dev/null && conda activate deneme && seqkit version'
+echo "      took $(( $(date +%s) - start )) s"
+check "remove deneme"                  bash -ic 'conda remove -y -q -n deneme --all >/dev/null && ! conda env list | grep -q "^deneme " && echo removed'
+start=$(date +%s)
+check "conda create deneme (online)"   bash -ic 'conda create -y -q -n deneme seqkit >/dev/null && conda activate deneme && seqkit version'
+echo "      took $(( $(date +%s) - start )) s"
+check "export --from-history"          bash -ic 'conda env export -n deneme --from-history | grep -q seqkit && echo has-seqkit'
+bash -ic 'conda remove -y -q -n deneme --all' >/dev/null 2>&1
+
+# --- RStudio -----------------------------------------------------------------
+echo
+echo "== RStudio =="
+check "on-create writes prefs"         bash -c 'mkdir -p /tmp/ws && /usr/local/share/bioinfo-workshop/on-create.sh /tmp/ws >/dev/null && jq -r .initial_working_directory ~/.config/rstudio/rstudio-prefs.json | grep -qx /tmp/ws && echo /tmp/ws'
+check "start-rstudio.sh starts rserver" /usr/local/share/bioinfo-workshop/start-rstudio.sh
+check "port 8787 answers"              bash -c 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ | grep -E "^(200|302)$"'
+check "page is RStudio"                bash -c 'curl -sL http://127.0.0.1:8787/ | grep -qi rstudio && echo yes'
+check "second start is a no-op"        /usr/local/share/bioinfo-workshop/start-rstudio.sh
+check "sudo rule is narrow"            bash -c 'sudo -n -l | grep -q start-rstudio-password.sh && ! sudo -n true 2>/dev/null && echo only-the-script'
+
+echo
+echo "== sizes =="
+du -sh /opt/conda /opt/conda/pkgs /usr/local/lib/R/site-library 2>/dev/null
+df -h / | tail -n 1
+
+echo
+if [ "${fails}" -eq 0 ]; then
+    echo "SMOKE TEST: PASS"
+    exit 0
+fi
+echo "SMOKE TEST: FAIL (${fails})"
+exit 1

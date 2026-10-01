@@ -1,0 +1,90 @@
+# Builds the codespace image and publishes it to ghcr.io/onedimkurt/bioinfo-workshop
+# (WORKSHOP.md §7 Phase 1). Runs only in the organiser's repository: every trainee's
+# copy inherits this file, and the "if" below keeps their copies from building.
+name: image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".devcontainer/**"
+      - ".github/workflows/image.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: image
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'onedimkurt/bioinfo-workshop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    env:
+      IMAGE: ghcr.io/onedimkurt/bioinfo-workshop
+    steps:
+      - name: Free disk space on the runner
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup \
+                      /opt/hostedtoolcache/CodeQL /usr/local/share/boost /usr/share/swift
+          sudo docker image prune --all --force
+          df -h /
+
+      - uses: actions/checkout@v4
+
+      - name: Shell scripts pass shellcheck (errors only)
+        run: shellcheck --version && shellcheck -S error -s bash .devcontainer/build/scripts/*.sh .devcontainer/build/bash.bashrc.append
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag for this build
+        id: tag
+        run: echo "date=$(TZ=Europe/Istanbul date +%Y%m%d-%H%M)" >> "$GITHUB_OUTPUT"
+
+      - name: Build the image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: .devcontainer/Dockerfile
+          load: true
+          push: false
+          tags: ${{ env.IMAGE }}:candidate
+          cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:buildcache,mode=max
+
+      - name: Smoke test inside the image (as rstudio)
+        run: |
+          set -o pipefail
+          docker run --rm -u rstudio "$IMAGE:candidate" \
+            /usr/local/share/bioinfo-workshop/smoke-test.sh | tee smoke.txt
+
+      - name: Push latest and the dated tag
+        run: |
+          docker tag "$IMAGE:candidate" "$IMAGE:latest"
+          docker tag "$IMAGE:candidate" "$IMAGE:${{ steps.tag.outputs.date }}"
+          docker push "$IMAGE:${{ steps.tag.outputs.date }}"
+          docker push "$IMAGE:latest"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Image ${IMAGE}:${{ steps.tag.outputs.date }}"
+            echo
+            echo "Uncompressed size: $(docker image inspect "$IMAGE:candidate" --format '{{.Size}}' 2>/dev/null | awk '{printf "%.2f GB", $1/1e9}')"
+            echo
+            echo '```'
+            cat smoke.txt 2>/dev/null || echo "no smoke test output"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,13 @@
+# Build-side only (D12): the hidden fallback copy of the trainees' Day-2 environment.
+name: variants-ready
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bwa
+  - samtools
+  - bcftools
+  - htslib
+  - fastp
+  - fastqc
+  - multiqc

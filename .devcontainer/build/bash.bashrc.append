@@ -1,0 +1,8 @@
+
+# --- bioinfo-workshop: conda in every interactive bash (RStudio Terminal included) ---
+if [ -f /opt/conda/etc/profile.d/conda.sh ]; then
+    . /opt/conda/etc/profile.d/conda.sh
+    if [ -z "${CONDA_DEFAULT_ENV:-}" ]; then
+        conda activate base
+    fi
+fi

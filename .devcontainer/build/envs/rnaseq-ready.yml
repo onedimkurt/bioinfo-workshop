@@ -1,0 +1,13 @@
+# Build-side only (D12): the hidden fallback copy of the trainees' Day-1 environment.
+# Trainees write their own envs/rnaseq.yml from envs/README.md and never see this file.
+# First build: versions left open; the build log records the solved versions, and
+# this file is then pinned to exactly those (and envs/README.md lists them).
+name: rnaseq-ready
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - salmon
+  - fastp
+  - fastqc
+  - multiqc

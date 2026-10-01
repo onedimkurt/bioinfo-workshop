@@ -1,0 +1,27 @@
+
+## --- bioinfo-workshop (image) -----------------------------------------------
+## Package installs during the workshop use the same dated snapshot as the image.
+local({
+  snap <- Sys.getenv("CRAN_SNAPSHOT", "2026-09-18")
+  options(repos = c(CRAN = sprintf("https://p3m.dev/cran/__linux__/noble/%s", snap)))
+})
+
+## Open the repository's RStudio project the first time RStudio starts in a new
+## codespace, so the Files pane, the working directory and the Git tab are right.
+## The workspace path is written by on-create.sh; nothing happens outside RStudio
+## or when a project is already open.
+if (interactive() && identical(Sys.getenv("RSTUDIO"), "1")) {
+  setHook("rstudio.sessionInit", function(newSession) {
+    if (!isTRUE(newSession)) return(invisible(NULL))
+    if (!requireNamespace("rstudioapi", quietly = TRUE)) return(invisible(NULL))
+    if (!rstudioapi::isAvailable()) return(invisible(NULL))
+    if (!is.null(rstudioapi::getActiveProject())) return(invisible(NULL))
+    marker <- path.expand("~/.config/bioinfo-workshop/workspace")
+    if (!file.exists(marker)) return(invisible(NULL))
+    ws <- readLines(marker, n = 1L, warn = FALSE)
+    proj <- Sys.glob(file.path(ws, "*.Rproj"))
+    if (length(proj) >= 1L) rstudioapi::openProject(proj[[1L]], newSession = FALSE)
+    invisible(NULL)
+  }, action = "append")
+}
+## --- end bioinfo-workshop ---------------------------------------------------
