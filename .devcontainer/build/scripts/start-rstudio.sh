@@ -5,6 +5,9 @@
 # Port 8787 is private to the codespace's owner, so no login screen (WORKSHOP.md §8);
 # with RSTUDIO_PASSWORD set, RStudio starts with password login instead (§5 step 11d).
 set -uo pipefail
+# RStudio (auth-none) names the signed-in user after $USER; an empty $USER gives a
+# sign-in cookie with no user name and an endless sign-in loop (smoke test, run #6).
+export USER="$(id -un)"
 FRONT=8787
 BACK=8788
 data="${HOME}/.local/share/rstudio-server"
