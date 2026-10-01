@@ -132,12 +132,17 @@ jobs:
           info=$(curl -fsSL --retry 8 --retry-all-errors --retry-delay 10 "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=${{ matrix.run }}&result=read_run&fields=fastq_ftp,fastq_md5,read_count&format=tsv" | tail -n 1)
           echo "$info" | tee log/${{ matrix.run }}.log
           urls=$(echo "$info" | cut -f2); md5s=$(echo "$info" | cut -f3)
+          # Some runs also list an unpaired SRRxxx.fastq.gz; only _1 and _2 are used.
           i=1
           for u in $(echo "$urls" | tr ';' ' '); do
             m=$(echo "$md5s" | cut -d';' -f$i)
-            fetch "$u" "fq/$(basename "$u")" "$m" | tee -a log/${{ matrix.run }}.log
             i=$((i+1))
+            case "$u" in
+              *_1.fastq.gz|*_2.fastq.gz) fetch "$u" "fq/$(basename "$u")" "$m" | tee -a log/${{ matrix.run }}.log ;;
+              *) echo "skipped (unpaired reads, not used): $(basename "$u")" | tee -a log/${{ matrix.run }}.log ;;
+            esac
           done
+          test -s fq/${{ matrix.run }}_1.fastq.gz && test -s fq/${{ matrix.run }}_2.fastq.gz
           ls -l fq | tee -a log/${{ matrix.run }}.log
       - name: Salmon quant at full depth
         run: |
