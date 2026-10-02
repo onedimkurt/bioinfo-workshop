@@ -1,6 +1,6 @@
-run: 36946107678  event: workflow_run
-commit: 5ed8b0b9d95d0bddf848f151b9300fbb71e67546
+run: 36949538473  event: push
+commit: 4aa439bc7804d6a47ca989fedeb1985f830d6f75
 image: 2026-10-02 03:21 +03
-e2e: success
-== e2e result: 24 PASS, 0 FAIL ==
+e2e: failure
+== e2e result: 23 PASS, 1 FAIL ==
 == e2e result: 15 PASS, 0 FAIL ==
