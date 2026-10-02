@@ -22,9 +22,12 @@ install.packages(
 cran_pkgs <- c(
   "tidyverse", "Seurat", "SeuratObject", "patchwork", "pheatmap", "ggrepel",
   "cowplot", "data.table", "R.utils", "renv", "BiocManager", "rstudioapi",
-  "knitr", "rmarkdown"
+  "knitr", "rmarkdown",
+  # not needed to run Seurat, but renv::init() records them as requirements (Day 3)
+  "dqrng", "progress", "RcppProgress"
 )
-bioc_pkgs <- c("DESeq2", "tximport", "apeglm", "glmGamPoi")
+# BiocVersion: renv::init() on Day 3 needs it to record Bioconductor packages without errors
+bioc_pkgs <- c("DESeq2", "tximport", "apeglm", "glmGamPoi", "BiocVersion")
 
 Sys.setenv(PKG_SYSREQS = "true")
 pak::pkg_install(c(cran_pkgs, paste0("bioc::", bioc_pkgs)), ask = FALSE, upgrade = FALSE)
