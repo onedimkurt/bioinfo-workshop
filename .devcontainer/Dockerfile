@@ -72,6 +72,9 @@ RUN set -eux; \
     [ -f /home/rstudio/.bashrc ] || cp /etc/skel/.bashrc /home/rstudio/.bashrc; \
     cat /tmp/home-bashrc.append >> /home/rstudio/.bashrc; \
     cat /tmp/Rprofile.site.append >> /usr/local/lib/R/etc/Rprofile.site; \
+    # renv in a Bioconductor project loads BiocManager itself while activating and then warns that
+    # BiocManager "was loaded before renv activated this project" (harmless; seen in the Day-3 reference)
+    echo 'RENV_CONFIG_NAMESPACES_CHECK=FALSE' >> /usr/local/lib/R/etc/Renviron.site; \
     rm -f /tmp/bash.bashrc.append /tmp/home-bashrc.append /tmp/Rprofile.site.append; \
     chmod 0755 /usr/local/share/bioinfo-workshop/*.sh; \
     chown root:root /usr/local/share/bioinfo-workshop/start-rstudio-password.sh; \
