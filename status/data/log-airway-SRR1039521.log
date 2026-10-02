@@ -3,8 +3,8 @@ skipped (unpaired reads, not used): SRR1039521.fastq.gz
 fq/SRR1039521_1.fastq.gz: MD5 OK (4be82ad33d7d4990bed3c4bc701dc070) after 1 attempt(s), last via https
 fq/SRR1039521_2.fastq.gz: MD5 OK (435aa5e48ba77e4c42218930a0be0de1) after 1 attempt(s), last via https
 total 2519592
--rw-r--r-- 1 root root 1289159510 Oct  1 21:09 SRR1039521_1.fastq.gz
--rw-r--r-- 1 root root 1290887405 Oct  1 21:20 SRR1039521_2.fastq.gz
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 7:25.43
-	Maximum resident set size (kbytes): 2330436
-quant/SRR1039521/aux_info/meta_info.json:  "percent_mapped": 96.27829866152132,
+-rw-r--r-- 1 root root 1289159510 Oct  2 05:38 SRR1039521_1.fastq.gz
+-rw-r--r-- 1 root root 1290887405 Oct  2 05:49 SRR1039521_2.fastq.gz
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:41.50
+	Maximum resident set size (kbytes): 2302784
+quant/SRR1039521/aux_info/meta_info.json:  "percent_mapped": 96.29348097272378,
