@@ -6,6 +6,11 @@
 name: data
 
 on:
+  # A push that changes .github/data-run.txt starts a full run (release data-v1, nothing reused);
+  # the chat cannot press "Run workflow" without the owner's browser.
+  push:
+    branches: [main]
+    paths: [".github/data-run.txt"]
   workflow_dispatch:
     inputs:
       release_tag:
@@ -52,7 +57,7 @@ jobs:
           set -euxo pipefail
           mkdir -p out log
           base="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_${GENCODE}"
-          curl -fsSL --retry 5 -o out/gencode.v${GENCODE}.transcripts.fa.gz "$base/gencode.v${GENCODE}.transcripts.fa.gz"
+          curl -fsSL --retry 5 -o gencode.all.transcripts.fa.gz "$base/gencode.v${GENCODE}.transcripts.fa.gz"
           curl -fsSL --retry 5 -o gencode.gtf.gz "$base/gencode.v${GENCODE}.annotation.gtf.gz"
           curl -fsSL --retry 5 -o MD5SUMS "$base/MD5SUMS" || true
           ls -l out gencode.gtf.gz
@@ -69,12 +74,28 @@ jobs:
           zcat out/genes.gencode.v${GENCODE}.tsv.gz | sed -n '1,3p'
           echo "transcripts: $(zcat out/tx2gene.gencode.v${GENCODE}.tsv.gz | tail -n +2 | wc -l)" | tee log/transcriptome.log
           echo "genes: $(zcat out/genes.gencode.v${GENCODE}.tsv.gz | tail -n +2 | wc -l)" | tee -a log/transcriptome.log
+      - name: Transcriptome restricted to the reference chromosomes (the transcripts the GTF annotates)
+        # GENCODE's transcripts.fa also carries alternate-locus, patch and haplotype copies that the
+        # primary-assembly GTF (and so tx2gene) does not list. Indexed, they take reads from their primary
+        # genes and tximport then drops those reads (found by the Day-1 reference review, 2026-10-02).
+        run: |
+          set -euxo pipefail
+          zcat out/tx2gene.gencode.v${GENCODE}.tsv.gz | tail -n +2 | cut -f1 > keep.txt
+          zcat gencode.all.transcripts.fa.gz \
+            | awk 'BEGIN { while ((getline l < "keep.txt") > 0) k[l] = 1 }
+                   /^>/ { split(substr($0, 2), a, "|"); p = (a[1] in k) } p' \
+            | gzip -n > out/gencode.v${GENCODE}.transcripts.chr.fa.gz
+          all=$(zcat gencode.all.transcripts.fa.gz | grep -c '^>')
+          kept=$(zcat out/gencode.v${GENCODE}.transcripts.chr.fa.gz | grep -c '^>')
+          want=$(wc -l < keep.txt)
+          echo "transcripts in GENCODE file: $all; kept (in the GTF): $kept; tx2gene rows: $want" | tee -a log/transcriptome.log
+          test "$kept" -eq "$want"
       - name: Salmon index (timed, as a trainee would build it)
         run: |
           set -euxo pipefail
           salmon=/opt/conda/envs/rnaseq-ready/bin/salmon
           $salmon --version | tee -a log/transcriptome.log
-          /usr/bin/time -v $salmon index -t out/gencode.v${GENCODE}.transcripts.fa.gz -i salmon_index --gencode -p 2 \
+          /usr/bin/time -v $salmon index -t out/gencode.v${GENCODE}.transcripts.chr.fa.gz -i salmon_index --gencode -p 2 \
             > log/salmon-index.log 2> log/salmon-index.time || { tail -50 log/salmon-index.time; exit 1; }
           grep -E "Elapsed|Maximum resident" log/salmon-index.time | tee -a log/transcriptome.log
           tar -czf out/salmon_index.gencode.v${GENCODE}.tar.gz salmon_index
@@ -320,7 +341,7 @@ jobs:
           } > status/data/STATUS
           echo "reused from run: ${{ inputs.reuse_run }}" >> status/data/STATUS
           missing=0
-          for f in gencode.v${GENCODE}.transcripts.fa.gz tx2gene.gencode.v${GENCODE}.tsv.gz genes.gencode.v${GENCODE}.tsv.gz salmon_index.gencode.v${GENCODE}.tar.gz \
+          for f in gencode.v${GENCODE}.transcripts.chr.fa.gz tx2gene.gencode.v${GENCODE}.tsv.gz genes.gencode.v${GENCODE}.tsv.gz salmon_index.gencode.v${GENCODE}.tar.gz \
                    salmon_quant.SRR1039508.tar.gz salmon_quant.SRR1039509.tar.gz salmon_quant.SRR1039512.tar.gz salmon_quant.SRR1039513.tar.gz \
                    salmon_quant.SRR1039516.tar.gz salmon_quant.SRR1039517.tar.gz salmon_quant.SRR1039520.tar.gz salmon_quant.SRR1039521.tar.gz \
                    SRR1039508_1.sub.fastq.gz SRR1039508_2.sub.fastq.gz SRR1039509_1.sub.fastq.gz SRR1039509_2.sub.fastq.gz \
@@ -336,7 +357,7 @@ jobs:
         if: steps.manifest.outputs.complete == 'yes' && needs.small-datasets.result == 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ inputs.release_tag }}
+          TAG: ${{ inputs.release_tag || 'data-v1' }}
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" >/dev/null 2>&1; then

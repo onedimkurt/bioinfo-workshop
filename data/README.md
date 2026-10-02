@@ -16,7 +16,7 @@ Verileri atölye dışında kullanırsanız aşağıdaki kaynaklara atıf yapın
 | `airway_samples.csv` | Sekiz örneğin (sample) tablosu: hücre hattı, dex tedavisi, okuma uzunluğu | Bioconductor `airway` paketi 1.32.0 | LGPL |
 | `SRR1039508_1.sub.fastq.gz`, `SRR1039508_2.sub.fastq.gz`, `SRR1039509_1.sub.fastq.gz`, `SRR1039509_2.sub.fastq.gz` | İki örnekten rastgele seçilmiş 1 milyon okuma çifti (seqtk 1.5, tohum 20261001) | ENA, SRR1039508 ve SRR1039509; indirilen dosyalar ENA'nın MD5 değerleriyle doğrulandı | INSDC verileri kısıtlamasız kullanılır |
 | `salmon_quant.SRR1039512.tar.gz` … `salmon_quant.SRR1039521.tar.gz` | Öteki altı örneğin salmon 2.8.0 sonuçları, tüm okumalarla | ENA'daki okumalar ve GENCODE 50 transkriptomu | Aynı kaynakların koşulları |
-| `gencode.v50.transcripts.fa.gz` | İnsan transkript dizileri, GENCODE 50 (GRCh38) | GENCODE | GENCODE verileri açık erişimlidir |
+| `gencode.v50.transcripts.chr.fa.gz` | İnsan transkript dizileri, GENCODE 50 (GRCh38); yalnızca referans kromozomlarındaki transkriptler (ek lokus ve yama kopyaları çıkarıldı, GTF dosyasıyla aynı küme) | GENCODE | GENCODE verileri açık erişimlidir |
 | `tx2gene.gencode.v50.tsv.gz`, `genes.gencode.v50.tsv.gz` | Transkriptten gene geçiş tablosu; gen adları ve türleri | GENCODE 50 açıklama (annotation) dosyasından çıkarıldı | GENCODE verileri açık erişimlidir |
 | `salmon_index.gencode.v50.tar.gz` | Hazır salmon indeksi; yalnızca yedek | GENCODE 50 transkriptomundan | Aynı |
 

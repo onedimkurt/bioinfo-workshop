@@ -26,7 +26,7 @@ curl -L -o data/SRR1039509_1.sub.fastq.gz $base/SRR1039509_1.sub.fastq.gz
 curl -L -o data/SRR1039509_2.sub.fastq.gz $base/SRR1039509_2.sub.fastq.gz
 
 # 3. İnsan transkriptomu (GENCODE 50); salmon indeksini bundan siz kuracaksınız
-curl -L -o data/gencode.v50.transcripts.fa.gz $base/gencode.v50.transcripts.fa.gz
+curl -L -o data/gencode.v50.transcripts.chr.fa.gz $base/gencode.v50.transcripts.chr.fa.gz
 
 # 4. Transkriptten gene geçiş tablosu ve gen adları
 curl -L -o data/tx2gene.gencode.v50.tsv.gz $base/tx2gene.gencode.v50.tsv.gz
