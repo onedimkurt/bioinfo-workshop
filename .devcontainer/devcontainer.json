@@ -24,7 +24,7 @@
     "onAutoForward": "ignore"
   },
   "postCreateCommand": "/usr/local/share/bioinfo-workshop/on-create.sh \"${containerWorkspaceFolder}\"",
-  "postAttachCommand": "/usr/local/share/bioinfo-workshop/start-rstudio.sh",
+  "postAttachCommand": "/usr/local/share/bioinfo-workshop/start-rstudio.sh; exec /usr/local/share/bioinfo-workshop/keep-awake.sh",
   "customizations": {
     "codespaces": {
       "openFiles": [

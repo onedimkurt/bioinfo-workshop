@@ -51,6 +51,8 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 5. **RStudio'yu açınız.**
    Bir iki dakika içinde tarayıcınızda RStudio ile yeni bir sekme açılır.
    Bu sırada VS Code sekmesini önde, açık tutunuz; RStudio'yu o sekme başlatır.
+   RStudio açıldıktan sonra da VS Code sekmesini kapatmayınız; arka planda açık kalsın.
+   GitHub, yalnızca bu sekmedeki etkinliği sayar; sekme açıkken RStudio'da çalıştığınız her dakika da sayılır.
    Açılmazsa VS Code penceresinin altındaki "PORTS" sekmesine tıklayınız.
    "RStudio" satırındaki küre simgesine tıklayınız.
    <!-- VERIFY: pilot, sekme kendiliğinden açılıyor mu, açılmıyorsa PORTS yolu -->
@@ -78,6 +80,7 @@ Bir sorun varsa böylece bir hafta önceden ortaya çıkar.
 **Başlarken.**
 İlk gün codespace'i 4. adımdaki gibi deponuzdan oluşturunuz.
 Sonraki sabahlar github.com/codespaces sayfasında codespace'inizin adına tıklayınız.
+Gün boyunca iki sekme açık kalır: RStudio sekmesi ve arka planda VS Code sekmesi.
 
 **Sabahları RStudio bir uyarı gösterebilir.**
 "The previous R session was abnormally terminated" yazan bir pencere çıkarsa OK düğmesine tıklayınız.

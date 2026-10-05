@@ -115,6 +115,12 @@ EOS
 check "codespace variables reach R"      bash /tmp/session-env-test.sh
 echo "      (for the record) RStudio's own sign-in redirect without the proxy:"
 curl -s -D - -o /dev/null -H "Host: localhost:8787" "http://127.0.0.1:8788/auth-sign-in?appUri=%2F" | grep -i "^location:" | sed 's/^/        /'
+# R62: work in the RStudio tab must leave a trace that keep-awake.sh turns into VS Code
+# terminal output (GitHub counts only that). Bash prompts and R commands touch the marker.
+check "bash prompt touches the marker"  bash -c 'rm -f /tmp/bioinfo-workshop-activity; bash -ic "eval \"\$PROMPT_COMMAND\"" >/dev/null 2>&1; [ -f /tmp/bioinfo-workshop-activity ] && echo touched'
+check "R command touches the marker"    bash -c 'rm -f /tmp/bioinfo-workshop-activity; echo "x <- 1" | R --interactive --quiet --no-save >/dev/null 2>&1; [ -f /tmp/bioinfo-workshop-activity ] && echo touched'
+check "keep-awake prints on activity"   bash -c '( KEEP_AWAKE_INTERVAL=1 timeout 4 /usr/local/share/bioinfo-workshop/keep-awake.sh > /tmp/ka.out & sleep 1.5; touch -d "+5 seconds" /tmp/bioinfo-workshop-activity; wait ); grep -c "RStudio in use" /tmp/ka.out | grep -qx 1 && echo "one line after one change"'
+check "keep-awake silent when idle"     bash -c 'KEEP_AWAKE_INTERVAL=1 timeout 3 /usr/local/share/bioinfo-workshop/keep-awake.sh > /tmp/ka2.out; ! grep -q "RStudio in use" /tmp/ka2.out && echo "nothing printed"'
 check "sudo rule is narrow"            bash -c 'sudo -n -l | grep -q start-rstudio-password.sh && ! sudo -n true 2>/dev/null && echo only-the-script'
 
 echo
