@@ -1,0 +1,9 @@
+++ zcat out/chr20.ensembl116.gff3.gz
+++ grep -vc '^#'
++ echo '== GFF3: 267381 feature lines'
+== GFF3: 267381 feature lines
++ zcat out/chr20.ensembl116.gff3.gz
++ grep -m3 '^#!'
+#!genome-build Genome Reference Consortium GRCh38.p14
+#!genome-version GRCh38
+#!genome-date 2013-12
