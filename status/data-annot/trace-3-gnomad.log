@@ -25,12 +25,12 @@
 + grep -q '^##INFO=<ID=fafmax_faf95_max,' gnomad.header.txt
 + keep=INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max,
 + keep=INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max
-+ tee log/gnomad.log
 + echo 'kept INFO fields: INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max'
++ tee log/gnomad.log
 kept INFO fields: INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max
 + tee -a log/gnomad.log
-++ echo INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max
 ++ sed 's#INFO/##g; s#,#|#g'
+++ echo INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max
 + grep -E '^##INFO=<ID=(AC|AN|AF|nhomalt|grpmax|AF_grpmax|fafmax_faf95_max),' gnomad.header.txt
 ##INFO=<ID=AC,Number=A,Type=Integer,Description="Alternate allele count">
 ##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles">
@@ -41,10 +41,10 @@ kept INFO fields: INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpma
 ##INFO=<ID=AF_grpmax,Number=A,Type=Float,Description="Maximum allele frequency across genetic ancestry groups">
 + printf 'INFO/AC gnomAD_AC\nINFO/AN gnomAD_AN\nINFO/AF gnomAD_AF\nINFO/nhomalt gnomAD_nhomalt\nINFO/grpmax gnomAD_grpmax\nINFO/AF_grpmax gnomAD_AF_grpmax\nINFO/fafmax_faf95_max gnomAD_FAF95\n'
 + for attempt in 1 2 3
++ /opt/conda/envs/variants-ready/bin/bcftools view -r chr20:10000000-12000000 -f PASS -i 'INFO/AC>0' -Ou https://storage.googleapis.com/gcp-public-data--gnomad/release/4.1/vcf/genomes/gnomad.genomes.v4.1.sites.chr20.vcf.bgz
 + /opt/conda/envs/variants-ready/bin/bcftools annotate -x '^INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max' -Ou
 + /opt/conda/envs/variants-ready/bin/bcftools annotate --rename-annots rename.txt -Ou
 + /opt/conda/envs/variants-ready/bin/bcftools norm -f chr20.fa -m -any -Oz -o gnomad.tmp.vcf.gz
-+ /opt/conda/envs/variants-ready/bin/bcftools view -r chr20:10000000-12000000 -f PASS -i 'INFO/AC>0' -Ou https://storage.googleapis.com/gcp-public-data--gnomad/release/4.1/vcf/genomes/gnomad.genomes.v4.1.sites.chr20.vcf.bgz
 Lines   total/split/joined/realigned/mismatch_removed/dup_removed/skipped:	442329/0/0/0/0/0/0
 + break
 + /opt/conda/envs/variants-ready/bin/bcftools view -h gnomad.tmp.vcf.gz
@@ -61,23 +61,23 @@ Lines   total/split/joined/realigned/mismatch_removed/dup_removed/skipped:	44232
 ##INFO=<ID=gnomAD_FAF95,Number=A,Type=Float,Description="gnomAD v4.1 genomes: Maximum filtering allele frequency (using Poisson 95% CI) across genetic ancestry groups">
 ##INFO=<ID=gnomAD_nhomalt,Number=A,Type=Integer,Description="gnomAD v4.1 genomes: Count of homozygous individuals">
 ##INFO=<ID=gnomAD_AF_grpmax,Number=A,Type=Float,Description="gnomAD v4.1 genomes: Maximum allele frequency across genetic ancestry groups">
++ tee -a log/gnomad.log
 ++ /opt/conda/envs/variants-ready/bin/bcftools view -H out/gnomad.genomes.v4.1.window.vcf.gz
 ++ wc -l
-+ tee -a log/gnomad.log
 + echo 'gnomAD records in window: 442329'
 gnomAD records in window: 442329
 + set +o pipefail
 + tee -a log/gnomad.log
-+ head -3
 + /opt/conda/envs/variants-ready/bin/bcftools view -H out/gnomad.genomes.v4.1.window.vcf.gz
 + cut -c1-400
++ head -3
 chr20	10000004	rs1004639863	A	G	.	PASS	gnomAD_AC=5;gnomAD_AN=152208;gnomAD_AF=3.28498e-05;gnomAD_nhomalt=0
 chr20	10000006	rs949540033	G	C	.	PASS	gnomAD_AC=1;gnomAD_AN=152200;gnomAD_AF=6.5703e-06;gnomAD_grpmax=afr;gnomAD_nhomalt=0;gnomAD_AF_grpmax=2.41208e-05
 chr20	10000019	rs1982878476	G	A	.	PASS	gnomAD_AC=1;gnomAD_AN=152194;gnomAD_AF=6.57056e-06;gnomAD_grpmax=amr;gnomAD_nhomalt=0;gnomAD_AF_grpmax=6.5445e-05
 + ls -l out
 + tee -a log/gnomad.log
 total 12832
--rw-r--r-- 1 root root  2911380 Oct 13 20:34 chr20.ensembl116.gff3.gz
--rw-r--r-- 1 root root   212279 Oct 13 20:34 chr20.ensembl116.mane.gff3.gz
--rw-r--r-- 1 root root 10009893 Oct 13 20:34 gnomad.genomes.v4.1.window.vcf.gz
--rw-r--r-- 1 root root     1644 Oct 13 20:34 gnomad.genomes.v4.1.window.vcf.gz.tbi
+-rw-r--r-- 1 root root  2911380 Oct 13 22:48 chr20.ensembl116.gff3.gz
+-rw-r--r-- 1 root root   212279 Oct 13 22:48 chr20.ensembl116.mane.gff3.gz
+-rw-r--r-- 1 root root 10009898 Oct 13 22:48 gnomad.genomes.v4.1.window.vcf.gz
+-rw-r--r-- 1 root root     1646 Oct 13 22:48 gnomad.genomes.v4.1.window.vcf.gz.tbi

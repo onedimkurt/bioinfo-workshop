@@ -1,6 +1,6 @@
 + set +o pipefail
-++ zcat out/chr20.ensembl116.gff3.gz
 ++ grep -vc '^#'
+++ zcat out/chr20.ensembl116.gff3.gz
 + echo '== GFF3: 267381 feature lines'
 == GFF3: 267381 feature lines
 + zcat out/chr20.ensembl116.gff3.gz
@@ -11,11 +11,11 @@
 #!genome-date 2013-12
 + echo '== bcftools csq on the GIAB truth of the window (consequence counts)'
 == bcftools csq on the GIAB truth of the window (consequence counts)
-+ tr , '\n'
-+ sort
-+ head -25
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
++ tr , '\n'
 + cut '-d|' -f1
++ head -25
++ sort
 + uniq -c
 + sort -k1,1nr
    2264 non_coding
@@ -51,12 +51,12 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
 == protein-altering consequences in the truth, by gene
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
 + tr , '\n'
-+ sort -k1,1nr
 + head -40
 + grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)'
-+ sort
 + cut '-d|' -f1,2
++ sort
 + uniq -c
++ sort -k1,1nr
       6 missense|SLX4IP
       5 missense|ANKEF1
       2 stop_lost|ANKEF1
@@ -70,9 +70,9 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
 + echo '   feature types:'
    feature types:
 + zcat out/chr20.ensembl116.mane.gff3.gz
-+ awk '-F\t' '!/^#/ { print $3 }'
 + sort
 + uniq -c
++ awk '-F\t' '!/^#/ { print $3 }'
    4683 CDS
    4981 exon
     762 five_prime_UTR
@@ -87,8 +87,8 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
 + cut -d, -f1
 + cut '-d|' -f1
 + sort
-+ uniq -c
 + sort -k1,1nr
++ uniq -c
    2593 .
     545 intron
      16 3_prime_utr
@@ -97,8 +97,8 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
       2 5_prime_utr
 + echo '   protein-altering and synonymous, all records:'
    protein-altering and synonymous, all records:
-+ grep -E 'missense|synonymous|stop|frameshift|inframe|splice|start_lost'
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\t%INFO/BCSQ\n' csq_truth_mane.vcf.gz
++ grep -E 'missense|synonymous|stop|frameshift|inframe|splice|start_lost'
 10038445	A	G	0/1	synonymous|ANKEF1|ENST00000378392|protein_coding|+|48G|10038445A>G
 10049540	T	A	0/1	missense|ANKEF1|ENST00000378392|protein_coding|+|324L>324Q|10049540T>A
 10051765	T	G	0/1	synonymous|ANKEF1|ENST00000378392|protein_coding|+|582A|10051765T>G
