@@ -8,9 +8,9 @@ sonuçların yorumu tartışılarak satır satır yazılmıştır.
 
 | Gün | Analiz | Veri | Betikler | Ortam dosyası |
 |---|---|---|---|---|
-| 1 | Bulk RNA-seq: okuma kalitesi, Salmon ile transkript düzeyinde sayım, DESeq2 ile diferansiyel ifade analizi | Deksametazon uygulanmış hava yolu düz kas hücreleri (Himes ve ark. 2014, GEO GSE52778) | [`scripts/day1.sh`](scripts/day1.sh), [`scripts/day1.R`](scripts/day1.R) | [`envs/rnaseq.yml`](envs/rnaseq.yml) |
-| 2 | Single-cell RNA-seq: kalite kontrol, normalizasyon, PCA, kümeleme, UMAP ve hücre tiplerinin belirlenmesi (Seurat) | 10x Genomics PBMC 3k: sağlıklı bir bireyin kan hücreleri | [`scripts/day2.sh`](scripts/day2.sh), [`scripts/day2.R`](scripts/day2.R) | R paketleri codespace imajındadır |
-| 3 | Germline varyant analizi: okuma kalitesi, bwa ile hizalama, bcftools ile varyant çağırma ve filtreleme, Genome in a Bottle doğruluk kümesiyle karşılaştırma, varyant anotasyonu (Ensembl, gnomAD, ClinVar) | NA12878 (GIAB HG001), 20. kromozomun 10-12 Mb bölgesi (1000 Genomes, 30x) | [`scripts/day3.sh`](scripts/day3.sh), [`scripts/day3.R`](scripts/day3.R) | [`envs/variants.yml`](envs/variants.yml) |
+| 1 | Bulk RNA-seq: okuma kalitesinin kontrolü, Salmon ile transkript düzeyinde sayım, DESeq2 ile diferansiyel ifade analizi | Deksametazon uygulanmış hava yolu düz kas hücreleri (Himes ve ark. 2014, GEO GSE52778) | [`scripts/day1.sh`](scripts/day1.sh), [`scripts/day1.R`](scripts/day1.R) | [`envs/rnaseq.yml`](envs/rnaseq.yml) |
+| 2 | Single-cell RNA-seq: kalite kontrol, normalizasyon, PCA, kümeleme, UMAP ve hücre tiplerinin belirlenmesi (Seurat) | 10x Genomics PBMC 3k: sağlıklı bir bireyin periferik kan mononükleer hücreleri (PBMC) | [`scripts/day2.sh`](scripts/day2.sh), [`scripts/day2.R`](scripts/day2.R) | R paketleri codespace imajındadır |
+| 3 | Germline varyant analizi: okuma kalitesinin kontrolü, bwa ile hizalama, bcftools ile varyant çağırma ve filtreleme, Genome in a Bottle doğruluk kümesiyle karşılaştırma, varyant anotasyonu (Ensembl, gnomAD, ClinVar) | NA12878 (GIAB HG001), 20. kromozomun 10-12 Mb bölgesi (1000 Genomes, 30x) | [`scripts/day3.sh`](scripts/day3.sh), [`scripts/day3.R`](scripts/day3.R) | [`envs/variants.yml`](envs/variants.yml) |
 
 ## Analizler nasıl yeniden çalıştırılır
 
@@ -18,11 +18,12 @@ Veriler ve sonuç dosyaları bu depoda tutulmaz; betikler verileri indirir ve so
 
 1. Bu deponun sayfasında **Code > Codespaces > Create codespace on main** ile bir codespace oluşturulur;
    RStudio birkaç dakika içinde açılır.
-2. RStudio'nun Terminal sekmesinde ilgili günün ortamı oluşturulur ve etkinleştirilir; örneğin 3. gün için
-   `conda env create -f envs/variants.yml` ve ardından `conda activate variants`.
-3. O günün Terminal betiğindeki (`scripts/dayN.sh`) komutlar sırayla çalıştırılır; her betik, o günün
-   verilerini indiren komutla başlar.
-4. O günün R betiği (`scripts/dayN.R`) RStudio'da açılır ve baştan sona çalıştırılır.
+2. O günün Terminal betiği (`scripts/dayN.sh`) RStudio'da açılır ve komutları Terminal sekmesinde sırayla
+   çalıştırılır. Betik, gerektiğinde yazılım ortamını `envs/` klasöründeki dosyadan oluşturur ve o günün
+   verilerini indirir; örneğin 3. gün için `conda env create -f envs/variants.yml`, `conda activate variants` ve
+   `bash setup/day2.sh` satırlarıyla başlar. Ortam aynı codespace'te daha önce oluşturulduysa `conda env create`
+   satırı atlanabilir; betiğin sonundaki `git` satırlarının yeniden çalıştırılmasına gerek yoktur.
+3. O günün R betiği (`scripts/dayN.R`) RStudio'da açılır ve baştan sona çalıştırılır.
 
 ## Klasörler
 

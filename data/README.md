@@ -22,7 +22,10 @@ Verileri atölye dışında kullanırsanız aşağıdaki kaynaklara atıf yapın
 
 Çalışma: Himes BE ve ark. (2014) RNA-Seq transcriptome profiling identifies CRISPLD2 as a glucocorticoid responsive gene that modulates cytokine function in airway smooth muscle cells. *PLoS One* 9(6): e99625. GEO: GSE52778.
 
-## 2. gün: varyant çağırma ve tek hücre
+## Varyant çağırma (3. gün) ve tek hücre (2. gün)
+
+Varyant çağırma ilk planda 2. gün için hazırlanmıştı; atölyede 3. gün yapıldı.
+Bu nedenle verileri indiren dosyanın adı (`setup/day2.sh`) ilk plana göre kalmıştır.
 
 | Dosya | Ne | Kaynak | Kullanım koşulu |
 |---|---|---|---|
@@ -36,9 +39,11 @@ Verileri atölye dışında kullanırsanız aşağıdaki kaynaklara atıf yapın
 
 Yayında ayrıca `NA12878_GIAB_v4.2.1_window.vcf.gz`, `.tbi` ve `NA12878_GIAB_v4.2.1_window_confident.bed` dosyaları vardır.
 Bunlar Genome in a Bottle (NIST) HG001 v4.2.1 doğruluk kümesinin aynı bölgesidir.
-Eğitmenin karşılaştırması içindir; günlük indirme listesinde yoktur.
+Doğruluk karşılaştırması için atölyede ayrıca indirilir; günlük indirme dosyasında (`setup/day2.sh`) yoktur.
 
-## 3. gün: bitirme çalışması (pasilla)
+## Bitirme çalışması (pasilla)
+
+Bitirme çalışması programdan çıkarılmıştır; dosyaları yayında durmaktadır.
 
 | Dosya | Ne | Kaynak | Kullanım koşulu |
 |---|---|---|---|
@@ -54,10 +59,10 @@ Sağlama toplamları yayındaki `ANNOTATION.SHA256SUMS` dosyasındadır.
 
 | Dosya | Ne | Kaynak | Kullanım koşulu |
 |---|---|---|---|
-| `chr20.ensembl116.gff3.gz` | 20. kromozomun gen açıklaması (annotation): genler, transkriptler, ekzonlar, kodlayan bölgeler; kromozom adı `chr20` olarak değiştirildi | Ensembl 116 (GENCODE 50 ile aynı açıklama), GRCh38 | Ensembl verileri kısıtlamasız kullanılır |
-| `chr20.ensembl116.mane.gff3.gz` | Aynı dosyanın yalnızca MANE Select transkriptlerini içeren hali (protein kodlayan her gen için bir transkript) | Aynı | Aynı |
+| `chr20.ensembl116.gff3.gz` | 20. kromozomun gen anotasyonu (annotation): genler, transkriptler, ekzonlar, kodlayan bölgeler; kromozom adı `chr20` olarak değiştirildi | Ensembl 116 (GENCODE 50 ile aynı anotasyon), GRCh38 | Ensembl verileri kısıtlama olmaksızın kullanılabilir |
+| `chr20.ensembl116.mane.gff3.gz` | Aynı dosyanın yalnızca MANE Select transkriptlerini içeren hâli (protein kodlayan her gen için bir transkript) | Aynı | Aynı |
 | `gnomad.genomes.v4.1.window.vcf.gz`, `.tbi` | gnomAD v4.1 genom verisinin bu bölgedeki PASS varyantları ve alel sıklıkları; kullanılan alanların adlarının başına `gnomAD_` eklendi | gnomAD v4.1, gnomad.broadinstitute.org | ODbL 1.0; bu dosya da ODbL ile paylaşılır |
 | `clinvar_20261011.window.vcf.gz`, `.tbi` | ClinVar'ın 11 Ekim 2026 haftalık sürümünün bu bölgedeki kayıtları; kromozom adı `chr20` olarak değiştirildi, Variation ID ayrıca `CLNVID` alanına yazıldı | NCBI ClinVar | Kamu malı (public domain) |
 | `README-template.md` | Katılımcı depolarının README şablonu | Atölye | |
 
-Çalışmalar: Karczewski KJ ve ark. (2020) The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581: 434-443 (gnomAD). Landrum MJ ve ark. (2018) ClinVar: improving access to variant interpretations and supporting evidence. *Nucleic Acids Research* 46(D1): D1062-D1067. Morales J ve ark. (2022) A joint NCBI and EMBL-EBI transcript set for clinical genomics and research. *Nature* 604: 310-315 (MANE).
+Çalışmalar: Karczewski KJ ve ark. (2020) The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581: 434-443 (gnomAD). Chen S ve ark. (2024) A genomic mutational constraint map using variation in 76,156 human genomes. *Nature* 625: 92-100 (gnomAD genomları). Landrum MJ ve ark. (2018) ClinVar: improving access to variant interpretations and supporting evidence. *Nucleic Acids Research* 46(D1): D1062-D1067. Morales J ve ark. (2022) A joint NCBI and EMBL-EBI transcript set for clinical genomics and research. *Nature* 604: 310-315 (MANE).
