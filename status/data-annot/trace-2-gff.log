@@ -5,6 +5,18 @@
   /^#/ { print; next }
   $1 == "20" { $1 = "chr20" } { print }'
 + /opt/conda/envs/variants-ready/bin/bgzip -c
++ zcat out/chr20.ensembl116.gff3.gz
++ awk '-F\t' 'BEGIN { OFS = "\t" }
+  NR == FNR { if ($9 ~ /tag=[^;]*MANE_Select/) { match($9, /ID=transcript:[^;]+/); t[substr($9, RSTART + 3, RLENGTH - 3)] = 1
+                                                   match($9, /Parent=gene:[^;]+/); g[substr($9, RSTART + 7, RLENGTH - 7)] = 1 }
+              next }
+  /^#/ { print; next }
+  { id = ""; par = "" }
+  match($9, /ID=[^;]+/) { id = substr($9, RSTART + 3, RLENGTH - 3) }
+  match($9, /Parent=[^;]+/) { par = substr($9, RSTART + 7, RLENGTH - 7) }
+  (id in g) || (id in t) || (par in t) { print }' full.gff3 full.gff3
++ /opt/conda/envs/variants-ready/bin/bgzip -c
++ /opt/conda/envs/variants-ready/bin/bcftools csq -f chr20.fa -g out/chr20.ensembl116.mane.gff3.gz -p a NA12878_GIAB_v4.2.1_window.vcf.gz -Oz -o csq_truth_mane.vcf.gz
 + /opt/conda/envs/variants-ready/bin/bcftools csq -f chr20.fa -g out/chr20.ensembl116.gff3.gz -p a NA12878_GIAB_v4.2.1_window.vcf.gz -Oz -o csq_truth.vcf.gz
 + tee log/gff.log
 + set +o pipefail
@@ -12,18 +24,18 @@
 ++ grep -vc '^#'
 + echo '== GFF3: 267381 feature lines'
 == GFF3: 267381 feature lines
-+ head -3
 + zcat out/chr20.ensembl116.gff3.gz
 + grep '^#!'
++ head -3
 #!genome-build Genome Reference Consortium GRCh38.p14
 #!genome-version GRCh38
 #!genome-date 2013-12
 + echo '== bcftools csq on the GIAB truth of the window (consequence counts)'
 == bcftools csq on the GIAB truth of the window (consequence counts)
-+ /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
++ tr , '\n'
 + sort
 + head -25
-+ tr , '\n'
++ /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
 + cut '-d|' -f1
 + uniq -c
 + sort -k1,1nr
@@ -49,25 +61,77 @@ Indexed 16314 transcripts, 125459 exons, 78636 CDSs, 39650 UTRs
 Ignored the following biotypes:
 + echo '== genes with a protein-coding transcript in the window'
 == genes with a protein-coding transcript in the window
-+ zcat out/chr20.ensembl116.gff3.gz
-+ tr '\n' ' '
 + awk '-F\t' '$3 == "gene" && $4 < 12000000 && $5 > 10000000'
-+ grep biotype=protein_coding
++ zcat out/chr20.ensembl116.gff3.gz
 + sed -E 's/.*Name=([^;]+).*/\1/'
++ grep biotype=protein_coding
++ tr '\n' ' '
 ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG00000285723;biotype=protein_coding;description=novel protein;gene_id=ENSG00000285723;logic_name=havana_homo_sapiens;version=3 chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG00000285508;biotype=protein_coding;description=novel protein;gene_id=ENSG00000285508;logic_name=havana_homo_sapiens;version=3 SLX4IP JAG1 BTBD3 + echo
 
 + echo '== protein-altering consequences in the truth, by gene'
 == protein-altering consequences in the truth, by gene
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
-+ grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)'
++ tr , '\n'
 + sort -k1,1nr
 + head -40
-+ tr , '\n'
-+ cut '-d|' -f1,2
++ grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)'
 + sort
++ cut '-d|' -f1,2
 + uniq -c
       6 missense|SLX4IP
       5 missense|ANKEF1
       2 stop_lost|ANKEF1
       1 missense&NMD_transcript|ANKEF1
       1 missense&NMD_transcript|JAG1
+++ zcat out/chr20.ensembl116.mane.gff3.gz
+++ awk '-F\t' '$3 == "mRNA"'
+++ wc -l
++ echo '== MANE Select only: transcripts 521'
+== MANE Select only: transcripts 521
++ echo '   feature types:'
+   feature types:
++ zcat out/chr20.ensembl116.mane.gff3.gz
++ awk '-F\t' '!/^#/ { print $3 }'
++ sort
++ uniq -c
+   4683 CDS
+   4981 exon
+    762 five_prime_UTR
+    521 gene
+      3 lnc_RNA
+    521 mRNA
+      3 ncRNA_gene
+    548 three_prime_UTR
++ echo '   consequences in the GIAB truth (first consequence of each record):'
+   consequences in the GIAB truth (first consequence of each record):
++ /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth_mane.vcf.gz
++ cut -d, -f1
++ cut '-d|' -f1
++ sort
++ uniq -c
++ sort -k1,1nr
+   2593 .
+    545 intron
+     16 3_prime_utr
+      4 synonymous
+      3 missense
+      2 5_prime_utr
++ echo '   protein-altering and synonymous, all records:'
+   protein-altering and synonymous, all records:
++ grep -E 'missense|synonymous|stop|frameshift|inframe|splice|start_lost'
++ /opt/conda/envs/variants-ready/bin/bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\t%INFO/BCSQ\n' csq_truth_mane.vcf.gz
+10038445	A	G	0/1	synonymous|ANKEF1|ENST00000378392|protein_coding|+|48G|10038445A>G
+10049540	T	A	0/1	missense|ANKEF1|ENST00000378392|protein_coding|+|324L>324Q|10049540T>A
+10051765	T	G	0/1	synonymous|ANKEF1|ENST00000378392|protein_coding|+|582A|10051765T>G
+10622678	A	G	0/1	missense|SLX4IP|ENST00000334534|protein_coding|+|176K>176E|10622678A>G
+10623102	G	A	0/1	missense|SLX4IP|ENST00000334534|protein_coding|+|317R>317Q|10623102G>A
+10639738	A	G	0/1	synonymous|JAG1|ENST00000254958|protein_coding|-|1139Y|10639738A>G
+10652589	G	A	0/1	synonymous|JAG1|ENST00000254958|protein_coding|-|255Y|10652589G>A
++ echo '   csq messages:'
+   csq messages:
++ head -8
++ grep -v '^Warning: Ignoring GFF feature with unknown phase' csq_mane.err
+Parsing out/chr20.ensembl116.mane.gff3.gz ...
+Indexed 524 transcripts, 4981 exons, 4683 CDSs, 1310 UTRs
+Warning: 6290 warnings were suppressed, increase verbosity to see them all
+Calling...
