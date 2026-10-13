@@ -46,3 +46,18 @@ Eğitmenin karşılaştırması içindir; günlük indirme listesinde yoktur.
 | `capstone_pasilla_samples.csv` | Yedi örneğin tablosu: koşul ve okuma türü | Aynı paket | LGPL |
 
 Çalışma: Brooks AN ve ark. (2011) Conservation of an RNA regulatory map between Drosophila and mammals. *Genome Research* 21(2): 193-202. GEO: GSM461176-GSM461181.
+
+## 3. gün: varyant anotasyonu
+
+Bu dosyalar `chr20:10000000-12000000` bölgesi için hazırlanmıştır.
+Sağlama toplamları yayındaki `ANNOTATION.SHA256SUMS` dosyasındadır.
+
+| Dosya | Ne | Kaynak | Kullanım koşulu |
+|---|---|---|---|
+| `chr20.ensembl116.gff3.gz` | 20. kromozomun gen açıklaması (annotation): genler, transkriptler, ekzonlar, kodlayan bölgeler; kromozom adı `chr20` olarak değiştirildi | Ensembl 116 (GENCODE 50 ile aynı açıklama), GRCh38 | Ensembl verileri kısıtlamasız kullanılır |
+| `chr20.ensembl116.mane.gff3.gz` | Aynı dosyanın yalnızca MANE Select transkriptlerini içeren hali (protein kodlayan her gen için bir transkript) | Aynı | Aynı |
+| `gnomad.genomes.v4.1.window.vcf.gz`, `.tbi` | gnomAD v4.1 genom verisinin bu bölgedeki PASS varyantları ve alel sıklıkları; kullanılan alanların adlarının başına `gnomAD_` eklendi | gnomAD v4.1, gnomad.broadinstitute.org | ODbL 1.0; bu dosya da ODbL ile paylaşılır |
+| `clinvar_20261011.window.vcf.gz`, `.tbi` | ClinVar'ın 11 Ekim 2026 haftalık sürümünün bu bölgedeki kayıtları; kromozom adı `chr20` olarak değiştirildi, Variation ID ayrıca `CLNVID` alanına yazıldı | NCBI ClinVar | Kamu malı (public domain) |
+| `README-template.md` | Katılımcı depolarının README şablonu | Atölye | |
+
+Çalışmalar: Karczewski KJ ve ark. (2020) The mutational constraint spectrum quantified from variation in 141,456 humans. *Nature* 581: 434-443 (gnomAD). Landrum MJ ve ark. (2018) ClinVar: improving access to variant interpretations and supporting evidence. *Nucleic Acids Research* 46(D1): D1062-D1067. Morales J ve ark. (2022) A joint NCBI and EMBL-EBI transcript set for clinical genomics and research. *Nature* 604: 310-315 (MANE).

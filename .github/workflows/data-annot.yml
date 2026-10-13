@@ -2,8 +2,12 @@
 # them to the release data-v1 of this repository, with their own checksum list ANNOTATION.SHA256SUMS.
 # The release's SHA256SUMS (the copy in the trainees' data/ folders) is never replaced.
 #   chr20.ensembl116.gff3.gz            gene annotation of chromosome 20 (Ensembl 116 = GENCODE 50), renamed chr20
-#   gnomad.genomes.v4.1.window.vcf.gz   gnomAD v4.1 genome allele frequencies in the window (PASS sites)
-#   clinvar_<date>.window.vcf.gz        ClinVar records in the window (GRCh38), renamed chr20
+#   chr20.ensembl116.mane.gff3.gz       the same, MANE Select transcripts only (one per protein-coding gene)
+#   gnomad.genomes.v4.1.window.vcf.gz   gnomAD v4.1 genome allele frequencies in the window (PASS sites);
+#                                       INFO fields renamed gnomAD_* so they never overwrite a caller's AC/AN/AF
+#   clinvar_<date>.window.vcf.gz        ClinVar records in the window (GRCh38), renamed chr20; INFO/CLNVID = the
+#                                       Variation ID (the ID column), kept when another file fills ID
+#   README-template.md                  the Turkish README template of the trainees' repositories (.github/day3/)
 # Started by a push that changes .github/data-annot-run.txt (the chat cannot press "Run workflow").
 # The summary and the checksums go to the branch ci-status (status/data-annot/).
 name: data-annot
@@ -30,6 +34,7 @@ env:
   WINDOW: "chr20:10000000-12000000"
   ENSEMBL: "116"
   GNOMAD: "4.1"
+  CLINVAR_DATE: "20261011"
 
 jobs:
   build:
@@ -63,6 +68,19 @@ jobs:
             /^##sequence-region/ { sub(/sequence-region +20 /, "sequence-region   chr20 "); print; next }
             /^#/ { print; next }
             $1 == "20" { $1 = "chr20" } { print }' | $env/bgzip -c > out/chr20.ensembl${ENSEMBL}.gff3.gz
+          # MANE Select only: the transcripts tagged MANE_Select, their genes, and the features whose parent they are
+          zcat out/chr20.ensembl${ENSEMBL}.gff3.gz > full.gff3
+          awk -F'\t' 'BEGIN { OFS = "\t" }
+            NR == FNR { if ($9 ~ /tag=[^;]*MANE_Select/) { match($9, /ID=transcript:[^;]+/); t[substr($9, RSTART + 3, RLENGTH - 3)] = 1
+                                                             match($9, /Parent=gene:[^;]+/); g[substr($9, RSTART + 7, RLENGTH - 7)] = 1 }
+                        next }
+            /^#/ { print; next }
+            { id = ""; par = "" }
+            match($9, /ID=[^;]+/) { id = substr($9, RSTART + 3, RLENGTH - 3) }
+            match($9, /Parent=[^;]+/) { par = substr($9, RSTART + 7, RLENGTH - 7) }
+            (id in g) || (id in t) || (par in t) { print }' full.gff3 full.gff3 | $env/bgzip -c > out/chr20.ensembl${ENSEMBL}.mane.gff3.gz
+          $env/bcftools csq -f chr20.fa -g out/chr20.ensembl${ENSEMBL}.mane.gff3.gz -p a NA12878_GIAB_v4.2.1_window.vcf.gz -Oz -o csq_truth_mane.vcf.gz 2> csq_mane.err \
+            || { cat csq_mane.err; exit 1; }
           # sanity check: bcftools csq must accept this file with the trainees' chr20 (fails the step if not)
           $env/bcftools csq -f chr20.fa -g out/chr20.ensembl${ENSEMBL}.gff3.gz -p a NA12878_GIAB_v4.2.1_window.vcf.gz -Oz -o csq_truth.vcf.gz 2> csq.err \
             || { cat csq.err; exit 1; }
@@ -79,6 +97,13 @@ jobs:
             echo "== protein-altering consequences in the truth, by gene"
             $env/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz | tr ',' '\n' | grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)' \
               | cut -d'|' -f1,2 | sort | uniq -c | sort -k1,1nr | head -40
+            echo "== MANE Select only: transcripts $(zcat out/chr20.ensembl${ENSEMBL}.mane.gff3.gz | awk -F'\t' '$3 == "mRNA"' | wc -l)"
+            echo "   feature types:"; zcat out/chr20.ensembl${ENSEMBL}.mane.gff3.gz | awk -F'\t' '!/^#/ { print $3 }' | sort | uniq -c
+            echo "   consequences in the GIAB truth (first consequence of each record):"
+            $env/bcftools query -f '%INFO/BCSQ\n' csq_truth_mane.vcf.gz | cut -d',' -f1 | cut -d'|' -f1 | sort | uniq -c | sort -k1,1nr
+            echo "   protein-altering and synonymous, all records:"
+            $env/bcftools query -f '%POS\t%REF\t%ALT[\t%GT]\t%INFO/BCSQ\n' csq_truth_mane.vcf.gz | grep -E 'missense|synonymous|stop|frameshift|inframe|splice|start_lost'
+            echo "   csq messages:"; grep -v '^Warning: Ignoring GFF feature with unknown phase' csq_mane.err | head -8
           } 2>&1 | tee log/gff.log
       - name: gnomAD v4.1 genome allele frequencies in the window (PASS sites)
         run: |
@@ -94,13 +119,19 @@ jobs:
           keep="${keep%,}"
           echo "kept INFO fields: $keep" | tee log/gnomad.log
           grep -E "^##INFO=<ID=($(echo "$keep" | sed 's#INFO/##g; s#,#|#g'))," gnomad.header.txt | tee -a log/gnomad.log
+          # gnomAD_ in front of every kept field, so `bcftools annotate -c INFO` never overwrites the caller's AC, AN, AF
+          printf 'INFO/AC gnomAD_AC\nINFO/AN gnomAD_AN\nINFO/AF gnomAD_AF\nINFO/nhomalt gnomAD_nhomalt\nINFO/grpmax gnomAD_grpmax\nINFO/AF_grpmax gnomAD_AF_grpmax\nINFO/fafmax_faf95_max gnomAD_FAF95\n' > rename.txt
           for attempt in 1 2 3; do
             if $env/bcftools view -r "$WINDOW" -f PASS -i 'INFO/AC>0' -Ou "$g" \
                  | $env/bcftools annotate -x "^$keep" -Ou \
-                 | $env/bcftools norm -f chr20.fa -m -any -Oz -o out/gnomad.genomes.v${GNOMAD}.window.vcf.gz; then break; fi
+                 | $env/bcftools annotate --rename-annots rename.txt -Ou \
+                 | $env/bcftools norm -f chr20.fa -m -any -Oz -o gnomad.tmp.vcf.gz; then break; fi
             sleep 60
           done
+          $env/bcftools view -h gnomad.tmp.vcf.gz | sed -E '/^##INFO=<ID=gnomAD_/ s/Description="/Description="gnomAD v4.1 genomes: /' > gnomad.newheader.txt
+          $env/bcftools reheader -h gnomad.newheader.txt -o out/gnomad.genomes.v${GNOMAD}.window.vcf.gz gnomad.tmp.vcf.gz
           $env/bcftools index -t out/gnomad.genomes.v${GNOMAD}.window.vcf.gz
+          $env/bcftools view -h out/gnomad.genomes.v${GNOMAD}.window.vcf.gz | grep '^##INFO' | tee -a log/gnomad.log
           echo "gnomAD records in window: $($env/bcftools view -H out/gnomad.genomes.v${GNOMAD}.window.vcf.gz | wc -l)" | tee -a log/gnomad.log
           { set +o pipefail; $env/bcftools view -H out/gnomad.genomes.v${GNOMAD}.window.vcf.gz | head -3 | cut -c1-400; } | tee -a log/gnomad.log
           ls -l out | tee -a log/gnomad.log
@@ -110,23 +141,36 @@ jobs:
           env=/opt/conda/envs/variants-ready/bin
           exec > >(tee -a log/trace-4-clinvar.log) 2>&1
           c=https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38
-          curl -fsSL --retry 5 -o clinvar.vcf.gz "$c/clinvar.vcf.gz"
-          curl -fsSL --retry 5 -o clinvar.vcf.gz.tbi "$c/clinvar.vcf.gz.tbi"
+          # the weekly release of CLINVAR_DATE (pinned, so a re-run makes the same file under the same name)
+          got=""
+          for u in "$c/clinvar_${CLINVAR_DATE}.vcf.gz" "$c/weekly/clinvar_${CLINVAR_DATE}.vcf.gz" "$c/archive_2.0/${CLINVAR_DATE:0:4}/clinvar_${CLINVAR_DATE}.vcf.gz"; do
+            if curl -fsSL --retry 3 -o clinvar.vcf.gz "$u" && curl -fsSL --retry 3 -o clinvar.vcf.gz.tbi "$u.tbi"; then got="$u"; break; fi
+          done
+          if [ -z "$got" ]; then
+            echo "ClinVar ${CLINVAR_DATE} not found. vcf_GRCh38/ lists:"
+            curl -fsSL "$c/" | grep -o 'clinvar_[0-9]*\.vcf\.gz' | sort -u | tail -12 || true
+            echo "weekly/ lists:"; curl -fsSL "$c/weekly/" | grep -o 'clinvar_[0-9]*\.vcf\.gz' | sort -u | tail -12 || true
+            exit 1
+          fi
+          echo "ClinVar from: $got" | tee log/clinvar.log
           $env/bcftools view -h clinvar.vcf.gz > clinvar.header.txt
           date=$(grep -m1 '^##fileDate' clinvar.header.txt | cut -d= -f2 | tr -d '-')
-          test -n "$date"
-          echo "ClinVar file date: $date" | tee log/clinvar.log
+          test "$date" = "$CLINVAR_DATE"
+          echo "ClinVar file date: $date" | tee -a log/clinvar.log
           grep -m3 -E '^##(source|reference)' clinvar.header.txt | tee -a log/clinvar.log || true
           start=${WINDOW#*:}; start=${start%-*}; end=${WINDOW#*-}
           len=$(cut -f2 chr20.fa.fai)
-          # rename 20 -> chr20 and give the contig its length (the trainees' reference); keep the fields we teach
+          # rename 20 -> chr20 with the contig's length (the trainees' reference); copy the Variation ID (the ID
+          # column) into INFO/CLNVID, so it survives when another file fills ID; keep the fields we teach
           $env/bcftools view -r "20:${start}-${end}" clinvar.vcf.gz \
             | awk -v len="$len" 'BEGIN { FS = OFS = "\t" }
                 /^##contig=<ID=20[,>]/ { next }
-                /^#CHROM/ { print "##contig=<ID=chr20,length=" len ">"; print; next }
+                /^#CHROM/ { print "##contig=<ID=chr20,length=" len ">"
+                            print "##INFO=<ID=CLNVID,Number=1,Type=Integer,Description=\"ClinVar Variation ID: the number at the end of the address www.ncbi.nlm.nih.gov/clinvar/variation/NUMBER\">"
+                            print; next }
                 /^#/ { print; next }
-                { $1 = "chr20"; print }' \
-            | $env/bcftools annotate -x '^INFO/ALLELEID,INFO/CLNSIG,INFO/CLNREVSTAT,INFO/CLNDN,INFO/GENEINFO,INFO/MC,INFO/CLNVC,INFO/CLNHGVS' -Ou \
+                { $1 = "chr20"; $8 = "CLNVID=" $3 ($8 == "." ? "" : ";" $8); print }' \
+            | $env/bcftools annotate -x '^INFO/CLNVID,INFO/ALLELEID,INFO/CLNSIG,INFO/CLNREVSTAT,INFO/CLNDN,INFO/GENEINFO,INFO/MC,INFO/CLNVC,INFO/CLNHGVS' -Ou \
             | $env/bcftools norm -f chr20.fa -c w -m -any -Oz -o "out/clinvar_${date}.window.vcf.gz"
           $env/bcftools index -t "out/clinvar_${date}.window.vcf.gz"
           {
@@ -140,6 +184,13 @@ jobs:
             $env/bcftools query -f '%INFO/CLNREVSTAT\n' "out/clinvar_${date}.window.vcf.gz" | sort | uniq -c | sort -k1,1nr | head -10
             $env/bcftools view -H "out/clinvar_${date}.window.vcf.gz" | head -3 | cut -c1-400
           } 2>&1 | tee -a log/clinvar.log
+      - name: The README template of the trainees' repositories
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          sparse-checkout: .github/day3
+      - name: Copy the README template
+        run: cp repo/.github/day3/README-template.md out/ && rm -rf repo && ls -l out
       - name: Checksums
         run: |
           set -euo pipefail
