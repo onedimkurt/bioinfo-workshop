@@ -18,7 +18,7 @@ chr20	10000004	rs1004639863	A	G	.	PASS	gnomAD_AC=5;gnomAD_AN=152208;gnomAD_AF=3.
 chr20	10000006	rs949540033	G	C	.	PASS	gnomAD_AC=1;gnomAD_AN=152200;gnomAD_AF=6.5703e-06;gnomAD_grpmax=afr;gnomAD_nhomalt=0;gnomAD_AF_grpmax=2.41208e-05
 chr20	10000019	rs1982878476	G	A	.	PASS	gnomAD_AC=1;gnomAD_AN=152194;gnomAD_AF=6.57056e-06;gnomAD_grpmax=amr;gnomAD_nhomalt=0;gnomAD_AF_grpmax=6.5445e-05
 total 12832
--rw-r--r-- 1 root root  2911380 Oct 13 22:48 chr20.ensembl116.gff3.gz
--rw-r--r-- 1 root root   212279 Oct 13 22:48 chr20.ensembl116.mane.gff3.gz
--rw-r--r-- 1 root root 10009898 Oct 13 22:48 gnomad.genomes.v4.1.window.vcf.gz
--rw-r--r-- 1 root root     1646 Oct 13 22:48 gnomad.genomes.v4.1.window.vcf.gz.tbi
+-rw-r--r-- 1 root root  2911380 Oct 13 22:52 chr20.ensembl116.gff3.gz
+-rw-r--r-- 1 root root   212279 Oct 13 22:52 chr20.ensembl116.mane.gff3.gz
+-rw-r--r-- 1 root root 10009893 Oct 13 22:52 gnomad.genomes.v4.1.window.vcf.gz
+-rw-r--r-- 1 root root     1644 Oct 13 22:52 gnomad.genomes.v4.1.window.vcf.gz.tbi

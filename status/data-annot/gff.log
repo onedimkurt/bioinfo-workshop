@@ -12,12 +12,12 @@
 + echo '== bcftools csq on the GIAB truth of the window (consequence counts)'
 == bcftools csq on the GIAB truth of the window (consequence counts)
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
-+ tr , '\n'
-+ cut '-d|' -f1
-+ head -25
 + sort
 + uniq -c
++ tr , '\n'
++ cut '-d|' -f1
 + sort -k1,1nr
++ head -25
    2264 non_coding
    1448 intron
     556 .
@@ -40,23 +40,23 @@ Indexed 16314 transcripts, 125459 exons, 78636 CDSs, 39650 UTRs
 Ignored the following biotypes:
 + echo '== genes with a protein-coding transcript in the window'
 == genes with a protein-coding transcript in the window
-+ awk '-F\t' '$3 == "gene" && $4 < 12000000 && $5 > 10000000'
 + zcat out/chr20.ensembl116.gff3.gz
-+ sed -E 's/.*Name=([^;]+).*/\1/'
++ awk '-F\t' '$3 == "gene" && $4 < 12000000 && $5 > 10000000'
 + grep biotype=protein_coding
++ sed -E 's/.*Name=([^;]+).*/\1/'
 + tr '\n' ' '
 ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG00000285723;biotype=protein_coding;description=novel protein;gene_id=ENSG00000285723;logic_name=havana_homo_sapiens;version=3 chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG00000285508;biotype=protein_coding;description=novel protein;gene_id=ENSG00000285508;logic_name=havana_homo_sapiens;version=3 SLX4IP JAG1 BTBD3 + echo
 
 + echo '== protein-altering consequences in the truth, by gene'
 == protein-altering consequences in the truth, by gene
++ grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)'
++ sort
++ sort -k1,1nr
++ head -40
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth.vcf.gz
 + tr , '\n'
-+ head -40
-+ grep -E '^(missense|stop_gained|frameshift|inframe|splice_acceptor|splice_donor|start_lost|stop_lost)'
 + cut '-d|' -f1,2
-+ sort
 + uniq -c
-+ sort -k1,1nr
       6 missense|SLX4IP
       5 missense|ANKEF1
       2 stop_lost|ANKEF1
@@ -70,9 +70,9 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
 + echo '   feature types:'
    feature types:
 + zcat out/chr20.ensembl116.mane.gff3.gz
-+ sort
 + uniq -c
 + awk '-F\t' '!/^#/ { print $3 }'
++ sort
    4683 CDS
    4981 exon
     762 five_prime_UTR
@@ -83,11 +83,11 @@ ANKEF1 SNAP25 MKKS chr20	havana	gene	10411653	10434236	.	-	.	ID=gene:ENSG0000028
     548 three_prime_UTR
 + echo '   consequences in the GIAB truth (first consequence of each record):'
    consequences in the GIAB truth (first consequence of each record):
++ cut '-d|' -f1
++ sort -k1,1nr
 + /opt/conda/envs/variants-ready/bin/bcftools query -f '%INFO/BCSQ\n' csq_truth_mane.vcf.gz
 + cut -d, -f1
-+ cut '-d|' -f1
 + sort
-+ sort -k1,1nr
 + uniq -c
    2593 .
     545 intron
