@@ -20,9 +20,9 @@ Veriler ve sonuç dosyaları bu depoda tutulmaz; betikler verileri indirir ve so
    RStudio birkaç dakika içinde açılır.
 2. O günün Terminal betiği (`scripts/dayN.sh`) RStudio'da açılır ve komutları Terminal sekmesinde sırayla
    çalıştırılır. Betik, gerektiğinde yazılım ortamını `envs/` klasöründeki dosyadan oluşturur ve o günün
-   verilerini indirir; örneğin 3. gün için `conda env create -f envs/variants.yml`, `conda activate variants` ve
-   `bash setup/day2.sh` satırlarıyla başlar. Ortam aynı codespace'te daha önce oluşturulduysa `conda env create`
-   satırı atlanabilir; betiğin sonundaki `git` satırlarının yeniden çalıştırılmasına gerek yoktur.
+   verilerini indirir; örneğin 3. günün betiği `conda env create -f envs/variants.yml`, `conda activate variants`
+   ve `bash setup/day2.sh` satırlarını içerir. Ortam aynı codespace'te daha önce oluşturulduysa `conda env create`
+   satırı atlanabilir; betikteki `git` satırlarının yeniden çalıştırılmasına gerek yoktur.
 3. O günün R betiği (`scripts/dayN.R`) RStudio'da açılır ve baştan sona çalıştırılır.
 
 ## Klasörler
