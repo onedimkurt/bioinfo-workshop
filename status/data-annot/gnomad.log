@@ -1,0 +1,16 @@
+kept INFO fields: INFO/AC,INFO/AN,INFO/AF,INFO/nhomalt,INFO/grpmax,INFO/AF_grpmax,INFO/fafmax_faf95_max
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Alternate allele count">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Alternate allele frequency">
+##INFO=<ID=grpmax,Number=A,Type=String,Description="Genetic ancestry group with the maximum allele frequency">
+##INFO=<ID=fafmax_faf95_max,Number=A,Type=Float,Description="Maximum filtering allele frequency (using Poisson 95% CI) across genetic ancestry groups">
+##INFO=<ID=nhomalt,Number=A,Type=Integer,Description="Count of homozygous individuals">
+##INFO=<ID=AF_grpmax,Number=A,Type=Float,Description="Maximum allele frequency across genetic ancestry groups">
+gnomAD records in window: 442329
+chr20	10000004	rs1004639863	A	G	.	PASS	AC=5;AN=152208;AF=3.28498e-05;nhomalt=0
+chr20	10000006	rs949540033	G	C	.	PASS	AC=1;AN=152200;AF=6.5703e-06;grpmax=afr;nhomalt=0;AF_grpmax=2.41208e-05
+chr20	10000019	rs1982878476	G	A	.	PASS	AC=1;AN=152194;AF=6.57056e-06;grpmax=amr;nhomalt=0;AF_grpmax=6.5445e-05
+total 12220
+-rw-r--r-- 1 root root 2911380 Oct 13 20:13 chr20.ensembl116.gff3.gz
+-rw-r--r-- 1 root root 9594999 Oct 13 20:13 gnomad.genomes.v4.1.window.vcf.gz
+-rw-r--r-- 1 root root    1642 Oct 13 20:13 gnomad.genomes.v4.1.window.vcf.gz.tbi

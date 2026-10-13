@@ -1,0 +1,5 @@
+f1b95db7443ff07676330aef449809b3afbd1900dc86bc3c345cfabaca4a9fb1  chr20.ensembl116.gff3.gz
+324685c5f97a3a1bd30d8e8fe7918f40cabfd5ecbe93d2c5eac201963dabbbc4  clinvar_20261011.window.vcf.gz
+a635f0c686c0830d348bb1ed971dafc9aeee0ee0c60448ce7525b72ee6a90b5a  clinvar_20261011.window.vcf.gz.tbi
+4e34924edac442f35c5762aeea4c39e83e2452c3aeb0475be5b8fdca551d0999  gnomad.genomes.v4.1.window.vcf.gz
+d76d381251c7ba98b7b92c260276a2d36489ebd67ce9f38512e1006ba1b8cdfb  gnomad.genomes.v4.1.window.vcf.gz.tbi
